@@ -1,12 +1,16 @@
 package com.jakir.cse24.personaldictionary
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import com.jakir.cse24.personaldictionary.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
+    override fun onViewReady(savedInstanceState: Bundle?) {
+        // here initialize views
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    }
+
+    override fun getContentView(): Int {
+        return R.layout.activity_main
     }
 }
