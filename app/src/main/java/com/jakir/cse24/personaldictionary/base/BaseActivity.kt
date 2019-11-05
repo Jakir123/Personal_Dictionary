@@ -80,10 +80,10 @@ abstract class BaseActivity : AppCompatActivity() {
         dialog.setIcon(icon)
         dialog.setMessage(msg)
         dialog.setPositiveButton(
-            getString(android.R.string.ok),
-            DialogInterface.OnClickListener { dialogInterface, i ->
-                dialogInterface.dismiss()
-            })
+            getString(android.R.string.ok)
+        ) { dialogInterface, _ ->
+            dialogInterface.dismiss()
+        }
     }
 
     /**
