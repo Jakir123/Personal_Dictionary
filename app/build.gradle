@@ -28,7 +28,6 @@ android {
 }
 
 dependencies {
-    def lifecycle_version = "2.1.0"
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -43,5 +42,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
 
     // firebase firestore for database
-    implementation 'com.google.firebase:firebase-firestore-ktx:21.2.1'
+    implementation "com.google.firebase:firebase-firestore-ktx:$firestore_version"
+
+    // for networking
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$gson_version"
 }
