@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Personal Dictionary</string>
+    <string name="type">Noun</string>
+    <string name="sample_word">Vulnerability</string>
 </resources>
