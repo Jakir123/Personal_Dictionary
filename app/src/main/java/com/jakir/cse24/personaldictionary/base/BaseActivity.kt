@@ -1,14 +1,21 @@
 package com.jakir.cse24.personaldictionary.base
 
-import android.content.DialogInterface
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import com.jakir.cse24.personaldictionary.R
+import kotlinx.android.synthetic.main.layout_progress_dialog.view.*
+
 
 abstract class BaseActivity : AppCompatActivity() {
+    private var dialog: AlertDialog? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,6 +104,42 @@ abstract class BaseActivity : AppCompatActivity() {
     protected fun showAlert(msg: String) {
         showAlert("Dictionary", msg, android.R.drawable.ic_dialog_alert)
     }
+
+    /**
+     * This method is for showing progress with custom message(optional).
+     * Created by Md. Jakir Hossain on 07/11/2019.
+     *
+     * @param msg progress message(optional)
+     */
+    protected fun showProgressDialog(msg: String = "") {
+        val view: View = LayoutInflater.from(this).inflate(R.layout.layout_progress_dialog, null)
+        val alert = AlertDialog.Builder(this)
+        alert.setCancelable(false)
+        alert.setView(view)
+        if (dialog != null) {
+            dialog!!.dismiss()
+        }
+        dialog = alert.create()
+        if (TextUtils.isEmpty(msg)) {
+            view.tvProgressMessage.visibility = View.GONE
+            dialog!!.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
+        } else
+            view.tvProgressMessage.text = msg
+
+        dialog!!.show()
+    }
+
+    /**
+     * This method is for hide/clear progress dialog
+     * Created by Md. Jakir Hossain on 07/11/2019.
+     */
+    protected fun hideProgressDialog(){
+        if (dialog != null) {
+            dialog!!.dismiss()
+            dialog = null
+        }
+    }
+
 
     /**
      * This function is for setting actionbar title
