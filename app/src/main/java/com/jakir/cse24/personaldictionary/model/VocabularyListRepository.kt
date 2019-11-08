@@ -15,6 +15,9 @@ class VocabularyListRepository {
 //        nextItem = lastItem + 1
         items.add(Vocabulary("Vulnerability","Noun",Translation("Durbolota","who is weak","he is vulnerable then him!")))
         items.add(Vocabulary("Despite","Noun",Translation("Sotteo","Despite","Despite i am sick i want to play!")))
+        items.add(Vocabulary("Despite","Noun",Translation("Sotteo","Despite","Despite i am sick i want to play!")))
+        items.add(Vocabulary("Despite","Noun",Translation("Sotteo","Despite","Despite i am sick i want to play!")))
+        items.add(Vocabulary("Despite","Pronoun",Translation("Sotteo","Despite","Despite i am sick i want to play!")))
 
         return items
     }
