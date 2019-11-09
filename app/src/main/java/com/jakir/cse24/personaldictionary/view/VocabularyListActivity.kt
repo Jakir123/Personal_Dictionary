@@ -1,26 +1,33 @@
 package com.jakir.cse24.personaldictionary.view
 
+
+import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.adapter.VocabularyListAdapter
+import com.jakir.cse24.personaldictionary.base.BaseActivity
 import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
 import kotlinx.android.synthetic.main.activity_vocabulary_list.*
 
-class VocabularyListActivity : AppCompatActivity() {
+class VocabularyListActivity : BaseActivity() {
     private lateinit var viewModel: VocabularyListViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun getContentView() {
         setContentView(R.layout.activity_vocabulary_list)
+    }
+
+    override fun onViewReady(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this)[VocabularyListViewModel::class.java]
 
 
         val layoutManager = LinearLayoutManager(this)
+
+        fabAdd.setOnClickListener {
+            startActivity(Intent(this@VocabularyListActivity, LoginActivity::class.java))
+        }
 
         recyclerView.layoutManager = layoutManager
         recyclerView.hasFixedSize()

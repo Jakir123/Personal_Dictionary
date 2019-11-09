@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -19,7 +20,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(getContentView())
+        getContentView()
         onViewReady(savedInstanceState)
     }
 
@@ -29,7 +30,7 @@ abstract class BaseActivity : AppCompatActivity() {
      *
      * @return layout resource ID
      */
-    abstract fun getContentView(): Int
+    abstract fun getContentView()
 
     /**
      * This method is for every child activities of BaseActivity and can do what they are want to do in onCreate().
@@ -91,6 +92,7 @@ abstract class BaseActivity : AppCompatActivity() {
         ) { dialogInterface, _ ->
             dialogInterface.dismiss()
         }
+        dialog.show()
     }
 
     /**
@@ -146,9 +148,16 @@ abstract class BaseActivity : AppCompatActivity() {
      * Created by Md. Jakir Hossain on 03/11/2019.
      * @param title action bar title
      */
-    protected fun settingActionBar(title: String) {
-        supportActionBar?.setHomeButtonEnabled(true)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    protected fun settingActionBar(title: String,status:Boolean) {
+        supportActionBar?.setHomeButtonEnabled(status)
+        supportActionBar?.setDisplayHomeAsUpEnabled(status)
         supportActionBar?.title = title
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

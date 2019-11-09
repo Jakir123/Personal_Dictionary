@@ -2,4 +2,17 @@
     <string name="app_name">Personal Dictionary</string>
     <string name="type">Noun</string>
     <string name="sample_word">Vulnerability</string>
+    <string name="login">Login</string>
+    <string name="password_hint">Enter your password</string>
+    <string name="phone_hint">Enter your phone number</string>
+    <string name="create_new_account_label">Don\'t have account yet? click her to signup</string>
+    <string name="password_outline_hint" >Password</string>
+    <string name="phone_outline_hint" >Phone number</string>
+    <string name="sign_up">SignUp</string>
+    <string name="have_account_label">Already have an account click here to login.</string>
+    <string name="name_hint">Enter your name</string>
+    <string name="password_confirm_hint">Enter same password again</string>
+    <string name="welcome">Welcome\n To Your \n Personal Dictionary</string>
+    <string name="password_confirm_mismatch_error">Oops, your password mismatch!</string>
+    <string name="phone_validation_error">Phone number should 11 digit.</string>
 </resources>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="loginViewModel"
+            type="com.jakir.cse24.personaldictionary.view_model.LoginViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".view.LoginActivity">
+
+        <ImageView
+            android:layout_width="80dp"
+            app:layout_constraintBottom_toTopOf="@id/tilPhone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/jakir"
+            android:scaleType="fitXY"
+            android:layout_marginBottom="50dp"
+            android:layout_height="80dp"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPhone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toTopOf="@+id/tilPassword"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:hint="@string/phone_hint">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:id="@+id/etPhone"
+                android:inputType="phone"
+                android:imeOptions="actionNext"
+                android:text="@={loginViewModel.phoneNumber}"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password_hint" >
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:id="@+id/etPassword"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:text="@={loginViewModel.password}"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:id="@+id/btnLogin"
+            app:layout_constraintTop_toBottomOf="@id/tilPassword"
+            android:text="@string/login"
+            android:layout_marginTop="10dp"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:textStyle="bold"
+            android:padding="10dp"
+            android:background="@color/white"
+            android:textAllCaps="true"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:id="@+id/tvSignUp"
+            android:fontFamily="sans-serif-smallcaps"
+            android:text="@string/create_new_account_label"
+            android:textColor="@color/design_default_color_primary_variant"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/btnLogin"
+            tools:layout_editor_absoluteX="16dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
