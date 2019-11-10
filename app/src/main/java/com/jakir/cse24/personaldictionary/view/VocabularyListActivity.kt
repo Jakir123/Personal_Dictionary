@@ -9,10 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.adapter.VocabularyListAdapter
 import com.jakir.cse24.personaldictionary.base.BaseActivity
+import com.jakir.cse24.personaldictionary.model.Vocabulary
 import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
 import kotlinx.android.synthetic.main.activity_vocabulary_list.*
 
-class VocabularyListActivity : BaseActivity() {
+class VocabularyListActivity : BaseActivity(), VocabularyListAdapter.ItemClickListener{
+    override fun onItemClick(vocabulary: Vocabulary) {
+        showToast(vocabulary.translation.meaning)
+    }
+
     private lateinit var viewModel: VocabularyListViewModel
 
     override fun getContentView() {
@@ -31,7 +36,8 @@ class VocabularyListActivity : BaseActivity() {
 
         recyclerView.layoutManager = layoutManager
         recyclerView.hasFixedSize()
-        recyclerView.adapter = VocabularyListAdapter(viewModel.vocabularies.value!!)
+        recyclerView.adapter = VocabularyListAdapter(viewModel.vocabularies.value!!,this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
+        recyclerView
     }
 }

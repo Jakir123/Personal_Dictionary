@@ -2,6 +2,8 @@ package com.jakir.cse24.personaldictionary.model
 
 class LoginRepository {
     fun login(user: User): LoginModel {
-        return LoginModel(false,"Invalid credentials!")
+        if (user.phone == "01914228380")
+            return LoginModel(true, "Login Successful!")
+        return LoginModel(false, "Invalid credentials!")
     }
 }

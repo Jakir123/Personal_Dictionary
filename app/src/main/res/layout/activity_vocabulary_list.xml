@@ -8,6 +8,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/rv_sample" />
@@ -16,6 +17,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:src="@drawable/ic_add"
         android:id="@+id/fabAdd"
+        app:tint="@color/white"
+        app:backgroundTint="@color/colorPrimary"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         app:layout_constraintRight_toRightOf="parent"

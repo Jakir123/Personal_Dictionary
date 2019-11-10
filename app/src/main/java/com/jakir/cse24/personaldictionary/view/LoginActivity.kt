@@ -49,7 +49,7 @@ class LoginActivity : BaseActivity() {
             viewModel.login(User(phone, password)).observe(this, Observer<LoginModel> {
                 hideProgressDialog()
                 if (it.status) {
-                    showToast("login successful!")
+                    startActivity(Intent(this@LoginActivity,VocabularyListActivity::class.java ))
                 } else {
                     showToast(it.message)
                 }
