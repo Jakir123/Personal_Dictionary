@@ -14,14 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.RegistrationActivity" />
-        <activity android:name=".view.LoginActivity" />
-        <activity android:name=".view.SplashScreenActivity">
+        <activity android:name=".view.activities.DashboardActivity"></activity>
+        <activity android:name=".view.activities.RegistrationActivity" />
+        <activity android:name=".view.activities.LoginActivity" />
+        <activity android:name=".view.activities.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.VocabularyListActivity" />
+        <activity android:name=".view.activities.VocabularyListActivity" />
     </application>
+
 </manifest>

@@ -1,4 +1,4 @@
-package com.jakir.cse24.personaldictionary.view
+package com.jakir.cse24.personaldictionary.view.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,7 +13,7 @@ class SplashScreenActivity : BaseActivity() {
 
     override fun onViewReady(savedInstanceState: Bundle?) {
         Handler().postDelayed({
-           startActivity(Intent(this,LoginActivity::class.java))
+           startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }, 3000) // 3 sec
     }

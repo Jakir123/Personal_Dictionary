@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:padding="10dp"
-    tools:context=".view.SplashScreenActivity">
+    tools:context=".view.activities.SplashScreenActivity">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"

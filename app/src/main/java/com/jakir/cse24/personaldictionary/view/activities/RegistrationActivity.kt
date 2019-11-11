@@ -1,4 +1,4 @@
-package com.jakir.cse24.personaldictionary.view
+package com.jakir.cse24.personaldictionary.view.activities
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil

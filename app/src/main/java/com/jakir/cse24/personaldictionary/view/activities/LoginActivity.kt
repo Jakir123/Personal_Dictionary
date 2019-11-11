@@ -1,4 +1,4 @@
-package com.jakir.cse24.personaldictionary.view
+package com.jakir.cse24.personaldictionary.view.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -49,7 +49,8 @@ class LoginActivity : BaseActivity() {
             viewModel.login(User(phone, password)).observe(this, Observer<LoginModel> {
                 hideProgressDialog()
                 if (it.status) {
-                    startActivity(Intent(this@LoginActivity,VocabularyListActivity::class.java ))
+                    startActivity(Intent(this@LoginActivity,
+                        DashboardActivity::class.java ))
                 } else {
                     showToast(it.message)
                 }
