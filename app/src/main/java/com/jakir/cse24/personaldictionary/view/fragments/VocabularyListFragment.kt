@@ -55,7 +55,7 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener {
         recyclerView.layoutManager = layoutManager
         recyclerView.hasFixedSize()
         recyclerView.adapter = VocabularyListAdapter(viewModel.vocabularies.value!!, this)
-        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
+//        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
         recyclerView
     }
 

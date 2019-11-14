@@ -11,7 +11,7 @@ class VocabularyListAdapter(private var vocabularyList: List<Vocabulary>, privat
     RecyclerView.Adapter<VocabularyListAdapter.VHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = RvSampleBinding.inflate(inflater)
+        val binding = RvSampleBinding.inflate(inflater,parent,false)
         return VHolder(binding)
     }
 

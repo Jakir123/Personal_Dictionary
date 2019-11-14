@@ -19,4 +19,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="header_add_vocabulary">Add New Vocabulary</string>
+    <string name="word_hint">Write your vocabulary here</string>
+    <string name="meaning_hint">Write words meaning here</string>
+    <string name="eample_hint">Write an example(optional)</string>
+    <string name="description_hint">Write description about this word</string>
+    <string name="save">Save</string>
 </resources>
