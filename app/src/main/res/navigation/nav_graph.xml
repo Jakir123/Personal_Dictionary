@@ -12,6 +12,10 @@
         android:label="VocabularyListFragment" >
         <action
             android:id="@+id/action_addVocabulary"
+            app:enterAnim="@anim/slide_out_top"
+            app:exitAnim="@anim/slide_in_top"
+            app:popEnterAnim="@anim/slide_out_top"
+            app:popExitAnim="@anim/slide_in_top"
             app:destination="@id/addVocabularyFragment" />
     </fragment>
     <fragment

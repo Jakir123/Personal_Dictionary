@@ -1,17 +1,23 @@
 package com.jakir.cse24.personaldictionary.view.fragments
 
 
+import android.app.ActionBar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import com.jakir.cse24.personaldictionary.R
+import com.jakir.cse24.personaldictionary.adapter.SpinnerAdapter
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.databinding.FragmentAddVocabularyBinding
+import com.jakir.cse24.personaldictionary.model.Translation
+import com.jakir.cse24.personaldictionary.model.Vocabulary
 import com.jakir.cse24.personaldictionary.view_model.VocabularyAddViewModel
 import kotlinx.android.synthetic.main.fragment_add_vocabulary.*
 
@@ -39,8 +45,14 @@ class AddVocabularyFragment : BaseFragment() {
         viewModel = ViewModelProviders.of(this)[VocabularyAddViewModel::class.java]
         binding.viewModel = viewModel
 
+//        (activity as AppCompatActivity).supportActionBar?.title = "Example 1"
+//        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+//        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
+
         val types = arrayOf("Select word type..","Noun","Pronoun","Verb","Adverb","Adjective","Preposition","Conjunction")
-        val adapter = ArrayAdapter(requireContext(),android.R.layout.simple_spinner_item,types)
+        val adapter = SpinnerAdapter(requireContext(),android.R.layout.simple_spinner_item,
+            types.toList()
+        )
 
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         spinnerType.adapter = adapter
@@ -60,10 +72,8 @@ class AddVocabularyFragment : BaseFragment() {
         btnSave.setOnClickListener {
             val word = viewModel.word.value
             val meaning = viewModel.meaning.value
-            val description = viewModel.description.value
-            val example = viewModel.example.value
-
-            logD("Personal Dictionary","Type: "+type)
+            var description = viewModel.description.value
+            var example = viewModel.example.value
 
             if (word == null || word == "") {
                 binding.etWord.error = getString(R.string.word_hint)
@@ -78,10 +88,23 @@ class AddVocabularyFragment : BaseFragment() {
             if (type == "Select word type.."){
                 showToast("You have to select word type!")
             }
+            if (description == null){
+                description = ""
+            }
+            if (example == null){
+                example = ""
+            }
 
+            viewModel.addVocabulary(Vocabulary(word,type, Translation(meaning,description,example))).observe(this,
+                Observer <Boolean>{
+                    if (it) {
+                        showToast("Vocabulary added successfully!")
+                        val navController = Navigation.findNavController(view)
+                        navController.navigateUp()
+                    }
+                    else
+                        showToast("Vocabulary not added!")
+                })
         }
-
     }
-
-
 }
