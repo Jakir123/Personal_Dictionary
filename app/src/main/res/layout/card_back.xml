@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.jakir.cse24.personaldictionary.model.Vocabulary" />
+    </data>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/default_padding">
+
+            <TextView
+                android:id="@+id/tvWord"
+                style="@style/default_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/arbutus"
+                android:gravity="center"
+                android:text="@{data.word+'-'+ data.type}"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvMeaningLabel"
+                style="@style/large_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/arbutus"
+                android:text="@string/meaning"
+                app:layout_constraintTop_toBottomOf="@+id/tvWord" />
+
+            <TextView
+                android:id="@+id/tvMeaning"
+                style="@style/default_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/arbutus"
+                android:text="@{data.translation.meaning}"
+                app:layout_constraintTop_toBottomOf="@+id/tvMeaningLabel" />
+
+            <TextView
+                android:id="@+id/tvDescriptionLabel"
+                style="@style/large_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/arbutus"
+                android:text="@string/description"
+                app:layout_constraintTop_toBottomOf="@+id/tvMeaning" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                style="@style/default_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/arbutus"
+                android:text="@{data.translation.description}"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescriptionLabel" />
+
+            <TextView
+                android:id="@+id/tvExampleLabel"
+                style="@style/large_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/arbutus"
+                android:text="@string/example"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+            <TextView
+                android:id="@+id/tvExample"
+                style="@style/default_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/arbutus"
+                android:text="@{data.translation.example}"
+                app:layout_constraintTop_toBottomOf="@+id/tvExampleLabel" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

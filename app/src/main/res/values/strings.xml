@@ -24,4 +24,7 @@
     <string name="eample_hint">Write an example(optional)</string>
     <string name="description_hint">Write description about this word</string>
     <string name="save">Save</string>
+    <string name="meaning">Meaning</string>
+    <string name="description">Description</string>
+    <string name="example">Example</string>
 </resources>

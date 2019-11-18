@@ -23,4 +23,9 @@
         android:name="com.jakir.cse24.personaldictionary.view.fragments.AddVocabularyFragment"
         android:label="fragment_add_vocabulary"
         tools:layout="@layout/fragment_add_vocabulary" />
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.jakir.cse24.personaldictionary.view.fragments.QuizFragment"
+        tools:layout="@layout/fragment_quiz"
+        android:label="QuizFragment" />
 </navigation>

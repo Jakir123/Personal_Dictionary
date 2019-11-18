@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="large_textview">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">@dimen/textview_large_text_size</item>
+    </style>
+
+    <style name="default_textview">
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:textSize">@dimen/textview_default_text_size</item>
+    </style>
+
 </resources>

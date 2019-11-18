@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/bottomNavFragmentOne"
+        android:id="@+id/vocabularyListFragment"
         android:icon="@drawable/ic_add"
         android:title="Home"/>
     <item
-        android:id="@+id/bottomNavFragmentTwo"
+        android:id="@+id/addVocabularyFragment"
         android:icon="@drawable/ic_add"
         android:title="Favourite"/>
     <item
-        android:id="@+id/bottomNavFragmentThree"
+        android:id="@+id/quizFragment"
         android:icon="@drawable/ic_add"
         android:title="Quize"/>
 

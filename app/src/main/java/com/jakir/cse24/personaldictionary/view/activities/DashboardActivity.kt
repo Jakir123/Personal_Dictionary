@@ -1,6 +1,7 @@
 package com.jakir.cse24.personaldictionary.view.activities
 
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI

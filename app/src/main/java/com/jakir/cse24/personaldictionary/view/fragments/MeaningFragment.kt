@@ -11,6 +11,7 @@ import com.jakir.cse24.personaldictionary.R
 
 /**
  * A simple [Fragment] subclass.
+ * Created by Md. Jakir Hossain on 02/05/2019
  */
 class MeaningFragment : Fragment() {
 
