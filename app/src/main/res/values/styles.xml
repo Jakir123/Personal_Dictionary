@@ -8,14 +8,45 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="large_textview">
+    <style name="largeTextViewStyle" parent="defaultTextViewStyle">
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textSize">@dimen/textview_large_text_size</item>
     </style>
 
-    <style name="default_textview">
-        <item name="android:textColor">@color/colorBlack</item>
+    <style name="defaultTextViewStyle" parent="matchParentWrapContent">
+        <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">@dimen/textview_default_text_size</item>
+        <item name="android:fontFamily">sans-serif-smallcaps</item>
+    </style>
+
+    <style name="buttonStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="backgroundTint">@color/colorOrangeLight</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">@dimen/button_default_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="editTextStyle" parent="matchParent">
+        <item name="android:background">@drawable/round_edittext</item>
+        <item name="android:drawablePadding">@dimen/drawable_padding</item>
+        <item name="android:imeOptions">actionNext</item>
+    </style>
+
+    <style name="matchParent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <style name="matchParentWrapContent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="wrapContent">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 
 </resources>

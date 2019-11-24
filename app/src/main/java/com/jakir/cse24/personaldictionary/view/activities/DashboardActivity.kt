@@ -1,7 +1,6 @@
 package com.jakir.cse24.personaldictionary.view.activities
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
@@ -23,5 +22,14 @@ class DashboardActivity : BaseActivity() {
         bottomNavigation?.let {
             NavigationUI.setupWithNavController(it, navController)
         }
+    }
+
+    override fun onBackPressed() {
+        if (Navigation.findNavController(this,R.id.fragmentContainer)
+                .currentDestination?.id == R.id.vocabularyListFragment) {
+            showAlert("Do you want ot exit? ")
+            return
+        }
+        super.onBackPressed()
     }
 }

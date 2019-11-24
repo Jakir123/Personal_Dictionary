@@ -7,16 +7,23 @@
 
     <fragment
         android:id="@+id/vocabularyListFragment"
-        tools:layout="@layout/fragment_vocabulary_list"
         android:name="com.jakir.cse24.personaldictionary.view.fragments.VocabularyListFragment"
-        android:label="VocabularyListFragment" >
+        android:label="VocabularyListFragment"
+        tools:layout="@layout/fragment_vocabulary_list">
         <action
             android:id="@+id/action_addVocabulary"
+            app:destination="@id/addVocabularyFragment"
             app:enterAnim="@anim/slide_out_top"
             app:exitAnim="@anim/slide_in_top"
             app:popEnterAnim="@anim/slide_out_top"
-            app:popExitAnim="@anim/slide_in_top"
-            app:destination="@id/addVocabularyFragment" />
+            app:popExitAnim="@anim/slide_in_top" />
+        <action
+            android:id="@+id/action_wordDetails"
+            app:destination="@id/wordDetailsFragment"
+            app:enterAnim="@anim/slide_out_top"
+            app:exitAnim="@anim/slide_in_top"
+            app:popEnterAnim="@anim/slide_out_top"
+            app:popExitAnim="@anim/slide_in_top" />
     </fragment>
     <fragment
         android:id="@+id/addVocabularyFragment"
@@ -26,6 +33,15 @@
     <fragment
         android:id="@+id/quizFragment"
         android:name="com.jakir.cse24.personaldictionary.view.fragments.QuizFragment"
-        tools:layout="@layout/fragment_quiz"
-        android:label="QuizFragment" />
+        android:label="QuizFragment"
+        tools:layout="@layout/fragment_quiz" />
+    <fragment
+        android:id="@+id/wordDetailsFragment"
+        android:name="com.jakir.cse24.personaldictionary.view.fragments.WordDetailsFragment"
+        android:label="WordDetailsFragment"
+        tools:layout="@layout/fragment_word_details">
+        <argument
+            android:name="vocabulary"
+            app:argType="com.jakir.cse24.personaldictionary.model.Vocabulary" />
+    </fragment>
 </navigation>

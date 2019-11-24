@@ -129,7 +129,7 @@
                 android:textStyle="bold"
                 android:padding="10dp"
                 android:textSize="@dimen/button_default_text_size"
-                android:background="@color/white"
+                android:background="@color/colorWhite"
                 android:textAllCaps="true"
                 android:layout_height="wrap_content"/>
 

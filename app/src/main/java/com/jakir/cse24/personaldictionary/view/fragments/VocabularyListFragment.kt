@@ -7,8 +7,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -30,7 +32,9 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener {
     private lateinit var viewModel: VocabularyListViewModel
 
     override fun onItemClick(vocabulary: Vocabulary) {
-        showToast(vocabulary.translation.meaning)
+//        showToast(vocabulary.translation.meaning)
+        val bundle = bundleOf("vocabulary" to vocabulary)
+        view?.findNavController()?.navigate(R.id.action_wordDetails,bundle)
     }
 
     override fun onCreateView(

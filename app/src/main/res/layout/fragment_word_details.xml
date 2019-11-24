@@ -17,28 +17,39 @@
 
             <TextView
                 android:id="@+id/tvWord"
-                style="@style/default_textview"
+                style="@style/largeTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
                 android:fontFamily="@font/arbutus"
                 android:gravity="center"
-                android:text="@{data.word+'-'+ data.type}"
+                android:text="@{data.word}"
                 app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/tvWordType"
+                style="@style/defaultTextViewStyle"
+                android:layout_width="match_parent"
+                android:textColor="@color/colorOrangeLight"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/arbutus"
+                android:gravity="center"
+                android:text="@{'('+data.type+')'}"
+                app:layout_constraintTop_toBottomOf="@+id/tvWord" />
 
             <TextView
                 android:id="@+id/tvMeaningLabel"
-                style="@style/large_textview"
+                style="@style/largeTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/arbutus"
                 android:text="@string/meaning"
-                app:layout_constraintTop_toBottomOf="@+id/tvWord" />
+                app:layout_constraintTop_toBottomOf="@+id/tvWordType" />
 
             <TextView
                 android:id="@+id/tvMeaning"
-                style="@style/default_textview"
+                style="@style/defaultTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -48,7 +59,7 @@
 
             <TextView
                 android:id="@+id/tvDescriptionLabel"
-                style="@style/large_textview"
+                style="@style/largeTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -58,7 +69,7 @@
 
             <TextView
                 android:id="@+id/tvDescription"
-                style="@style/default_textview"
+                style="@style/defaultTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -68,7 +79,7 @@
 
             <TextView
                 android:id="@+id/tvExampleLabel"
-                style="@style/large_textview"
+                style="@style/largeTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -78,7 +89,7 @@
 
             <TextView
                 android:id="@+id/tvExample"
-                style="@style/default_textview"
+                style="@style/defaultTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
