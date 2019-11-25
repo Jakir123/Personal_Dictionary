@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.databinding.FragmentQuizBinding
-import com.jakir.cse24.personaldictionary.model.Translation
-import com.jakir.cse24.personaldictionary.model.Vocabulary
+import com.jakir.cse24.personaldictionary.data.model.Translation
+import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.view_model.QuizViewModel
 import kotlinx.android.synthetic.main.fragment_quiz.*
 

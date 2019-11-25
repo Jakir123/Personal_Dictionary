@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.jakir.cse24.personaldictionary.databinding.RvSampleBinding
 import com.jakir.cse24.personaldictionary.interfaces.ItemClickListener
-import com.jakir.cse24.personaldictionary.model.Vocabulary
+import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 
 class VocabularyListAdapter(private var vocabularyList: List<Vocabulary>, private val listener: ItemClickListener) :
     RecyclerView.Adapter<VocabularyListAdapter.VHolder>() {

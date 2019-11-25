@@ -10,7 +10,7 @@ import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.adapter.VocabularyListAdapter
 import com.jakir.cse24.personaldictionary.base.BaseActivity
 import com.jakir.cse24.personaldictionary.interfaces.ItemClickListener
-import com.jakir.cse24.personaldictionary.model.Vocabulary
+import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
 import kotlinx.android.synthetic.main.activity_vocabulary_list.*
 

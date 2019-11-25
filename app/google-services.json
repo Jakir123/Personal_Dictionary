@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "356616857625-kdaim79miiiu07o8rbd56pn1p8kprlt7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jakir.cse24.personaldictionary",
+            "certificate_hash": "3d28e593fd8597ceaba99cb0e5aa2f946a2cb0bd"
+          }
+        },
+        {
           "client_id": "356616857625-nrr8blv4ga4kmm151a7gtmtnbicjv38n.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import com.jakir.cse24.personaldictionary.R
 import kotlinx.android.synthetic.main.layout_progress_dialog.view.*
 
@@ -50,6 +51,11 @@ abstract class BaseFragment : Fragment() {
         val toast: Toast = Toast.makeText(context, msg, Toast.LENGTH_LONG)
         toast.setGravity(Gravity.CENTER, 0, 0)
         toast.show()
+    }
+
+    protected fun showSnack(msg: String){
+        val snack= Snackbar.make(this.view!!, msg, Snackbar.LENGTH_LONG)
+        snack.show()
     }
 
     /**

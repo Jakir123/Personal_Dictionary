@@ -2,7 +2,6 @@ package com.jakir.cse24.personaldictionary.view.fragments
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.databinding.FragmentWordDetailsBinding
-import com.jakir.cse24.personaldictionary.model.Vocabulary
+import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 
 /**
  * A simple [BaseFragment] subclass.

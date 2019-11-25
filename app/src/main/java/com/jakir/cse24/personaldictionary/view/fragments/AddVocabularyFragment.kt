@@ -1,13 +1,11 @@
 package com.jakir.cse24.personaldictionary.view.fragments
 
 
-import android.app.ActionBar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -16,8 +14,8 @@ import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.adapter.SpinnerAdapter
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.databinding.FragmentAddVocabularyBinding
-import com.jakir.cse24.personaldictionary.model.Translation
-import com.jakir.cse24.personaldictionary.model.Vocabulary
+import com.jakir.cse24.personaldictionary.data.model.Translation
+import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.view_model.VocabularyAddViewModel
 import kotlinx.android.synthetic.main.fragment_add_vocabulary.*
 

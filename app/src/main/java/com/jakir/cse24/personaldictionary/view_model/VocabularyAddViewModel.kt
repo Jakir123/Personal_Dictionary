@@ -2,7 +2,7 @@ package com.jakir.cse24.personaldictionary.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.jakir.cse24.personaldictionary.model.*
+import com.jakir.cse24.personaldictionary.data.model.*
 
 class VocabularyAddViewModel: ViewModel() {
     var word: MutableLiveData<String> = MutableLiveData()

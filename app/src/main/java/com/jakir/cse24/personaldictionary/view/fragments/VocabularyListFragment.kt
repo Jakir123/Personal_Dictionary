@@ -1,9 +1,7 @@
 package com.jakir.cse24.personaldictionary.view.fragments
 
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +9,13 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.adapter.VocabularyListAdapter
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.interfaces.ItemClickListener
-import com.jakir.cse24.personaldictionary.model.Vocabulary
-import com.jakir.cse24.personaldictionary.view.activities.LoginActivity
+import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
 import kotlinx.android.synthetic.main.activity_vocabulary_list.*
 
@@ -53,6 +49,7 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener {
         val layoutManager = LinearLayoutManager(requireContext())
 
         fabAdd.setOnClickListener {
+            showSnack("Snack message!")
             Navigation.findNavController(it).navigate(R.id.action_addVocabulary)
         }
 

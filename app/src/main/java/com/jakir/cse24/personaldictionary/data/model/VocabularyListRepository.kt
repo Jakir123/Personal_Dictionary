@@ -1,4 +1,4 @@
-package com.jakir.cse24.personaldictionary.model
+package com.jakir.cse24.personaldictionary.data.model
 
 class VocabularyListRepository {
     private var nextItem = 1

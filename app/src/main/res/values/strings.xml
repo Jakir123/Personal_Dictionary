@@ -27,4 +27,6 @@
     <string name="meaning">Meaning</string>
     <string name="description">Description</string>
     <string name="example">Example</string>
+    <string name="email_hint">Enter your email address</string>
+    <string name="email_validation_error">Enter an valid email address.</string>
 </resources>

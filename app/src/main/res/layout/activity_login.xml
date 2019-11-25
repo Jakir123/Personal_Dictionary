@@ -10,72 +10,91 @@
             type="com.jakir.cse24.personaldictionary.view_model.LoginViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         style="@style/matchParent"
-        android:background="@color/colorPrimaryDark"
-        android:padding="16dp"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/small_padding"
         tools:context=".view.activities.LoginActivity">
 
-        <ImageView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginBottom="50dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/jakir"
-            app:layout_constraintBottom_toTopOf="@id/tilPhone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_anchorGravity="top|center"
+            app:layout_anchor="@id/container"
+            app:cardCornerRadius="40dp"
+            app:cardElevation="12dp"
+            android:layout_height="80dp">
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginBottom="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/jakir" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPhone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/tilPassword">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPhone"
-                style="@style/editTextStyle"
-                android:drawableStart="@drawable/ic_phone_android"
-                android:hint="@string/phone_hint"
-                android:inputType="phone"
-                android:text="@={loginViewModel.phoneNumber}" />
-        </com.google.android.material.textfield.TextInputLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/container"
+            style="@style/matchParentWrapContent"
+            android:layout_gravity="center"
+            android:background="@drawable/round_background"
+            android:paddingStart="@dimen/large_padding"
+            android:paddingTop="40dp"
+            android:paddingEnd="@dimen/large_padding"
+            android:paddingBottom="20dp">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEmail"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                app:hintEnabled="false"
+                app:layout_constraintBottom_toTopOf="@+id/tilPassword">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPassword"
-                style="@style/editTextStyle"
-                android:drawableStart="@drawable/ic_lock_outline"
-                android:hint="@string/password_hint"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword"
-                android:text="@={loginViewModel.password}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEmail"
+                    style="@style/editTextStyle"
+                    android:drawableStart="@drawable/ic_mail_outline"
+                    android:hint="@string/email_hint"
+                    android:inputType="textEmailAddress"
+                    android:text="@={loginViewModel.email}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogin"
-            style="@style/buttonStyle"
-            android:text="@string/login"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tilPassword" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintEnabled="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvSignUp"
-            style="@style/defaultTextViewStyle"
-            android:layout_marginTop="2dp"
-            android:text="@string/create_new_account_label"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPassword"
+                    style="@style/editTextStyle"
+                    android:drawableStart="@drawable/ic_lock_outline"
+                    android:hint="@string/password_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:text="@={loginViewModel.password}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                style="@style/buttonStyle"
+                android:text="@string/login"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilPassword" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvSignUp"
+                style="@style/defaultTextViewStyle"
+                android:layout_marginTop="2dp"
+                android:text="@string/create_new_account_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnLogin" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
