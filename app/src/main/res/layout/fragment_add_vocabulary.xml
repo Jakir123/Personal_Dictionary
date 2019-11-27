@@ -13,23 +13,27 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/small_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:layout_gravity="center"
+            android:background="@drawable/round_background"
+            android:padding="@dimen/default_padding"
             tools:context=".view.fragments.AddVocabularyFragment">
 
             <TextView
                 android:id="@+id/tvHeader"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="cursive"
+                android:fontFamily="@font/andada"
                 android:text="@string/header_add_vocabulary"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                android:textSize="30sp"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:typeface="monospace"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -41,17 +45,15 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="5dp"
-                android:hint="@string/word_hint"
+                android:layout_marginTop="30dp"
+                app:hintEnabled="false"
                 app:layout_constraintTop_toBottomOf="@+id/tvHeader">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etWord"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
+                    style="@style/editTextStyle"
+                    android:hint="@string/word_hint"
+                    android:inputType="text"
                     android:text="@={viewModel.word}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,26 +62,25 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:hint="@string/meaning_hint"
+                android:layout_marginTop="5dp"
+                app:hintEnabled="false"
                 app:layout_constraintTop_toBottomOf="@+id/tilWord">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etMeaning"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPersonName"
+                    style="@style/editTextStyle"
+                    android:hint="@string/meaning_hint"
+                    android:inputType="text"
                     android:text="@={viewModel.meaning}" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatSpinner
                 android:id="@+id/spinnerType"
-                android:layout_width="match_parent"
+                style="@style/editTextStyle"
+                app:layout_constraintStart_toStartOf="parent"
                 android:layout_height="50dp"
+                android:layout_marginTop="5dp"
                 android:background="@drawable/spinner_background"
-                android:layout_marginTop="10dp"
                 app:layout_constraintTop_toBottomOf="@+id/tilMeaning" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -87,17 +88,15 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:hint="@string/description_hint"
+                android:layout_marginTop="5dp"
+                app:hintEnabled="false"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerType">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etDescription"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:imeOptions="actionNext"
+                    style="@style/editTextStyle"
                     android:inputType="textPersonName"
+                    android:hint="@string/description_hint"
                     android:text="@={viewModel.description}" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -106,32 +105,25 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:hint="@string/eample_hint"
+                android:layout_marginTop="5dp"
+                app:hintEnabled="false"
                 app:layout_constraintTop_toBottomOf="@+id/tilDescription">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etExample"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:imeOptions="actionNext"
+                    style="@style/editTextStyle"
+                    android:hint="@string/eample_hint"
+                    android:imeOptions="actionDone"
                     android:inputType="textPersonName"
                     android:text="@={viewModel.example}" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.button.MaterialButton
-                android:layout_width="match_parent"
                 android:id="@+id/btnSave"
-                app:layout_constraintTop_toBottomOf="@id/tilExample"
+                style="@style/buttonStyle"
                 android:text="@string/save"
-                android:layout_marginTop="25dp"
-                style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                android:textStyle="bold"
-                android:padding="10dp"
-                android:textSize="@dimen/button_default_text_size"
-                android:background="@color/colorWhite"
-                android:textAllCaps="true"
-                android:layout_height="wrap_content"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilExample" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

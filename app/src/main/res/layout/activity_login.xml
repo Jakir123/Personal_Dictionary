@@ -16,13 +16,31 @@
         android:padding="@dimen/small_padding"
         tools:context=".view.activities.LoginActivity">
 
+        <TextView
+            android:id="@+id/tvHeader"
+            style="@style/largeTextViewStyle"
+            android:layout_marginBottom="50dp"
+            android:elevation="@dimen/large_padding"
+            android:text="@string/header_login"
+            app:layout_anchor="@id/view" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimary"
+            app:layout_anchor="@id/card"
+            app:layout_anchorGravity="top" />
+
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card"
             android:layout_width="80dp"
-            app:layout_anchorGravity="top|center"
-            app:layout_anchor="@id/container"
+            android:layout_height="80dp"
             app:cardCornerRadius="40dp"
             app:cardElevation="12dp"
-            android:layout_height="80dp">
+            app:layout_anchor="@id/container"
+            app:layout_anchorGravity="top|center">
+
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"

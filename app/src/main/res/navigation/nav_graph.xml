@@ -42,6 +42,6 @@
         tools:layout="@layout/fragment_word_details">
         <argument
             android:name="vocabulary"
-            app:argType="com.jakir.cse24.personaldictionary.model.Vocabulary" />
+            app:argType="com.jakir.cse24.personaldictionary.data.model.Vocabulary" />
     </fragment>
 </navigation>

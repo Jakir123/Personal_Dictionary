@@ -21,7 +21,7 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun onViewReady(savedInstanceState: Bundle?) {
-        settingActionBar(getString(R.string.login), false)
+//        settingActionBar(getString(R.string.login), false)
         viewModel = ViewModelProviders.of(this)[LoginViewModel::class.java]
 
         binding.loginViewModel = viewModel
@@ -35,11 +35,11 @@ class LoginActivity : BaseActivity() {
                 binding.etEmail.requestFocus()
                 return@setOnClickListener
             }
-            if (email?.count() != 11) {
-                binding.etEmail.error = getString(R.string.email_validation_error)
-                binding.etEmail.requestFocus()
-                return@setOnClickListener
-            }
+//            if (email?.count() != 11) {
+//                binding.etEmail.error = getString(R.string.email_validation_error)
+//                binding.etEmail.requestFocus()
+//                return@setOnClickListener
+//            }
             if (password == null || password == "") {
                 binding.etPassword.error = getString(R.string.password_hint)
                 binding.etPassword.requestFocus()

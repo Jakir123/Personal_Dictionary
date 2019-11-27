@@ -4,7 +4,7 @@
     <data>
         <variable
             name="data"
-            type="com.jakir.cse24.personaldictionary.model.Vocabulary" />
+            type="com.jakir.cse24.personaldictionary.data.model.Vocabulary" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
