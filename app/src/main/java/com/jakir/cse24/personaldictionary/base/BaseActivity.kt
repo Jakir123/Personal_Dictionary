@@ -3,6 +3,7 @@ package com.jakir.cse24.personaldictionary.base
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
+import android.util.Patterns
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -135,7 +136,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * This method is for hide/clear progress dialog
      * Created by Md. Jakir Hossain on 07/11/2019.
      */
-    protected fun hideProgressDialog(){
+    protected fun hideProgressDialog() {
         if (dialog != null) {
             dialog!!.dismiss()
             dialog = null
@@ -148,7 +149,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * Created by Md. Jakir Hossain on 03/11/2019.
      * @param title action bar title
      */
-    protected fun settingActionBar(title: String,status:Boolean) {
+    protected fun settingActionBar(title: String, status: Boolean) {
         supportActionBar?.setHomeButtonEnabled(status)
         supportActionBar?.setDisplayHomeAsUpEnabled(status)
         supportActionBar?.title = title
@@ -159,5 +160,9 @@ abstract class BaseActivity : AppCompatActivity() {
             finish()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun isEmailValid(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.toRegex().matches(email)
     }
 }

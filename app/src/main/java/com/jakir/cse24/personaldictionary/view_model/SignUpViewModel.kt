@@ -13,7 +13,8 @@ class SignUpViewModel : ViewModel() {
     var password: MutableLiveData<String> = MutableLiveData()
     var confirmPassword: MutableLiveData<String> = MutableLiveData()
 
-    fun createAccount(user: User): MutableLiveData<LoginModel>{
-        return MutableLiveData<LoginModel>().apply { value = SignUpRepository().signUp(user) }
+    fun createAccount(user: User): MutableLiveData<LoginModel> {
+//        return MutableLiveData<LoginModel>().apply { value = SignUpRepository().signUp(user) }
+        return SignUpRepository().signUp(user)
     }
 }

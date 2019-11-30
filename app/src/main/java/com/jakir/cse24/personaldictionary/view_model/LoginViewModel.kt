@@ -11,8 +11,7 @@ class LoginViewModel : ViewModel() {
     var email: MutableLiveData<String> = MutableLiveData()
     var password: MutableLiveData<String> = MutableLiveData()
 
-    fun login(user: User):  MutableLiveData<LoginModel>{
-       return MutableLiveData<LoginModel>()
-           .apply { value = LoginRepository().login(user)}
+    fun login(user: User): MutableLiveData<LoginModel> {
+        return LoginRepository().login(user)
     }
 }

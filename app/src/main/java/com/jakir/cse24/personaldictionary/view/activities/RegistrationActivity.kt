@@ -47,7 +47,7 @@ class RegistrationActivity : BaseActivity() {
                 binding.etEmail.requestFocus()
                 return@setOnClickListener
             }
-            if(email.count() != 11 ){
+            if(!isEmailValid(email) ){
                 binding.etEmail.error = getString(R.string.email_validation_error)
                 binding.etEmail.requestFocus()
                 return@setOnClickListener
@@ -79,10 +79,14 @@ class RegistrationActivity : BaseActivity() {
             }
 
             viewModel.createAccount(User(name,email,phone,pass)).observe(this, Observer<LoginModel> {
-                if (it.status){
-                    showToast("Account creation successful!")
-                }else{
-                    showToast("Account creation failed! "+ it.message)
+                when (it.status) {
+                    true -> {
+                        showToast(it.message)
+                    }
+                    false -> {
+                        showToast(it.message)
+                    }
+
                 }
             })
 
