@@ -12,7 +12,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.jakir.cse24.personaldictionary.R
-import com.jakir.cse24.personaldictionary.adapter.VocabularyListAdapter
+import com.jakir.cse24.personaldictionary.view.adapter.VocabularyListAdapter
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.interfaces.ItemClickListener
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary

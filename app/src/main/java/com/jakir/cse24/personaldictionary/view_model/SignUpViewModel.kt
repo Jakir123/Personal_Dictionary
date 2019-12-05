@@ -3,7 +3,7 @@ package com.jakir.cse24.personaldictionary.view_model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jakir.cse24.personaldictionary.data.model.LoginModel
-import com.jakir.cse24.personaldictionary.data.model.SignUpRepository
+import com.jakir.cse24.personaldictionary.data.repositories.SignUpRepository
 import com.jakir.cse24.personaldictionary.data.model.User
 
 class SignUpViewModel : ViewModel() {
@@ -15,6 +15,7 @@ class SignUpViewModel : ViewModel() {
 
     fun createAccount(user: User): MutableLiveData<LoginModel> {
 //        return MutableLiveData<LoginModel>().apply { value = SignUpRepository().signUp(user) }
-        return SignUpRepository().signUp(user)
+        return SignUpRepository()
+            .signUp(user)
     }
 }

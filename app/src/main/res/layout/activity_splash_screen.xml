@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimaryDark"
     android:padding="10dp"
     tools:context=".view.activities.SplashScreenActivity">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:cardCornerRadius="40dp"
+        app:strokeWidth="1dp"
+        android:elevation="@dimen/large_padding"
+        app:layout_anchor="@id/tvWelcomeCard"
+        app:layout_anchorGravity="top|center">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginBottom="20dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/jakir" />
+    </com.google.android.material.card.MaterialCardView>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="250dp"
         app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="10dp"
-        app:cardElevation="5dp"
+        android:id="@+id/tvWelcomeCard"
+        app:cardElevation="0dp"
         app:cardUseCompatPadding="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center"
         app:strokeWidth="1dp">
 
         <TextView
             android:id="@+id/tvWelcome"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fontFamily="casual"
-            android:gravity="center"
+            style="@style/largeTextViewStyle"
             android:lineSpacingExtra="10sp"
-            android:text="@string/welcome"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textColor="@color/colorWhite"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:text="@string/welcome"
+            android:textAlignment="center" />
     </com.google.android.material.card.MaterialCardView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

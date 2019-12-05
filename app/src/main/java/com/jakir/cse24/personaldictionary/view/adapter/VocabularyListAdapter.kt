@@ -1,4 +1,4 @@
-package com.jakir.cse24.personaldictionary.adapter
+package com.jakir.cse24.personaldictionary.view.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

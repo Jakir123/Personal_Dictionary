@@ -12,14 +12,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/flipCard"
         android:layout_width="match_parent"
-
+        android:background="@color/colorPrimary"
         android:layout_height="match_parent">
 
         <FrameLayout
             android:id="@+id/card_back"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorOrange">
+            android:background="@color/colorPrimaryDark">
 
             <include
                 layout="@layout/fragment_word_details"
@@ -32,7 +32,7 @@
             android:id="@+id/card_front"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorOrangeLight"
+            android:background="@color/colorPrimaryDark"
             android:gravity="center">
 
             <include

@@ -3,15 +3,20 @@
 
     <item
         android:id="@+id/vocabularyListFragment"
-        android:icon="@drawable/ic_add"
-        android:title="Home"/>
+        android:icon="@drawable/ic_view_list"
+        android:title="@string/home"/>
+    <item
+        android:id="@+id/favouriteFragment"
+        android:icon="@drawable/ic_favorite_border"
+        android:title="@string/favourite"/>
+    <item
+        android:id="@+id/quizFragment"
+        android:icon="@drawable/ic_question_answer"
+        android:title="@string/quiz"/>
+
     <item
         android:id="@+id/addVocabularyFragment"
         android:icon="@drawable/ic_add"
-        android:title="Favourite"/>
-    <item
-        android:id="@+id/quizFragment"
-        android:icon="@drawable/ic_add"
-        android:title="Quize"/>
+        android:title="@string/add_new"/>
 
 </menu>

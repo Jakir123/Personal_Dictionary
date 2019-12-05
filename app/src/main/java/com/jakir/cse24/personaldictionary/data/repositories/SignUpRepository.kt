@@ -1,11 +1,10 @@
-package com.jakir.cse24.personaldictionary.data.model
+package com.jakir.cse24.personaldictionary.data.repositories
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.jakir.cse24.personaldictionary.data.model.LoginModel
+import com.jakir.cse24.personaldictionary.data.model.User
 
 class SignUpRepository {
     private val firebaseAuth: FirebaseAuth by lazy {
@@ -17,14 +16,30 @@ class SignUpRepository {
         firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    signUp.value = LoginModel(it.isSuccessful,"SignUp successful!")
+                    signUp.value =
+                        LoginModel(
+                            it.isSuccessful,
+                            "SignUp successful!"
+                        )
                 } else {
-                    signUp.value = LoginModel(false,"SignUp failed!")
+                    signUp.value =
+                        LoginModel(
+                            false,
+                            "SignUp failed!"
+                        )
                 }
             }.addOnCanceledListener {
-                signUp.value = LoginModel(false,"Task $this was cancelled normally!")
+                signUp.value =
+                    LoginModel(
+                        false,
+                        "Task $this was cancelled normally!"
+                    )
             }.addOnFailureListener{
-                signUp.value = LoginModel(false, it.message.toString())
+                signUp.value =
+                    LoginModel(
+                        false,
+                        it.message.toString()
+                    )
                 Log.e("SignUpRepository","OnFailureListener: ${it.message}")
                 Log.e("SignUpRepository","OnFailureListener: ${it.localizedMessage}")
                 Log.e("SignUpRepository","OnFailureListener: ${it.stackTrace}")

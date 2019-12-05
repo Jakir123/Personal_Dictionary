@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseActivity
+import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.databinding.ActivityLoginBinding
 import com.jakir.cse24.personaldictionary.data.model.LoginModel
 import com.jakir.cse24.personaldictionary.data.model.User
@@ -54,6 +55,8 @@ class LoginActivity : BaseActivity() {
                 } else {
                     showToast(it.message)
                 }
+                startActivity(Intent(this@LoginActivity,
+                    DashboardActivity::class.java ))
             })
         }
 

@@ -11,7 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.jakir.cse24.personaldictionary.R
-import com.jakir.cse24.personaldictionary.adapter.SpinnerAdapter
+import com.jakir.cse24.personaldictionary.view.adapter.SpinnerAdapter
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.databinding.FragmentAddVocabularyBinding
 import com.jakir.cse24.personaldictionary.data.model.Translation

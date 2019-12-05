@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jakir.cse24.personaldictionary.R
-import com.jakir.cse24.personaldictionary.adapter.VocabularyListAdapter
+import com.jakir.cse24.personaldictionary.view.adapter.VocabularyListAdapter
 import com.jakir.cse24.personaldictionary.base.BaseActivity
 import com.jakir.cse24.personaldictionary.interfaces.ItemClickListener
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary

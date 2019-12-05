@@ -12,10 +12,10 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
         android:minHeight="60dp"
         android:padding="5dp"
         app:cardCornerRadius="10dp"
-        app:cardUseCompatPadding="true"
         app:strokeColor="@color/colorGray"
         app:strokeWidth="1dp">
 
