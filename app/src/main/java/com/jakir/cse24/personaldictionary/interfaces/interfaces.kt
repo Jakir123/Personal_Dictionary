@@ -1,6 +1,6 @@
 package com.jakir.cse24.personaldictionary.interfaces
 
-import com.jakir.cse24.personaldictionary.data.model.LoginModel
+import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 
 interface ItemClickListener {
@@ -9,6 +9,6 @@ interface ItemClickListener {
 
 interface AuthListener {
     fun onStarted()
-    fun onSuccess(loginModel: LoginModel)
-    fun onFailure(loginModel: LoginModel)
+    fun onSuccess(responseModel: ResponseModel)
+    fun onFailure(responseModel: ResponseModel)
 }

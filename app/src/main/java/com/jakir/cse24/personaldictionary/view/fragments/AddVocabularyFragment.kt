@@ -10,9 +10,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.view.adapter.SpinnerAdapter
 import com.jakir.cse24.personaldictionary.base.BaseFragment
+import com.jakir.cse24.personaldictionary.data.PreferenceManager
+import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.databinding.FragmentAddVocabularyBinding
 import com.jakir.cse24.personaldictionary.data.model.Translation
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
@@ -93,15 +97,15 @@ class AddVocabularyFragment : BaseFragment() {
                 example = ""
             }
 
-            viewModel.addVocabulary(Vocabulary(word,type, Translation(meaning,description,example))).observe(this,
-                Observer <Boolean>{
-                    if (it) {
+            viewModel.addVocabulary(Vocabulary(PreferenceManager.userId, word,type, Translation(meaning,description,example))).observe(this,
+                Observer <ResponseModel>{
+                    if (it.status) {
                         showToast("Vocabulary added successfully!")
                         val navController = Navigation.findNavController(view)
                         navController.navigateUp()
                     }
                     else
-                        showToast("Vocabulary not added!")
+                        showToast(it.message)
                 })
         }
     }

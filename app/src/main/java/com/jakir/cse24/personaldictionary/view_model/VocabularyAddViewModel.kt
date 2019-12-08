@@ -12,9 +12,8 @@ class VocabularyAddViewModel: ViewModel() {
     var example: MutableLiveData<String> = MutableLiveData()
 
 
-    fun addVocabulary(vocabulary: Vocabulary):  MutableLiveData<Boolean>{
-        return MutableLiveData<Boolean>()
-            .apply { value = VocabularyAddRepository()
-                .addVocabulary(vocabulary)}
+    fun addVocabulary(vocabulary: Vocabulary):  MutableLiveData<ResponseModel>{
+        return VocabularyAddRepository()
+                .addVocabulary(vocabulary)
     }
 }

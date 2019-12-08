@@ -4,12 +4,17 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Vocabulary(val word: String,val type: String, val translation:Translation): Parcelable
+data class Vocabulary(
+    val userId: String,
+    val word: String,
+    val type: String,
+    val translation: Translation
+) : Parcelable
 
 @Parcelize
-data class Translation(val meaning: String,val description: String, val example:String): Parcelable
+data class Translation(val meaning: String, val description: String, val example: String) :
+    Parcelable
 
-data class User(val name: String,val email: String, val phone: String, val password:String) {
-    constructor(email: String, password: String) : this("",email, "",password)
-}
-data class LoginModel(val status: Boolean, val message: String)
+data class User(val name: String, val email: String, val phone: String)
+
+data class ResponseModel(val status: Boolean, val message: String)

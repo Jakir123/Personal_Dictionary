@@ -58,7 +58,7 @@ class QuizFragment : BaseFragment() {
         loadAnimations()
         changeCameraDistance()
         val vocabulary: Vocabulary =
-            Vocabulary("Hello", "noun", Translation("Ohe", "HI", "Hello, How are you?"))
+            Vocabulary("","Hello", "noun", Translation("Ohe", "HI", "Hello, How are you?"))
         binding.data = vocabulary
 
         flipCard.setOnClickListener {

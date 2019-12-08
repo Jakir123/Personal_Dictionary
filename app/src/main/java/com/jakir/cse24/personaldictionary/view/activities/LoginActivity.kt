@@ -7,10 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseActivity
-import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.databinding.ActivityLoginBinding
-import com.jakir.cse24.personaldictionary.data.model.LoginModel
-import com.jakir.cse24.personaldictionary.data.model.User
+import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.view_model.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -47,7 +45,7 @@ class LoginActivity : BaseActivity() {
                 return@setOnClickListener
             }
             showProgressDialog("Checking...")
-            viewModel.login(User(email, password)).observe(this, Observer<LoginModel> {
+            viewModel.login(email,password).observe(this, Observer<ResponseModel> {
                 hideProgressDialog()
                 if (it.status) {
                     startActivity(Intent(this@LoginActivity,

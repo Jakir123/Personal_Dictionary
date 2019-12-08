@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseActivity
 import com.jakir.cse24.personaldictionary.databinding.ActivityRegistrationBinding
-import com.jakir.cse24.personaldictionary.data.model.LoginModel
+import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.data.model.User
 import com.jakir.cse24.personaldictionary.view_model.SignUpViewModel
 import kotlinx.android.synthetic.main.activity_registration.*
@@ -78,10 +78,11 @@ class RegistrationActivity : BaseActivity() {
                 return@setOnClickListener
             }
 
-            viewModel.createAccount(User(name,email,phone,pass)).observe(this, Observer<LoginModel> {
+            viewModel.createAccount(User(name,email,phone),pass).observe(this, Observer<ResponseModel> {
                 when (it.status) {
                     true -> {
                         showToast(it.message)
+
                     }
                     false -> {
                         showToast(it.message)
