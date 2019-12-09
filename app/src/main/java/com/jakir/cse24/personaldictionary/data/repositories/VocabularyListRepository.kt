@@ -12,21 +12,21 @@ class VocabularyListRepository {
     private val db: FirebaseFirestore by lazy {
         FirebaseFirestore.getInstance()
     }
+
     @SuppressLint("LongLogTag")
     fun getVocabularies(pageSize: Int = 20): List<Vocabulary> {
         val items = mutableListOf<Vocabulary>()
 
-        db.collection("vocabularies")
-            .whereEqualTo("userId",PreferenceManager.userId)
-            .get()
-            .addOnSuccessListener {
-                for(document in it.documents){
-                    items.add(document.toObject(Vocabulary::class.java)!!)
-                }
-            }
-            .addOnFailureListener {
-                Log.e("VocabularyListRepository","Exception in getVocabularies: ${it.localizedMessage}")
-            }
+        db.collection("vocabularies").get().addOnSuccessListener {
+//            for (document in it.documents) {
+//                items.add(document.toObject(Vocabulary::class.java)!!)
+//            }
+        }.addOnFailureListener {
+            Log.e(
+                "VocabularyListRepository",
+                "Exception in getVocabularies: ${it.localizedMessage}"
+            )
+        }
 
 //        val lastItem = nextItem + pageSize - 1
 //

@@ -15,6 +15,8 @@ data class Vocabulary(
 data class Translation(val meaning: String, val description: String, val example: String) :
     Parcelable
 
-data class User(val name: String, val email: String, val phone: String)
+data class User(var userId: String, val name: String, val email: String, val phone: String){
+    constructor(name: String, email: String, phone: String) : this("",name,email,phone)
+}
 
 data class ResponseModel(val status: Boolean, val message: String)

@@ -12,7 +12,7 @@ class VocabularyAddRepository {
 
     fun addVocabulary(vocabulary: Vocabulary): MutableLiveData<ResponseModel> {
         val response: MutableLiveData<ResponseModel> = MutableLiveData()
-        db.collection("vocabularies").add(vocabulary).addOnSuccessListener {
+        db.collection("vocabularies").document("").set(vocabulary).addOnSuccessListener {
             response.value = ResponseModel(true,"added successfully!")
         }.addOnFailureListener {
             response.value = ResponseModel(false,it.message.toString())

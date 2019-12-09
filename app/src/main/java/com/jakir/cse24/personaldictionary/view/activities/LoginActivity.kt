@@ -53,8 +53,6 @@ class LoginActivity : BaseActivity() {
                 } else {
                     showToast(it.message)
                 }
-                startActivity(Intent(this@LoginActivity,
-                    DashboardActivity::class.java ))
             })
         }
 

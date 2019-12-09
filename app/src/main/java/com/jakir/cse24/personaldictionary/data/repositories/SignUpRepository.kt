@@ -22,6 +22,7 @@ class SignUpRepository {
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     PreferenceManager.userId = it.result?.user!!.uid
+                    user.userId = PreferenceManager.userId
                     db.collection("users").add(user).addOnSuccessListener {
 
                     }.addOnCanceledListener {
