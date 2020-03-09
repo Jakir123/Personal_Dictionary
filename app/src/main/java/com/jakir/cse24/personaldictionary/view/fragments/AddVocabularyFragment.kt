@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.jakir.cse24.easyalert.EasyAlert
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.view.adapter.SpinnerAdapter
 import com.jakir.cse24.personaldictionary.base.BaseFragment
@@ -38,7 +39,8 @@ class AddVocabularyFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_vocabulary,container,false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_add_vocabulary, container, false)
         return binding.root
     }
 
@@ -51,21 +53,36 @@ class AddVocabularyFragment : BaseFragment() {
 //        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 //        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
 
-        val types = arrayOf("Select word type..","Noun","Pronoun","Verb","Adverb","Adjective","Preposition","Conjunction")
-        val adapter = SpinnerAdapter(requireContext(),android.R.layout.simple_spinner_item,
+        val types = arrayOf(
+            "Select word type..",
+            "Noun",
+            "Pronoun",
+            "Verb",
+            "Adverb",
+            "Adjective",
+            "Preposition",
+            "Conjunction"
+        )
+        val adapter = SpinnerAdapter(
+            requireContext(), android.R.layout.simple_spinner_item,
             types.toList()
         )
 
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         spinnerType.adapter = adapter
 
-        spinnerType.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent:AdapterView<*>, view: View, position: Int, id: Long){
+        spinnerType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
                 // Display the selected item text on text view
                 type = "${parent.getItemAtPosition(position)}"
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>){
+            override fun onNothingSelected(parent: AdapterView<*>) {
                 // Another interface callback
             }
         }
@@ -87,25 +104,30 @@ class AddVocabularyFragment : BaseFragment() {
                 binding.etMeaning.requestFocus()
                 return@setOnClickListener
             }
-            if (type == "Select word type.."){
+            if (type == "Select word type..") {
                 showToast("You have to select word type!")
             }
-            if (description == null){
+            if (description == null) {
                 description = ""
             }
-            if (example == null){
+            if (example == null) {
                 example = ""
             }
-
-            viewModel.addVocabulary(Vocabulary(PreferenceManager.userId, word,type, Translation(meaning,description,example))).observe(this,
-                Observer <ResponseModel>{
+            EasyAlert.showProgressDialog(requireActivity())
+            viewModel.addVocabulary(
+                Vocabulary(
+                    word,
+                    type,
+                    Translation(meaning, description, example)
+                )
+            ).observe(this,
+                Observer<ResponseModel> {
+                    EasyAlert.hideProgressDialog()
+                    showToast(it.message)
                     if (it.status) {
-                        showToast("Vocabulary added successfully!")
                         val navController = Navigation.findNavController(view)
                         navController.navigateUp()
                     }
-                    else
-                        showToast(it.message)
                 })
         }
     }

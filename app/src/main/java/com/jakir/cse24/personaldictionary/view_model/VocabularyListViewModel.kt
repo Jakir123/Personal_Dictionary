@@ -7,7 +7,8 @@ import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.data.repositories.VocabularyListRepository
 
 class VocabularyListViewModel : ViewModel(){
-  val vocabularies: LiveData<List<Vocabulary>> = MutableLiveData<List<Vocabulary>>()
-      .apply { value = VocabularyListRepository()
-          .getVocabularies() }
+
+    fun getVocabularies(): MutableLiveData<List<Vocabulary>>{
+        return VocabularyListRepository().getVocabularies()
+    }
 }

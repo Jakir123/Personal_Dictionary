@@ -37,7 +37,7 @@ class VocabularyListActivity : BaseActivity(), ItemClickListener {
 
         recyclerView.layoutManager = layoutManager
         recyclerView.hasFixedSize()
-        recyclerView.adapter = VocabularyListAdapter(viewModel.vocabularies.value!!, this)
+//        recyclerView.adapter = VocabularyListAdapter(viewModel.vocabularies.value!!, this)
         recyclerView.addItemDecoration(DividerItemDecoration(this, layoutManager.orientation))
         recyclerView
     }

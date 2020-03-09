@@ -3,6 +3,8 @@ package com.jakir.cse24.personaldictionary.data.repositories
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
+import com.jakir.cse24.easyalert.EasyLog
+import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 
 class LoginRepository {
@@ -20,6 +22,7 @@ class LoginRepository {
                             it.isSuccessful,
                             "SignUp successful!"
                         )
+                    PreferenceManager.userId = firebaseAuth.currentUser!!.uid
                 } else {
                     signUp.value =
                         ResponseModel(
@@ -39,9 +42,9 @@ class LoginRepository {
                         false,
                         it.message.toString()
                     )
-                Log.e("SignUpRepository", "OnFailureListener: ${it.message}")
-                Log.e("SignUpRepository", "OnFailureListener: ${it.localizedMessage}")
-                Log.e("SignUpRepository", "OnFailureListener: ${it.stackTrace}")
+                EasyLog.logE("OnFailureListener: ${it.message}","SignUpRepository")
+                EasyLog.logE("OnFailureListener: ${it.localizedMessage}","SignUpRepository" )
+                EasyLog.logE("OnFailureListener: ${it.stackTrace}","SignUpRepository")
             }
         return signUp
     }

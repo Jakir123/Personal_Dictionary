@@ -2,7 +2,9 @@ package com.jakir.cse24.personaldictionary.data.repositories
 
 import android.annotation.SuppressLint
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
+import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.model.Translation
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
@@ -14,83 +16,33 @@ class VocabularyListRepository {
     }
 
     @SuppressLint("LongLogTag")
-    fun getVocabularies(pageSize: Int = 20): List<Vocabulary> {
+    fun getVocabularies(pageSize: Int = 20): MutableLiveData<List<Vocabulary>> {
         val items = mutableListOf<Vocabulary>()
-
+        val vocabularies: MutableLiveData<List<Vocabulary>> = MutableLiveData()
+        db.collection("vocabularies")
+            .whereEqualTo("userId",PreferenceManager.userId)
+            .get()
+            .addOnCompleteListener{task ->
+                task.result?.run {
+                    for (doc in documents){
+                        items.add(doc.toObject(Vocabulary::class.java)!!)
+                    }
+                    vocabularies.value = items
+                }
+            }
         db.collection("vocabularies").get().addOnSuccessListener {
-//            for (document in it.documents) {
+            //            for (document in it.documents) {
 //                items.add(document.toObject(Vocabulary::class.java)!!)
 //            }
         }.addOnFailureListener {
-            Log.e(
-                "VocabularyListRepository",
-                "Exception in getVocabularies: ${it.localizedMessage}"
+            EasyLog.logE(
+                "Exception in getVocabularies: ${it.localizedMessage}",
+                "VocabularyListRepository"
             )
         }
 
 //        val lastItem = nextItem + pageSize - 1
-//
-//        for (i in nextItem..lastItem) {
-//            items.add("Item $i")
-//        }
 
-//        nextItem = lastItem + 1
-//        items.add(
-//            Vocabulary(
-//                "Vulnerability",
-//                "Noun",
-//                Translation(
-//                    "Durbolota",
-//                    "who is weak",
-//                    "he is vulnerable then him!"
-//                )
-//            )
-//        )
-//        items.add(
-//            Vocabulary(
-//                "Despite",
-//                "Noun",
-//                Translation(
-//                    "Sotteo",
-//                    "Despite",
-//                    "Despite i am sick i want to play!"
-//                )
-//            )
-//        )
-//        items.add(
-//            Vocabulary(
-//                "Despite",
-//                "Noun",
-//                Translation(
-//                    "Sotteo",
-//                    "Despite",
-//                    "Despite i am sick i want to play!"
-//                )
-//            )
-//        )
-//        items.add(
-//            Vocabulary(
-//                "Despite",
-//                "Noun",
-//                Translation(
-//                    "Sotteo",
-//                    "Despite",
-//                    "Despite i am sick i want to play!"
-//                )
-//            )
-//        )
-//        items.add(
-//            Vocabulary(
-//                "Despite",
-//                "Pronoun",
-//                Translation(
-//                    "Sotteo",
-//                    "Despite",
-//                    "Despite i am sick i want to play!"
-//                )
-//            )
-//        )
-
-        return items
+        return vocabularies
     }
 }

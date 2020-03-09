@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -55,9 +56,13 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener {
 
         recyclerView.layoutManager = layoutManager
         recyclerView.hasFixedSize()
-        recyclerView.adapter = VocabularyListAdapter(viewModel.vocabularies.value!!, this)
+//        recyclerView.adapter = VocabularyListAdapter(viewModel.vocabularies.value!!, this)
 //        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
-        recyclerView
+
+        viewModel.getVocabularies().observe(viewLifecycleOwner, Observer {
+            recyclerView.adapter = VocabularyListAdapter(it,this)
+        })
+
     }
 
 
