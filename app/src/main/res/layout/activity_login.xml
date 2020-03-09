@@ -12,7 +12,7 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         style="@style/matchParent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/background_gradient"
         android:padding="@dimen/small_padding"
         tools:context=".view.activities.LoginActivity">
 
@@ -28,7 +28,6 @@
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@color/colorPrimaryDark"
             app:layout_anchor="@id/card"
             app:layout_anchorGravity="top" />
 
@@ -57,7 +56,7 @@
             android:layout_gravity="center"
             android:background="@drawable/round_background"
             android:paddingStart="@dimen/large_padding"
-            android:paddingTop="40dp"
+            android:paddingTop="50dp"
             android:paddingEnd="@dimen/large_padding"
             android:paddingBottom="20dp">
 

@@ -10,7 +10,7 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         style="@style/matchParent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/background_gradient"
         android:padding="@dimen/large_padding"
         tools:context=".view.activities.RegistrationActivity">
 
@@ -36,7 +36,7 @@
             android:layout_gravity="center"
             android:background="@drawable/round_background"
             android:paddingStart="@dimen/large_padding"
-            android:paddingTop="56dp"
+            android:paddingTop="60dp"
             android:paddingEnd="@dimen/large_padding"
             android:paddingBottom="@dimen/large_padding"
             app:layout_constraintBottom_toBottomOf="parent"

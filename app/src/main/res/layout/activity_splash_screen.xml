@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/background_gradient"
     android:padding="10dp"
     tools:context=".view.activities.SplashScreenActivity">
 
@@ -28,8 +28,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:cardBackgroundColor="@color/colorPrimary"
+        android:layout_height="300dp"
+        app:cardBackgroundColor="@color/transparent"
         app:cardCornerRadius="10dp"
         android:id="@+id/tvWelcomeCard"
         app:cardElevation="0dp"
