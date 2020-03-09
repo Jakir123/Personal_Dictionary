@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.data.model.User
@@ -21,20 +22,19 @@ class SignUpRepository {
         firebaseAuth.createUserWithEmailAndPassword(user.email,pass)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    PreferenceManager.userId = it.result?.user!!.uid
-                    user.userId = PreferenceManager.userId
-                    db.collection("users").add(user).addOnSuccessListener {
 
+                    db.collection("users").document(firebaseAuth.uid!!).set(user).addOnSuccessListener {
+                        PreferenceManager.userId = firebaseAuth.uid!!
+                        signUp.value =
+                            ResponseModel(
+                                true,
+                                "SignUp successful!"
+                            )
                     }.addOnCanceledListener {
 
                     }.addOnFailureListener {
 
                     }
-                    signUp.value =
-                        ResponseModel(
-                            it.isSuccessful,
-                            "SignUp successful!"
-                        )
                 } else {
                     signUp.value =
                         ResponseModel(
@@ -54,9 +54,9 @@ class SignUpRepository {
                         false,
                         it.message.toString()
                     )
-                Log.e("SignUpRepository", "OnFailureListener: ${it.message}")
-                Log.e("SignUpRepository", "OnFailureListener: ${it.localizedMessage}")
-                Log.e("SignUpRepository", "OnFailureListener: ${it.stackTrace}")
+                EasyLog.logE("OnFailureListener: ${it.message}","SignUpRepository")
+                EasyLog.logE("OnFailureListener: ${it.localizedMessage}","SignUpRepository")
+                EasyLog.logE("OnFailureListener: ${it.stackTrace}","SignUpRepository")
             }
         return signUp
     }

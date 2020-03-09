@@ -1,5 +1,6 @@
 package com.jakir.cse24.personaldictionary.view.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -77,17 +78,16 @@ class RegistrationActivity : BaseActivity() {
                 binding.etConfirmPassword.requestFocus()
                 return@setOnClickListener
             }
-
+            showProgressDialog("Request is in progress ...")
             viewModel.createAccount(User(name,email,phone),pass).observe(this, Observer<ResponseModel> {
-                when (it.status) {
-                    true -> {
-                        showToast(it.message)
-
-                    }
-                    false -> {
-                        showToast(it.message)
-                    }
-
+                hideProgressDialog()
+                if (it.status) {
+                    startActivity(
+                        Intent(this@RegistrationActivity,
+                            DashboardActivity::class.java )
+                    )
+                } else {
+                    showToast(it.message)
                 }
             })
 
