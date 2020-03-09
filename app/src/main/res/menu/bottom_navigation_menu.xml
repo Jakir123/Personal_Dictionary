@@ -10,6 +10,12 @@
         android:icon="@drawable/ic_favorite_border"
         android:title="@string/favourite"/>
     <item
+        android:id="@+id/addFragment"
+        android:enabled="false"
+        android:checkable="false"
+        android:checked="false"
+        android:title="@string/add_new"/>
+    <item
         android:id="@+id/quizFragment"
         android:icon="@drawable/ic_question_answer"
         android:title="@string/quiz"/>

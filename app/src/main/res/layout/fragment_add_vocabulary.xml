@@ -14,7 +14,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@drawable/background_gradient"
         android:padding="@dimen/small_padding">
 
         <androidx.constraintlayout.widget.ConstraintLayout
