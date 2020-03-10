@@ -10,23 +10,32 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-
+import com.google.android.material.snackbar.Snackbar
 import com.jakir.cse24.personaldictionary.R
-import com.jakir.cse24.personaldictionary.view.adapter.VocabularyListAdapter
 import com.jakir.cse24.personaldictionary.base.BaseFragment
-import com.jakir.cse24.personaldictionary.interfaces.ItemClickListener
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
+import com.jakir.cse24.personaldictionary.interfaces.ItemClickListener
+import com.jakir.cse24.personaldictionary.interfaces.ItemSwipeListener
+import com.jakir.cse24.personaldictionary.utils.SwipeToDeleteCallback
+import com.jakir.cse24.personaldictionary.view.adapter.VocabularyListAdapter
 import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
+import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_vocabulary_list.*
+import kotlinx.android.synthetic.main.activity_vocabulary_list.fabAdd
+import kotlinx.android.synthetic.main.activity_vocabulary_list.recyclerView
+import kotlinx.android.synthetic.main.fragment_vocabulary_list.*
 
 /**
  * A simple [BaseFragment] subclass.
  * Created by Md. Jakir Hossain on 02/05/2019.
  */
-class VocabularyListFragment : BaseFragment(), ItemClickListener {
+class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListener {
 
     private lateinit var viewModel: VocabularyListViewModel
+    private lateinit var adapter: VocabularyListAdapter
+    private lateinit var vocabularyList: ArrayList<Vocabulary>
 
     override fun onItemClick(vocabulary: Vocabulary) {
 //        showToast(vocabulary.translation.meaning)
@@ -49,20 +58,39 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener {
 
         val layoutManager = LinearLayoutManager(requireContext())
 
-        fabAdd.setOnClickListener {
-            showSnack("Snack message!")
-            Navigation.findNavController(it).navigate(R.id.action_addVocabulary)
-        }
+//        fabAdd.setOnClickListener {
+//            showSnack("Snack message!")
+//            Navigation.findNavController(it).navigate(R.id.action_addVocabulary)
+//        }
 
         recyclerView.layoutManager = layoutManager
         recyclerView.hasFixedSize()
-//        recyclerView.adapter = VocabularyListAdapter(viewModel.vocabularies.value!!, this)
+        vocabularyList = ArrayList()
+        adapter = VocabularyListAdapter(vocabularyList,this)
+        recyclerView.adapter = adapter
 //        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
 
         viewModel.getVocabularies().observe(viewLifecycleOwner, Observer {
-            recyclerView.adapter = VocabularyListAdapter(it,this)
+            vocabularyList.addAll(it)
+            adapter.notifyDataSetChanged()
         })
+        val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(requireContext(), this))
+        itemTouchHelper.attachToRecyclerView(recyclerView)
 
+    }
+
+    override fun onItemSwiped(position: Int) {
+        val vocabulary = vocabularyList[position]
+        adapter.removeItem(position)
+        showUndoSnackbar(vocabulary,position)
+    }
+
+    private fun showUndoSnackbar(vocabulary: Vocabulary,position: Int){
+        val snack= Snackbar.make(container, "${vocabulary.word} deleted...", Snackbar.LENGTH_LONG)
+        snack.setAction(R.string.undo, View.OnClickListener {
+            adapter.restoreItem(vocabulary,position)
+        })
+        snack.show()
     }
 
 

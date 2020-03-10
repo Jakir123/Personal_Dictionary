@@ -33,14 +33,9 @@
             app:backgroundTint="@color/colorPrimary"
             android:layout_gravity="bottom"
             app:contentInsetStart="0dp"
-            android:backgroundTint="@color/colorPrimary"
             app:hideOnScroll="true"
             android:background="@color/colorOrange"
             app:contentInsetStartWithNavigation="0dp"
-            android:layout_height="wrap_content"/>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_gravity="bottom"
             android:layout_height="wrap_content">
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigation"
@@ -48,11 +43,10 @@
                 android:layout_height="wrap_content"
                 app:itemIconTint="@color/colorWhite"
                 android:background="@android:color/transparent"
+                app:elevation="0dp"
                 app:itemTextColor="@color/colorWhite"
-                android:outlineAmbientShadowColor="@android:color/transparent"
-                android:outlineSpotShadowColor="@android:color/transparent"
                 app:menu="@menu/bottom_navigation_menu" />
-        </FrameLayout>
+        </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"

@@ -16,11 +16,23 @@ class DashboardActivity : BaseActivity() {
     override fun onViewReady(savedInstanceState: Bundle?) {
         val navController = Navigation.findNavController(this, R.id.fragmentContainer)
         setupBottomNavMenu(navController)
+//        setupFragmentsTitle(navController)
     }
 
     private fun setupBottomNavMenu(navController: NavController) {
         bottomNavigation?.let {
             NavigationUI.setupWithNavController(it, navController)
+        }
+    }
+
+    private fun setupFragmentsTitle(navController: NavController){
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            // compare destination id
+            title = when (destination.id) {
+                R.id.vocabularyListFragment -> "Vocabulary List"
+                R.id.addVocabularyFragment -> "Chat Box"
+                else -> "Default title"
+            }
         }
     }
 

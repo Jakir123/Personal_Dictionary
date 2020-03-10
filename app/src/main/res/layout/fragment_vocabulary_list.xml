@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/small_padding"
+    android:id="@+id/container"
     android:background="@drawable/background_gradient"
     tools:context=".view.activities.VocabularyListActivity">
 
@@ -12,8 +12,11 @@
         android:id="@+id/tvHeader"
         style="@style/largeTextViewStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Vocabulary List"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:layout_height="?android:attr/actionBarSize"
+        android:text="@string/vocabulary_list"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,23 +24,9 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/default_margin"
+        android:padding="5dp"
+        android:layout_marginTop="@dimen/small_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHeader"
         tools:listitem="@layout/rv_sample" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:src="@drawable/ic_add"
-        android:visibility="gone"
-        app:backgroundTint="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:tint="@color/colorWhite" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

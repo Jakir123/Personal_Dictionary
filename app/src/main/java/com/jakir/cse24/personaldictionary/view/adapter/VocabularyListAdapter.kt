@@ -1,13 +1,15 @@
 package com.jakir.cse24.personaldictionary.view.adapter
 
+import android.content.ClipData.Item
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.databinding.RvSampleBinding
 import com.jakir.cse24.personaldictionary.interfaces.ItemClickListener
-import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 
-class VocabularyListAdapter(private var vocabularyList: List<Vocabulary>, private val listener: ItemClickListener) :
+
+class VocabularyListAdapter(private var vocabularyList: ArrayList<Vocabulary>, private val listener: ItemClickListener) :
     RecyclerView.Adapter<VocabularyListAdapter.VHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -27,6 +29,21 @@ class VocabularyListAdapter(private var vocabularyList: List<Vocabulary>, privat
             }
             binding.executePendingBindings()
         }
+    }
+
+    fun removeItem(position: Int) {
+        vocabularyList.removeAt(position)
+        // notify the item removed by position
+// to perform recycler view delete animations
+// NOTE: don't call notifyDataSetChanged()
+        notifyItemRemoved(position)
+        notifyItemRangeChanged(position, vocabularyList.size)
+    }
+
+    fun restoreItem(item: Vocabulary, position: Int) {
+        vocabularyList.add(position, item)
+        // notify item added by position
+        notifyItemInserted(position)
     }
 
 

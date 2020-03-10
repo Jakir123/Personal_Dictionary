@@ -34,4 +34,6 @@
     <string name="favourite">Favourite</string>
     <string name="quiz">Quiz</string>
     <string name="add_new">Add</string>
+    <string name="vocabulary_list">Vocabulary List</string>
+    <string name="undo">Undo</string>
 </resources>

@@ -16,9 +16,9 @@ class VocabularyListRepository {
     }
 
     @SuppressLint("LongLogTag")
-    fun getVocabularies(pageSize: Int = 20): MutableLiveData<List<Vocabulary>> {
-        val items = mutableListOf<Vocabulary>()
-        val vocabularies: MutableLiveData<List<Vocabulary>> = MutableLiveData()
+    fun getVocabularies(pageSize: Int = 20): MutableLiveData<ArrayList<Vocabulary>> {
+        val items = ArrayList<Vocabulary>()
+        val vocabularies: MutableLiveData<ArrayList<Vocabulary>> = MutableLiveData()
         db.collection("vocabularies")
             .whereEqualTo("userId",PreferenceManager.userId)
             .get()
