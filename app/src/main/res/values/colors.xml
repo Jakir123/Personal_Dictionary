@@ -6,6 +6,7 @@
     <color name="colorAccent">#C9759B</color>
 
     <color name="transparent">#26000000</color>
+    <color name="full_transparent">#00000000</color>
     <color name="transparent_button">#26ffffff</color>
 
     <color name="colorWhite">#FFF</color>
