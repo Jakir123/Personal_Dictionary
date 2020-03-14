@@ -8,11 +8,12 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import com.jakir.cse24.easyalert.EasyToast
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
@@ -21,11 +22,9 @@ import com.jakir.cse24.personaldictionary.interfaces.ItemSwipeListener
 import com.jakir.cse24.personaldictionary.utils.SwipeToDeleteCallback
 import com.jakir.cse24.personaldictionary.view.adapter.VocabularyListAdapter
 import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
-import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.activity_vocabulary_list.*
-import kotlinx.android.synthetic.main.activity_vocabulary_list.fabAdd
 import kotlinx.android.synthetic.main.activity_vocabulary_list.recyclerView
 import kotlinx.android.synthetic.main.fragment_vocabulary_list.*
+
 
 /**
  * A simple [BaseFragment] subclass.
@@ -89,9 +88,14 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
         val snack= Snackbar.make(container, "${vocabulary.word} deleted...", Snackbar.LENGTH_LONG)
         snack.setAction(R.string.undo, View.OnClickListener {
             adapter.restoreItem(vocabulary,position)
+        }).addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>(){
+            override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
+                super.onDismissed(transientBottomBar, event)
+                if (event != DISMISS_EVENT_ACTION){
+                    viewModel.removeItem(vocabulary)
+                }
+            }
         })
         snack.show()
     }
-
-
 }
