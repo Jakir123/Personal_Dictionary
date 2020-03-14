@@ -9,16 +9,16 @@
                         android:width="1dp"
                         android:color="@android:color/holo_blue_dark" />
                     <corners
-                        android:bottomRightRadius="@dimen/large_margin"
+                        android:bottomRightRadius="@dimen/large_16"
                         android:bottomLeftRadius="0dp"
-                        android:topLeftRadius="@dimen/large_margin"
+                        android:topLeftRadius="@dimen/large_16"
                         android:topRightRadius="0dp"/>
                     <solid android:color="@color/colorWhite"/>
                     <padding
-                        android:bottom="@dimen/small_padding"
-                        android:left="@dimen/small_padding"
-                        android:right="@dimen/large_padding"
-                        android:top="@dimen/small_padding" />
+                        android:bottom="@dimen/small_8"
+                        android:left="@dimen/small_8"
+                        android:right="@dimen/large_16"
+                        android:top="@dimen/small_8" />
                 </shape>
             </item>
             <item>

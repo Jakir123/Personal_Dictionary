@@ -57,9 +57,9 @@ class QuizFragment : BaseFragment() {
         viewModel = ViewModelProviders.of(this)[QuizViewModel::class.java]
         loadAnimations()
         changeCameraDistance()
-        val vocabulary: Vocabulary =
-            Vocabulary("Hello", "noun", Translation("Ohe", "HI", "Hello, How are you?"))
-        binding.data = vocabulary
+//        val vocabulary: Vocabulary =
+//            Vocabulary("Hello", "noun", Translation("Ohe", "HI", "Hello, How are you?"))
+//        binding.data = vocabulary
 
         flipCard.setOnClickListener {
             logD("Quiz","Flip click listener....")

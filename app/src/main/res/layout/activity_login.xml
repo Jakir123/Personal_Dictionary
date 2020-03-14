@@ -13,14 +13,14 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         style="@style/matchParent"
         android:background="@drawable/background_gradient"
-        android:padding="@dimen/small_padding"
+        android:padding="@dimen/small_8"
         tools:context=".view.activities.LoginActivity">
 
         <TextView
             android:id="@+id/tvHeader"
             style="@style/largeTextViewStyle"
             android:layout_marginBottom="50dp"
-            android:elevation="@dimen/large_padding"
+            android:elevation="@dimen/large_16"
             android:text="@string/header_login"
             app:layout_anchor="@id/view" />
 
@@ -36,7 +36,7 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             app:cardCornerRadius="40dp"
-            android:elevation="@dimen/large_padding"
+            android:elevation="@dimen/large_16"
             app:strokeWidth="1dp"
             app:layout_anchor="@id/container"
             app:layout_anchorGravity="top|center">
@@ -44,7 +44,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="@dimen/x_large_20"
                 android:scaleType="fitXY"
                 android:src="@drawable/jakir" />
         </com.google.android.material.card.MaterialCardView>
@@ -55,17 +55,17 @@
             style="@style/matchParentWrapContent"
             android:layout_gravity="center"
             android:background="@drawable/round_background"
-            android:paddingStart="@dimen/large_padding"
+            android:paddingStart="@dimen/large_16"
             android:paddingTop="50dp"
-            android:paddingEnd="@dimen/large_padding"
-            android:paddingBottom="20dp">
+            android:paddingEnd="@dimen/large_16"
+            android:paddingBottom="@dimen/x_large_20">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="@dimen/very_small_5"
                 app:hintEnabled="false"
                 app:layout_constraintBottom_toTopOf="@+id/tilPassword">
 

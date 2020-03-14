@@ -15,14 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background_gradient"
-        android:padding="@dimen/small_padding">
+        android:padding="@dimen/small_8">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@drawable/round_background"
-            android:padding="@dimen/default_padding"
+            android:padding="@dimen/default_10"
             tools:context=".view.fragments.AddVocabularyFragment">
 
             <TextView
@@ -101,13 +101,47 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilExample"
+                android:id="@+id/tilSynonyms"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 app:hintEnabled="false"
                 app:layout_constraintTop_toBottomOf="@+id/tilDescription">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSynonyms"
+                    style="@style/editTextStyle"
+                    android:inputType="textPersonName"
+                    android:hint="@string/synonyms_hint"
+                    android:text="@={viewModel.synonyms}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilAntonyms"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/tilSynonyms">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAntonyms"
+                    style="@style/editTextStyle"
+                    android:inputType="text"
+                    android:hint="@string/antonyms_hint"
+                    android:text="@={viewModel.antonyms}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilExample"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/tilAntonyms">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etExample"

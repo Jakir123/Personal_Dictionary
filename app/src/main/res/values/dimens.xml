@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="button_default_text_size">20sp</dimen>
+    <!--  padding & padding -->
+    <dimen name="default_10">10dp</dimen>
+    <dimen name="small_8">8dp</dimen>
+    <dimen name="very_small_5">5dp</dimen>
+    <dimen name="medium_12">12dp</dimen>
+    <dimen name="large_16">16dp</dimen>
+    <dimen name="x_large_20">20dp</dimen>
+
+    <!-- text view size -->
     <dimen name="textview_default_text_size">14sp</dimen>
+    <dimen name="textview_very_small_text_size">10sp</dimen>
+    <dimen name="textview_small_text_size">12sp</dimen>
     <dimen name="textview_medium_text_size">18sp</dimen>
-    <dimen name="edittext_default_text_size">12sp</dimen>
-
-    <dimen name="default_padding">10dp</dimen>
-    <dimen name="small_padding">8dp</dimen>
-    <dimen name="very_small_padding">5dp</dimen>
-    <dimen name="large_padding">16dp</dimen>
-
-    <dimen name="default_margin">10dp</dimen>
-    <dimen name="small_margin">8dp</dimen>
-    <dimen name="large_margin">16dp</dimen>
-
     <dimen name="textview_large_text_size">20sp</dimen>
-    <dimen name="drawable_padding">5dp</dimen>
+    <dimen name="textview_x_large_text_size">24sp</dimen>
+    <dimen name="textview_xx_large_text_size">30sp</dimen>
+    <dimen name="textview_xxx_large_text_size">35sp</dimen>
+
+    <!-- edit text text size -->
+    <dimen name="edittext_default_text_size">12sp</dimen>
+    <dimen name="edittext_small_text_size">10sp</dimen>
+    <dimen name="edittext_medium_text_size">14sp</dimen>
+    <dimen name="edittext_large_text_size">18sp</dimen>
+
+    <!--  button text size  -->
+    <dimen name="button_default_text_size">20sp</dimen>
+    <dimen name="button_small_text_size">18sp</dimen>
+    <dimen name="button_medium_text_size">24sp</dimen>
+    <dimen name="button_large_text_size">28sp</dimen>
+    <dimen name="button_x_large_text_size">30sp</dimen>
 </resources>

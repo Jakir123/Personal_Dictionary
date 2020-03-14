@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:minHeight="60dp"
-        android:padding="@dimen/very_small_padding"
+        android:padding="@dimen/very_small_5"
         app:cardBackgroundColor="@color/transparent"
-        app:cardCornerRadius="@dimen/very_small_padding"
+        app:cardCornerRadius="@dimen/very_small_5"
         app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,8 +28,8 @@
                 android:id="@+id/tvWord"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_margin"
-                android:layout_marginEnd="@dimen/default_margin"
+                android:layout_marginStart="@dimen/default_10"
+                android:layout_marginEnd="@dimen/default_10"
                 android:fontFamily="monospace"
                 android:text="@{item.word}"
                 android:textColor="@color/colorWhite"
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:drawableEnd="@drawable/arrow_right"
-                android:drawablePadding="@dimen/small_padding"
+                android:drawablePadding="@dimen/small_8"
                 android:drawableTint="@color/colorWhite"
                 android:textColor="@color/colorWhite"
                 android:visibility="visible"

@@ -11,7 +11,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         style="@style/matchParent"
         android:background="@drawable/background_gradient"
-        android:padding="@dimen/large_padding"
+        android:padding="@dimen/large_16"
         tools:context=".view.activities.RegistrationActivity">
 
         <com.google.android.material.card.MaterialCardView
@@ -25,7 +25,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="@dimen/x_large_20"
                 android:scaleType="fitXY"
                 android:src="@drawable/jakir" />
         </com.google.android.material.card.MaterialCardView>
@@ -35,10 +35,10 @@
             style="@style/matchParentWrapContent"
             android:layout_gravity="center"
             android:background="@drawable/round_background"
-            android:paddingStart="@dimen/large_padding"
+            android:paddingStart="@dimen/large_16"
             android:paddingTop="60dp"
-            android:paddingEnd="@dimen/large_padding"
-            android:paddingBottom="@dimen/large_padding"
+            android:paddingEnd="@dimen/large_16"
+            android:paddingBottom="@dimen/large_16"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -48,7 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintEnabled="false"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="@dimen/very_small_5"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintEnabled="false"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/very_small_5"
                 app:layout_constraintTop_toBottomOf="@+id/tilName">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -83,7 +83,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/very_small_5"
                 app:hintEnabled="false"
                 app:layout_constraintTop_toBottomOf="@+id/tilEmail">
 
@@ -101,7 +101,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/very_small_5"
                 app:hintEnabled="false"
                 app:layout_constraintTop_toBottomOf="@id/tilPhone">
 
@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintEnabled="false"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="@dimen/very_small_5"
                 app:layout_constraintTop_toBottomOf="@+id/tilPassword">
 
                 <com.google.android.material.textfield.TextInputEditText

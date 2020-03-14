@@ -14,14 +14,14 @@
         android:layout_height="80dp"
         app:cardCornerRadius="40dp"
         app:strokeWidth="1dp"
-        android:elevation="@dimen/large_padding"
+        android:elevation="@dimen/large_16"
         app:layout_anchor="@id/tvWelcomeCard"
         app:layout_anchorGravity="top|center">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="@dimen/x_large_20"
             android:scaleType="fitXY"
             android:src="@drawable/jakir" />
     </com.google.android.material.card.MaterialCardView>
@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         app:cardBackgroundColor="@color/transparent"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="@dimen/default_10"
         android:id="@+id/tvWelcomeCard"
         app:cardElevation="0dp"
         app:cardUseCompatPadding="true"
@@ -42,7 +42,7 @@
             style="@style/largeTextViewStyle"
             android:lineSpacingExtra="10sp"
             android:textSize="24sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/default_10"
             android:layout_gravity="center"
             android:text="@string/welcome"
             android:textAlignment="center" />

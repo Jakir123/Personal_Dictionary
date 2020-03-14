@@ -17,6 +17,9 @@ class DashboardActivity : BaseActivity() {
         val navController = Navigation.findNavController(this, R.id.fragmentContainer)
         setupBottomNavMenu(navController)
 //        setupFragmentsTitle(navController)
+        fabAdd.setOnClickListener {
+            navController.navigate(R.id.action_addVocabulary)
+        }
     }
 
     private fun setupBottomNavMenu(navController: NavController) {
@@ -28,10 +31,20 @@ class DashboardActivity : BaseActivity() {
     private fun setupFragmentsTitle(navController: NavController){
         navController.addOnDestinationChangedListener { _, destination, _ ->
             // compare destination id
-            title = when (destination.id) {
-                R.id.vocabularyListFragment -> "Vocabulary List"
-                R.id.addVocabularyFragment -> "Chat Box"
-                else -> "Default title"
+//            title = when (destination.id) {
+//                R.id.vocabularyListFragment -> "Vocabulary List"
+//                R.id.addVocabularyFragment -> "Chat Box"
+//                R.id.wordDetailsFragment -> {"Chat Box"}
+//                else -> "Default title"
+//            }
+
+            when(destination.id){
+                R.id.wordDetailsFragment->{
+
+                }
+                else->{
+
+                }
             }
         }
     }

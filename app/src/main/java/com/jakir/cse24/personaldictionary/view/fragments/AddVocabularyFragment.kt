@@ -10,17 +10,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.jakir.cse24.easyalert.EasyAlert
 import com.jakir.cse24.personaldictionary.R
-import com.jakir.cse24.personaldictionary.view.adapter.SpinnerAdapter
 import com.jakir.cse24.personaldictionary.base.BaseFragment
-import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
-import com.jakir.cse24.personaldictionary.databinding.FragmentAddVocabularyBinding
 import com.jakir.cse24.personaldictionary.data.model.Translation
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
+import com.jakir.cse24.personaldictionary.databinding.FragmentAddVocabularyBinding
+import com.jakir.cse24.personaldictionary.view.adapter.SpinnerAdapter
 import com.jakir.cse24.personaldictionary.view_model.VocabularyAddViewModel
 import kotlinx.android.synthetic.main.fragment_add_vocabulary.*
 
@@ -87,12 +84,13 @@ class AddVocabularyFragment : BaseFragment() {
             }
         }
 
-
         btnSave.setOnClickListener {
             val word = viewModel.word.value
             val meaning = viewModel.meaning.value
             var description = viewModel.description.value
             var example = viewModel.example.value
+            var synonyms = viewModel.synonyms.value
+            var antonyms = viewModel.antonyms.value
 
             if (word == null || word == "") {
                 binding.etWord.error = getString(R.string.word_hint)
@@ -106,6 +104,13 @@ class AddVocabularyFragment : BaseFragment() {
             }
             if (type == "Select word type..") {
                 showToast("You have to select word type!")
+                return@setOnClickListener
+            }
+            if (synonyms == null || synonyms == "") {
+                synonyms = ""
+            }
+            if (antonyms == null || antonyms == "") {
+                antonyms = ""
             }
             if (description == null) {
                 description = ""
@@ -118,7 +123,9 @@ class AddVocabularyFragment : BaseFragment() {
                 Vocabulary(
                     word,
                     type,
-                    Translation(meaning, description, example)
+                    Translation(meaning, description, example),
+                    synonyms,
+                    antonyms
                 )
             ).observe(this,
                 Observer<ResponseModel> {

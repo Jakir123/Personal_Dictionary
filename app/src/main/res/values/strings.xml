@@ -36,4 +36,8 @@
     <string name="add_new">Add</string>
     <string name="vocabulary_list">Vocabulary List</string>
     <string name="undo">Undo</string>
+    <string name="synonyms_hint">Synonyms(example: abc, xyz)</string>
+    <string name="antonyms_hint">Antonyms(example: abc, xyz)</string>
+    <string name="synonyms">Synonyms</string>
+    <string name="antonyms">Antonyms</string>
 </resources>

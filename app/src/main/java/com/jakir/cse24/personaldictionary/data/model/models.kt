@@ -17,7 +17,7 @@ data class Vocabulary(
     @ServerTimestamp
     val timeStamp: Date? = null
 ) : Parcelable {
-    constructor(word:String,type: String,translation: Translation) : this("","",word, type, translation,"","")
+    constructor(word:String,type: String,translation: Translation,synonyms: String, antonyms: String) : this("","",word, type, translation,synonyms,antonyms)
     constructor() : this("","","", "", Translation("", "", ""),"","")
 }
 

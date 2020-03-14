@@ -7,10 +7,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.base.BaseRepository
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
+import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.data.model.Translation
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 
-class VocabularyListRepository :BaseRepository(){
+class VocabularyRepository :BaseRepository(){
     private var nextItem = 1
 
     @SuppressLint("LongLogTag")
@@ -38,10 +39,34 @@ class VocabularyListRepository :BaseRepository(){
         return vocabularies
     }
 
-    fun deleteVocabulary(vocabulary: Vocabulary){
-        vocabularyCollection.document(vocabulary.id).delete().addOnCompleteListener {
+
+    fun addVocabulary(vocabulary: Vocabulary): MutableLiveData<ResponseModel> {
+        val response: MutableLiveData<ResponseModel> = MutableLiveData()
+
+        val docRef = vocabularyCollection.document()
+        vocabulary.userId = userId
+        vocabulary.id = docRef.id
+
+        docRef.set(vocabulary).addOnSuccessListener {
+            response.value = ResponseModel(true,"New vocabulary added")
+        }.addOnFailureListener {
+            response.value = ResponseModel(false,it.message.toString())
+        }.addOnCanceledListener {
+            response.value = ResponseModel(false, "Request canceled!")
+        }
+        return response
+    }
+
+    fun deleteVocabulary(id:String){
+        vocabularyCollection.document(id).delete().addOnCompleteListener {
 
         }
 
+    }
+
+    fun updateVocabulary(id: String,vocabulary: MutableMap<String,Any>){
+        vocabularyCollection.document(id).update(vocabulary).addOnFailureListener {
+            EasyLog.logE("Update failed: ${it.localizedMessage}")
+        }
     }
 }
