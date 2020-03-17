@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,8 +21,10 @@ import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.interfaces.ItemClickListener
 import com.jakir.cse24.personaldictionary.interfaces.ItemSwipeListener
 import com.jakir.cse24.personaldictionary.utils.SwipeToDeleteCallback
+import com.jakir.cse24.personaldictionary.view.activities.DashboardActivity
 import com.jakir.cse24.personaldictionary.view.adapter.VocabularyListAdapter
 import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
+import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_vocabulary_list.recyclerView
 import kotlinx.android.synthetic.main.fragment_vocabulary_list.*
 
@@ -35,6 +38,7 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
     private lateinit var viewModel: VocabularyListViewModel
     private lateinit var adapter: VocabularyListAdapter
     private lateinit var vocabularyList: ArrayList<Vocabulary>
+    private lateinit var mActivity: DashboardActivity
 
     override fun onItemClick(vocabulary: Vocabulary) {
 //        showToast(vocabulary.translation.meaning)
@@ -54,6 +58,14 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this)[VocabularyListViewModel::class.java]
 
+        mActivity = activity as DashboardActivity
+        mActivity.fabAdd.setOnClickListener {
+            view.findNavController().navigate(R.id.addVocabularyFragment)
+        }
+        mActivity.bottomBar.setNavigationOnClickListener {
+//            Navigation.findNavController(view).navigateUp()
+            mActivity.onNavigationPressed()
+        }
 
         val layoutManager = LinearLayoutManager(requireContext())
 

@@ -42,7 +42,6 @@ class VocabularyRepository :BaseRepository(){
 
     fun addVocabulary(vocabulary: Vocabulary): MutableLiveData<ResponseModel> {
         val response: MutableLiveData<ResponseModel> = MutableLiveData()
-
         val docRef = vocabularyCollection.document()
         vocabulary.userId = userId
         vocabulary.id = docRef.id
@@ -57,16 +56,28 @@ class VocabularyRepository :BaseRepository(){
         return response
     }
 
-    fun deleteVocabulary(id:String){
+    fun deleteVocabulary(id:String):MutableLiveData<ResponseModel>{
+        val response = MutableLiveData<ResponseModel>()
         vocabularyCollection.document(id).delete().addOnCompleteListener {
-
+              response.value = ResponseModel(true,"Vocabulary deleted.")
+        }.addOnFailureListener {
+            response.value = ResponseModel(false,it.message.toString())
+        }.addOnCanceledListener {
+            response.value = ResponseModel(false, "Request canceled!")
         }
-
+        return response
     }
 
-    fun updateVocabulary(id: String,vocabulary: MutableMap<String,Any>){
+    fun updateVocabulary(id: String,vocabulary: MutableMap<String,Any>):MutableLiveData<ResponseModel>{
+        val response = MutableLiveData<ResponseModel>()
         vocabularyCollection.document(id).update(vocabulary).addOnFailureListener {
             EasyLog.logE("Update failed: ${it.localizedMessage}")
+            response.value = ResponseModel(false,it.message.toString())
+        }.addOnSuccessListener {
+            response.value = ResponseModel(true,"Vocabulary updated.")
+        }.addOnCanceledListener {
+            response.value = ResponseModel(false, "Request canceled!")
         }
+        return response
     }
 }

@@ -29,7 +29,11 @@
         android:id="@+id/addVocabularyFragment"
         android:name="com.jakir.cse24.personaldictionary.view.fragments.AddVocabularyFragment"
         android:label="fragment_add_vocabulary"
-        tools:layout="@layout/fragment_add_vocabulary" />
+        tools:layout="@layout/fragment_add_vocabulary" >
+        <argument
+            android:name="vocabulary"
+            app:argType="com.jakir.cse24.personaldictionary.data.model.Vocabulary" />
+    </fragment>
     <fragment
         android:id="@+id/quizFragment"
         android:name="com.jakir.cse24.personaldictionary.view.fragments.QuizFragment"
@@ -43,5 +47,8 @@
         <argument
             android:name="vocabulary"
             app:argType="com.jakir.cse24.personaldictionary.data.model.Vocabulary" />
+        <action
+            android:id="@+id/action_wordDetailsFragment_to_addVocabularyFragment"
+            app:destination="@id/addVocabularyFragment" />
     </fragment>
 </navigation>

@@ -2,9 +2,7 @@ package com.jakir.cse24.personaldictionary.view.fragments
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -17,8 +15,10 @@ import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.data.model.Translation
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.databinding.FragmentAddVocabularyBinding
+import com.jakir.cse24.personaldictionary.view.activities.DashboardActivity
 import com.jakir.cse24.personaldictionary.view.adapter.SpinnerAdapter
 import com.jakir.cse24.personaldictionary.view_model.VocabularyAddViewModel
+import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.fragment_add_vocabulary.*
 
 
@@ -27,10 +27,11 @@ import kotlinx.android.synthetic.main.fragment_add_vocabulary.*
  * Created by Md. Jakir Hossain on 02/05/2019
  */
 class AddVocabularyFragment : BaseFragment() {
-
+    private var vocabulary: Vocabulary? = null
     private lateinit var type: String
     private lateinit var viewModel: VocabularyAddViewModel
     private lateinit var binding: FragmentAddVocabularyBinding
+    private lateinit var mActivity: DashboardActivity
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,11 +42,24 @@ class AddVocabularyFragment : BaseFragment() {
         return binding.root
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProviders.of(this)[VocabularyAddViewModel::class.java]
+        mActivity = activity as DashboardActivity
+        vocabulary = arguments?.getParcelable("vocabulary")
+        if (vocabulary != null) {
+            viewModel.setValue(vocabulary!!)
+            btnSave.text = getString(R.string.update)
+        }
         binding.viewModel = viewModel
 
+        mActivity.bottomBar.setNavigationOnClickListener {
+            Navigation.findNavController(view).navigateUp()
+        }
 //        (activity as AppCompatActivity).supportActionBar?.title = "Example 1"
 //        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 //        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
@@ -67,6 +81,18 @@ class AddVocabularyFragment : BaseFragment() {
 
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         spinnerType.adapter = adapter
+
+        val selectedPosition = when (vocabulary?.type) {
+            "Noun" -> 1
+            "Pronoun" -> 2
+            "Verb" -> 3
+            "Adverb" -> 4
+            "Adjective" -> 5
+            "Preposition" -> 6
+            "Conjunction" -> 7
+            else -> 0
+        }
+        spinnerType.setSelection(selectedPosition)
 
         spinnerType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -119,23 +145,43 @@ class AddVocabularyFragment : BaseFragment() {
                 example = ""
             }
             EasyAlert.showProgressDialog(requireActivity())
-            viewModel.addVocabulary(
-                Vocabulary(
-                    word,
-                    type,
+            if (btnSave.text == getString(R.string.update)) {
+                viewModel.updateVocabulary(vocabulary!!.id,
+                    Vocabulary(
+                        word, type,
+                        Translation(meaning, description, example),
+                        synonyms,
+                        antonyms
+                    )).observe(this, Observer {
+                    updateViews(it,view)
+                })
+            } else {
+                viewModel.addVocabulary(Vocabulary(
+                    word, type,
                     Translation(meaning, description, example),
                     synonyms,
                     antonyms
-                )
-            ).observe(this,
-                Observer<ResponseModel> {
-                    EasyAlert.hideProgressDialog()
-                    showToast(it.message)
-                    if (it.status) {
-                        val navController = Navigation.findNavController(view)
-                        navController.navigateUp()
-                    }
+                )).observe(this, Observer {
+                    updateViews(it,view)
                 })
+            }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.findItem(R.id.app_bar_search).isVisible = false
+        menu.findItem(R.id.quiz).isVisible = false
+        menu.findItem(R.id.delete).isVisible = false
+        menu.findItem(R.id.add_favourite).isVisible = false
+
+    }
+
+    private fun updateViews(it:ResponseModel,view: View) {
+        EasyAlert.hideProgressDialog()
+        showToast(it.message)
+        if (it.status) {
+            val navController = Navigation.findNavController(view)
+            navController.navigateUp()
         }
     }
 }

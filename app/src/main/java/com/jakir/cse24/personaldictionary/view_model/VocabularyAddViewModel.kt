@@ -20,4 +20,23 @@ class VocabularyAddViewModel : ViewModel() {
         return VocabularyRepository()
             .addVocabulary(vocabulary)
     }
+
+    fun updateVocabulary(id: String, vocabulary: Vocabulary): MutableLiveData<ResponseModel> {
+        val data = mutableMapOf<String, Any>()
+        data["word"] = vocabulary.word
+        data["type"] = vocabulary.type
+        data["synonyms"] = vocabulary.synonyms
+        data["antonyms"] = vocabulary.antonyms
+        data["translation"] = vocabulary.translation
+        return VocabularyRepository().updateVocabulary(id, data)
+    }
+
+    fun setValue(vocabulary: Vocabulary) {
+        word.value = vocabulary.word
+        meaning.value = vocabulary.translation.meaning
+        description.value = vocabulary.translation.description
+        example.value = vocabulary.translation.example
+        synonyms.value = vocabulary.synonyms
+        antonyms.value = vocabulary.antonyms
+    }
 }
