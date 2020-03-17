@@ -15,7 +15,6 @@
     <item
         android:id="@+id/quiz"
         app:showAsAction="always"
-        android:iconTint="@color/colorWhite"
         android:icon="@drawable/ic_question_answer"
         android:title="@string/quiz"/>
 

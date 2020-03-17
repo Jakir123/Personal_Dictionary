@@ -60,6 +60,9 @@ class AddVocabularyFragment : BaseFragment() {
         mActivity.bottomBar.setNavigationOnClickListener {
             Navigation.findNavController(view).navigateUp()
         }
+        mActivity.fabAdd.setOnClickListener {
+
+        }
 //        (activity as AppCompatActivity).supportActionBar?.title = "Example 1"
 //        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 //        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
@@ -144,8 +147,9 @@ class AddVocabularyFragment : BaseFragment() {
             if (example == null) {
                 example = ""
             }
-            EasyAlert.showProgressDialog(requireActivity())
+
             if (btnSave.text == getString(R.string.update)) {
+                EasyAlert.showProgressDialog(requireActivity(),"Updating vocabulary...")
                 viewModel.updateVocabulary(vocabulary!!.id,
                     Vocabulary(
                         word, type,
@@ -156,6 +160,7 @@ class AddVocabularyFragment : BaseFragment() {
                     updateViews(it,view)
                 })
             } else {
+                EasyAlert.showProgressDialog(requireActivity(),"Adding new vocabulary...")
                 viewModel.addVocabulary(Vocabulary(
                     word, type,
                     Translation(meaning, description, example),

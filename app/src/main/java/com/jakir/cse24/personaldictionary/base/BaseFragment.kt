@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jakir.cse24.personaldictionary.R
 import kotlinx.android.synthetic.main.layout_progress_dialog.view.*
@@ -53,8 +55,8 @@ abstract class BaseFragment : Fragment() {
         toast.show()
     }
 
-    protected fun showSnack(msg: String){
-        val snack= Snackbar.make(this.view!!, msg, Snackbar.LENGTH_LONG)
+    protected fun showSnack(msg: String) {
+        val snack = Snackbar.make(this.view!!, msg, Snackbar.LENGTH_LONG)
         snack.show()
     }
 
@@ -77,6 +79,30 @@ abstract class BaseFragment : Fragment() {
             dialogInterface.dismiss()
         }
         dialog.show()
+    }
+
+    protected fun showAlertWithChoice(
+        title: String,
+        msg: String,
+        icon: Int
+    ): MutableLiveData<Boolean> {
+        val response = MutableLiveData<Boolean>()
+        val dialog = MaterialAlertDialogBuilder(requireContext())
+        dialog.setTitle(title)
+        dialog.setMessage(msg)
+        dialog.setPositiveButton(
+            getString(android.R.string.ok)
+        ) { dialogInterface, _ ->
+            response.value = true
+            dialogInterface.dismiss()
+        }
+        dialog.setNegativeButton(getString(android.R.string.cancel)) { dialogInterface, i ->
+            response.value = false
+            dialogInterface.dismiss()
+        }
+        dialog.show()
+
+        return response
     }
 
     /**
@@ -119,7 +145,7 @@ abstract class BaseFragment : Fragment() {
      * This method is for hide/clear progress dialog
      * Created by Md. Jakir Hossain on 07/11/2019.
      */
-    protected fun hideProgressDialog(){
+    protected fun hideProgressDialog() {
         if (dialog != null) {
             dialog!!.dismiss()
             dialog = null

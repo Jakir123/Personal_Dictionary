@@ -6,6 +6,8 @@
     <color name="colorAccent">#C9759B</color>
 
     <color name="transparent">#26000000</color>
+    <color name="transparent1">#1A000000</color>
+    <color name="transparent2">#0D000000</color>
     <color name="full_transparent">#00000000</color>
     <color name="transparent_button">#26ffffff</color>
 
@@ -15,4 +17,8 @@
     <color name="colorOrangeDark">#bf360c</color>
     <color name="colorOrangeLight">#ff7043</color>
     <color name="colorGray">#808080</color>
+
+    <color name="primaryTextColor">#FFF</color>
+    <color name="subTextColor">#A4FFFFFF</color>
+    <color name="secondaryTextColor">#DAFFFFFF</color>
 </resources>

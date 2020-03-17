@@ -9,7 +9,17 @@
     <dimen name="x_large_20">20dp</dimen>
 
     <!-- text view size -->
-    <dimen name="textview_default_text_size">14sp</dimen>
+    <dimen name="textview_standard_text_size">14sp</dimen>
+    <dimen name="textview_title1_text_size">18sp</dimen>
+    <dimen name="textview_title2_text_size">20sp</dimen>
+    <dimen name="textview_title3_text_size">24sp</dimen>
+    <dimen name="textview_title4_text_size">28sp</dimen>
+    <dimen name="textview_title5_text_size">32sp</dimen>
+    <dimen name="textview_title6_text_size">36sp</dimen>
+    <dimen name="textview_subtitle1_text_size">14sp</dimen>
+    <dimen name="textview_subtitle2_text_size">16sp</dimen>
+    <dimen name="textview_subtitle3_text_size">18sp</dimen>
+    <dimen name="textview_subtitle4_text_size">22sp</dimen>
     <dimen name="textview_very_small_text_size">10sp</dimen>
     <dimen name="textview_small_text_size">12sp</dimen>
     <dimen name="textview_medium_text_size">18sp</dimen>

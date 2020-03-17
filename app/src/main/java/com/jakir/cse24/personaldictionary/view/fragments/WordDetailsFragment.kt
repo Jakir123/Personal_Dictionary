@@ -14,6 +14,7 @@ import androidx.navigation.NavigatorProvider
 import androidx.navigation.findNavController
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.jakir.cse24.easyalert.EasyAlert
 
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
@@ -84,11 +85,24 @@ class WordDetailsFragment : BaseFragment() {
             R.id.add_favourite -> {
             }
             R.id.delete -> {
-                viewModel.removeVocabulary(vocabulary.id).observe(viewLifecycleOwner, Observer {
-                    if (it.status) {
-                        Navigation.findNavController(mView).navigateUp()
-                    }
-                })
+                showAlertWithChoice(
+                    getString(R.string.delete),
+                    getString(R.string.delete_warning),
+                    R.drawable.ic_delete_white_24dp
+                ).observe(this,
+                    Observer { it ->
+                        if (it) {
+                            EasyAlert.showProgressDialog(requireActivity(),"Deleting...")
+                            viewModel.removeVocabulary(vocabulary.id)
+                                .observe(viewLifecycleOwner, Observer {response->
+                                    EasyAlert.hideProgressDialog()
+                                    if (response.status) {
+                                        Navigation.findNavController(mView).navigateUp()
+                                    }
+                                })
+                        }
+                    })
+
             }
         }
         return super.onOptionsItemSelected(item);

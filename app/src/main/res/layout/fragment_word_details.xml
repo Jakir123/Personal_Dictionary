@@ -14,139 +14,169 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background_gradient"
-        android:padding="@dimen/default_10">
+        android:background="@drawable/background_gradient">
 
-        <TextView
-            android:id="@+id/tvWord"
-            style="@style/largeTextViewStyle"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mCardView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/textview_xx_large_text_size"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:text="@{data.word}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Hello" />
+            android:layout_height="150dp"
+            app:cardBackgroundColor="@color/transparent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tvWordType"
-            style="@style/defaultTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/arbutus"
-            android:gravity="center"
-            android:text="@{'('+data.type+')'}"
-            android:textColor="@color/colorOrangeLight"
-            app:layout_constraintTop_toBottomOf="@+id/tvWord" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center">
 
-        <TextView
-            android:id="@+id/tvMeaningLabel"
-            style="@style/largeTextViewStyle"
-            android:layout_width="match_parent"
-            android:textSize="@dimen/textview_x_large_text_size"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/x_large_20"
-            android:text="@string/meaning"
-            app:layout_constraintTop_toBottomOf="@+id/tvWordType" />
+                <TextView
+                    android:id="@+id/tvWord"
+                    style="@style/textViewTitle4Style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{data.word}"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/textview_xx_large_text_size"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Hello" />
 
-        <TextView
-            android:id="@+id/tvMeaning"
-            style="@style/defaultTextViewStyle"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            tools:text="Meaning of word"
-            android:layout_marginTop="@dimen/default_10"
-            android:text="@{data.translation.meaning}"
-            app:layout_constraintTop_toBottomOf="@+id/tvMeaningLabel" />
+                <TextView
+                    android:id="@+id/tvWordType"
+                    style="@style/textViewSubTitle3Style"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{'('+data.type+')'}"
+                    app:layout_constraintTop_toBottomOf="@+id/tvWord"
+                    tools:text="(Verb)" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:id="@+id/tvSynonymsLabel"
-            style="@style/largeTextViewStyle"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:textSize="@dimen/textview_x_large_text_size"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_10"
-            android:text="@string/synonyms"
-            app:layout_constraintTop_toBottomOf="@+id/tvMeaning" />
 
-        <TextView
-            android:id="@+id/tvSynonyms"
-            style="@style/defaultTextViewStyle"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            tools:text="Synonyms"
-            android:layout_marginTop="@dimen/default_10"
-            android:text="@{data.synonyms}"
-            app:layout_constraintTop_toBottomOf="@+id/tvSynonymsLabel" />
+            android:layout_height="0dp"
+            android:padding="@dimen/very_small_5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mCardView">
 
-        <TextView
-            android:id="@+id/tvAntonymsLabel"
-            style="@style/largeTextViewStyle"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:textSize="@dimen/textview_x_large_text_size"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_10"
-            android:text="@string/antonyms"
-            app:layout_constraintTop_toBottomOf="@+id/tvSynonyms" />
+            <TextView
+                android:id="@+id/tvMeaningLabel"
+                style="@style/textViewTitle1Style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent1"
+                android:padding="@dimen/default_10"
+                android:text="@string/meaning"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvAntonyms"
-            style="@style/defaultTextViewStyle"
-            android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            tools:text="Antonyms"
-            android:layout_marginTop="@dimen/default_10"
-            android:text="@{data.antonyms}"
-            app:layout_constraintTop_toBottomOf="@+id/tvAntonymsLabel" />
-        <TextView
-            android:id="@+id/tvDescriptionLabel"
-            style="@style/largeTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/textview_x_large_text_size"
-            android:layout_marginTop="30dp"
-            android:text="@string/description"
-            app:layout_constraintTop_toBottomOf="@+id/tvAntonyms" />
+            <TextView
+                android:id="@+id/tvMeaning"
+                style="@style/textViewSubTitle1Style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/very_small_5"
+                android:layout_marginEnd="@dimen/very_small_5"
+                android:background="@color/transparent2"
+                android:padding="@dimen/default_10"
+                android:text="@{data.translation.meaning}"
+                app:layout_constraintTop_toBottomOf="@+id/tvMeaningLabel"
+                tools:text="Meaning of word" />
 
-        <TextView
-            android:id="@+id/tvDescription"
-            style="@style/defaultTextViewStyle"
-            android:layout_width="match_parent"
-            tools:text="Word description here"
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/default_10"
-            android:text="@{data.translation.description}"
-            app:layout_constraintTop_toBottomOf="@+id/tvDescriptionLabel" />
+            <TextView
+                android:id="@+id/tvSynonymsLabel"
+                style="@style/textViewTitle1Style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent1"
+                android:padding="@dimen/default_10"
+                android:text="@string/synonyms"
+                app:layout_constraintTop_toBottomOf="@+id/tvMeaning" />
 
-        <TextView
-            android:id="@+id/tvExampleLabel"
-            style="@style/largeTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/textview_x_large_text_size"
-            android:layout_marginTop="30dp"
-            android:text="@string/example"
-            app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+            <TextView
+                android:id="@+id/tvSynonyms"
+                style="@style/textViewSubTitle1Style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/very_small_5"
+                android:layout_marginEnd="@dimen/very_small_5"
+                android:background="@color/transparent2"
+                android:padding="@dimen/default_10"
+                android:text="@{data.synonyms}"
+                app:layout_constraintTop_toBottomOf="@+id/tvSynonymsLabel"
+                tools:text="Synonyms" />
 
-        <TextView
-            android:id="@+id/tvExample"
-            style="@style/defaultTextViewStyle"
-            android:layout_width="match_parent"
-            tools:text="There is an example "
-            android:gravity="center"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@{data.translation.example}"
-            app:layout_constraintTop_toBottomOf="@+id/tvExampleLabel" />
+            <TextView
+                android:id="@+id/tvAntonymsLabel"
+                style="@style/textViewTitle1Style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent1"
+                android:padding="@dimen/default_10"
+                android:text="@string/antonyms"
+                app:layout_constraintTop_toBottomOf="@+id/tvSynonyms" />
+
+            <TextView
+                android:id="@+id/tvAntonyms"
+                style="@style/textViewSubTitle1Style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/very_small_5"
+                android:layout_marginEnd="@dimen/very_small_5"
+                android:background="@color/transparent2"
+                android:padding="@dimen/default_10"
+                android:text="@{data.antonyms}"
+                app:layout_constraintTop_toBottomOf="@+id/tvAntonymsLabel"
+                tools:text="Antonyms" />
+
+            <TextView
+                android:id="@+id/tvDescriptionLabel"
+                style="@style/textViewTitle1Style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent1"
+                android:padding="@dimen/default_10"
+                android:text="@string/description"
+                app:layout_constraintTop_toBottomOf="@+id/tvAntonyms" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                style="@style/textViewSubTitle1Style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/very_small_5"
+                android:layout_marginEnd="@dimen/very_small_5"
+                android:background="@color/transparent2"
+                android:padding="@dimen/default_10"
+                android:text="@{data.translation.description}"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescriptionLabel"
+                tools:text="Word description here" />
+
+            <TextView
+                android:id="@+id/tvExampleLabel"
+                style="@style/textViewTitle1Style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent1"
+                android:padding="@dimen/default_10"
+                android:text="@string/example"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescription" />
+
+            <TextView
+                android:id="@+id/tvExample"
+                style="@style/textViewSubTitle1Style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent2"
+                android:layout_marginStart="@dimen/very_small_5"
+                android:layout_marginEnd="@dimen/very_small_5"
+                android:padding="@dimen/default_10"
+                android:text="@{data.translation.example}"
+                app:layout_constraintTop_toBottomOf="@+id/tvExampleLabel"
+                tools:text="There is an example " />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

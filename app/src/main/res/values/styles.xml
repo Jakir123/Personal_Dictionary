@@ -26,9 +26,37 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
+    <!--    Textview Style-->
+    <style name="textViewTitle1Style" parent="defaultTextViewStyle">
+        <item name="android:textSize">@dimen/textview_title1_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="textViewTitle2Style" parent="textViewTitle1Style">
+        <item name="android:textSize">@dimen/textview_title2_text_size</item>
+    </style>
+    <style name="textViewTitle3Style" parent="textViewTitle1Style">
+        <item name="android:textSize">@dimen/textview_title3_text_size</item>
+    </style>
+    <style name="textViewTitle4Style" parent="textViewTitle1Style">
+        <item name="android:textSize">@dimen/textview_title4_text_size</item>
+    </style>
+
+    <style name="textViewSubTitle1Style" parent="defaultTextViewStyle">
+        <item name="android:textSize">@dimen/textview_subtitle1_text_size</item>
+        <item name="android:textColor">@color/subTextColor</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+    <style name="textViewSubTitle3Style" parent="textViewSubTitle1Style">
+        <item name="android:textSize">@dimen/textview_subtitle3_text_size</item>
+    </style>
+
+    <style name="textViewSubTitle4Style" parent="textViewSubTitle1Style">
+        <item name="android:textSize">@dimen/textview_subtitle4_text_size</item>
+    </style>
+
     <style name="largeTextViewStyle" parent="defaultTextViewStyle">
         <item name="android:fontFamily">@font/andada</item>
-        <item name="android:textAlignment">center</item>
+        <item name="android:textAlignment">textStart</item>
         <item name="android:textSize">@dimen/textview_large_text_size</item>
         <item name="android:textStyle">bold</item>
         <item name="android:typeface">monospace</item>
@@ -36,7 +64,7 @@
 
     <style name="defaultTextViewStyle" parent="matchParentWrapContent">
         <item name="android:textColor">@color/colorWhite</item>
-        <item name="android:textSize">@dimen/textview_default_text_size</item>
+        <item name="android:textSize">@dimen/textview_standard_text_size</item>
         <item name="android:textStyle">normal</item>
         <item name="android:fontFamily">sans-serif-smallcaps</item>
     </style>
