@@ -5,12 +5,15 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomappbar.BottomAppBar
+import com.jakir.cse24.easyalert.EasyAlert
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseActivity
+import com.jakir.cse24.personaldictionary.data.FirebaseSource
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class DashboardActivity : BaseActivity() {
@@ -81,7 +84,12 @@ class DashboardActivity : BaseActivity() {
         if (Navigation.findNavController(this, R.id.fragmentContainer)
                 .currentDestination?.id == R.id.vocabularyListFragment
         ) {
-            showAlert("Do you want ot exit? ")
+            EasyAlert.showAlertWithChoice(this,"Log out","Do you want to Log out?").observe(this, Observer {
+                if (it){
+                   FirebaseSource.firebaseAuth.signOut()
+                    finish()
+                }
+            })
             return
         }
         super.onBackPressed()
