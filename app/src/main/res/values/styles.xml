@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+        <item name="bottomSheetDialogTheme">@style/bottomSheetDialogTheme</item>
     </style>
 
     <!-- ActionBar theme. -->
@@ -16,6 +17,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+        <item name="bottomSheetDialogTheme">@style/bottomSheetDialogTheme</item>
     </style>
 
     <!-- activity transition animation -->
@@ -32,12 +34,15 @@
         <item name="android:gravity">center</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="textViewTitle2Style" parent="textViewTitle1Style">
         <item name="android:textSize">@dimen/textview_title2_text_size</item>
     </style>
+
     <style name="textViewTitle3Style" parent="textViewTitle1Style">
         <item name="android:textSize">@dimen/textview_title3_text_size</item>
     </style>
+
     <style name="textViewTitle4Style" parent="textViewTitle1Style">
         <item name="android:textSize">@dimen/textview_title4_text_size</item>
     </style>
@@ -47,6 +52,7 @@
         <item name="android:textColor">@color/subTextColor</item>
         <item name="android:textStyle">normal</item>
     </style>
+
     <style name="textViewSubTitle3Style" parent="textViewSubTitle1Style">
         <item name="android:textSize">@dimen/textview_subtitle3_text_size</item>
     </style>
@@ -102,5 +108,13 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <!--    Bottom Sheet Style-->
+    <style name="bottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/modalSheetStyle</item>
+    </style>
+
+    <style name="modalSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_background</item>
+    </style>
 
 </resources>
