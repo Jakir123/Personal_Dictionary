@@ -5,7 +5,7 @@
     <string name="login">Login</string>
     <string name="password_hint">Enter your password</string>
     <string name="phone_hint">Enter your phone number</string>
-    <string name="create_new_account_label">Don\'t have account yet? click her to signup</string>
+    <string name="create_new_account_label">Don\'t have account yet? click here to signup</string>
     <string name="password_outline_hint">Password</string>
     <string name="phone_outline_hint">Phone number</string>
     <string name="sign_up">SignUp</string>

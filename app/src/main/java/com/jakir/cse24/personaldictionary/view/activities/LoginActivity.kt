@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseActivity
+import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.databinding.ActivityLoginBinding
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.view_model.LoginViewModel
@@ -50,6 +51,8 @@ class LoginActivity : BaseActivity() {
                 if (it.status) {
                     startActivity(Intent(this@LoginActivity,
                         DashboardActivity::class.java ))
+                    binding.etEmail.setText("")
+                    binding.etPassword.setText("")
                 } else {
                     showToast(it.message)
                 }

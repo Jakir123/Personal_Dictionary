@@ -10,10 +10,9 @@
 
     <TextView
         android:id="@+id/tvHeader"
-        style="@style/largeTextViewStyle"
+        style="@style/textViewTitle3Style"
         android:layout_width="match_parent"
         android:background="@color/colorPrimaryDark"
-        android:gravity="center"
         android:textAllCaps="true"
         android:layout_height="?android:attr/actionBarSize"
         android:text="@string/vocabulary_list"

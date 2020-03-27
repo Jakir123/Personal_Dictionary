@@ -29,6 +29,7 @@
     <!--    Textview Style-->
     <style name="textViewTitle1Style" parent="defaultTextViewStyle">
         <item name="android:textSize">@dimen/textview_title1_text_size</item>
+        <item name="android:gravity">center</item>
         <item name="android:textStyle">bold</item>
     </style>
     <style name="textViewTitle2Style" parent="textViewTitle1Style">
