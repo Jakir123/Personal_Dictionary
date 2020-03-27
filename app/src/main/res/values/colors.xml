@@ -19,6 +19,6 @@
     <color name="colorGray">#808080</color>
 
     <color name="primaryTextColor">#FFF</color>
-    <color name="subTextColor">#A4FFFFFF</color>
+    <color name="subTextColor">#60FFFFFF</color>
     <color name="secondaryTextColor">#DAFFFFFF</color>
 </resources>

@@ -51,6 +51,7 @@ class LoginActivity : BaseActivity() {
                 if (it.status) {
                     startActivity(Intent(this@LoginActivity,
                         DashboardActivity::class.java ))
+                    PreferenceManager.isLoggedIn = true
                     binding.etEmail.setText("")
                     binding.etPassword.setText("")
                 } else {

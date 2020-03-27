@@ -14,6 +14,8 @@ import com.jakir.cse24.easyalert.EasyAlert
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseActivity
 import com.jakir.cse24.personaldictionary.data.FirebaseSource
+import com.jakir.cse24.personaldictionary.data.PreferenceManager
+import com.jakir.cse24.personaldictionary.view.fragments.BottomNavigationDrawerFragment
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class DashboardActivity : BaseActivity() {
@@ -84,18 +86,21 @@ class DashboardActivity : BaseActivity() {
         if (Navigation.findNavController(this, R.id.fragmentContainer)
                 .currentDestination?.id == R.id.vocabularyListFragment
         ) {
-            EasyAlert.showAlertWithChoice(this,"Log out","Do you want to Log out?").observe(this, Observer {
-                if (it){
-                   FirebaseSource.firebaseAuth.signOut()
-                    finish()
-                }
-            })
+            EasyAlert.showAlertWithChoice(this, "Log out", "Do you want to Log out?")
+                .observe(this, Observer {
+                    if (it) {
+                        FirebaseSource.firebaseAuth.signOut()
+                        PreferenceManager.isLoggedIn = false
+                        finish()
+                    }
+                })
             return
         }
         super.onBackPressed()
     }
 
     fun onNavigationPressed() {
-
+        val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
+        bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
     }
 }

@@ -21,10 +21,10 @@ object PreferenceManager{
 
 
 
-    var doctorId: Int
-        get() = prefs.getInt("doctorId", 1)
-        set(doctorId) {
-            editor.putInt("doctorId", doctorId)
+    var isLoggedIn: Boolean
+        get() = prefs.getBoolean("isLoggedIn", false)
+        set(isLoggedIn) {
+            editor.putBoolean("isLoggedIn", isLoggedIn)
             editor.apply()
         }
     fun init(context: Context) {
