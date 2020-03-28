@@ -11,7 +11,7 @@
         android:layout_height="120dp"
         android:elevation="@dimen/large_16"
         app:cardCornerRadius="60dp"
-        android:layout_marginTop="@dimen/default_10"
+        android:layout_marginTop="@dimen/x_large_20"
         android:layout_marginStart="@dimen/default_10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -72,7 +72,7 @@ android:textColor="@color/colorGray"
         app:layout_constraintTop_toBottomOf="@id/card" />
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_view"
+        android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"

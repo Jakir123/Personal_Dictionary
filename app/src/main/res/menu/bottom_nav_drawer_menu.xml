@@ -3,16 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:checkableBehavior="none">
         <item
-            android:id="@+id/nav1"
-            android:icon="@drawable/ic_favorite_border"
-            android:title="Nav1" />
+            android:id="@+id/actionSetting"
+            android:icon="@drawable/ic_settings_white_24dp"
+            android:title="@string/settings" />
         <item
-            android:id="@+id/nav2"
-            android:icon="@drawable/ic_add"
-            android:title="Nav2" />
-        <item
-            android:id="@+id/nav3"
-            android:icon="@drawable/ic_person_outline"
-            android:title="Nav3" />
+            android:id="@+id/actionRate"
+            android:icon="@drawable/ic_star_border_white_24dp"
+            android:title="@string/rate_this_app" />
     </group>
+
+    <item
+        android:id="@+id/actionLogout"
+        android:icon="@drawable/ic_logout"
+        android:title="@string/logout" />
 </menu>

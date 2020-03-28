@@ -86,11 +86,9 @@ class DashboardActivity : BaseActivity() {
         if (Navigation.findNavController(this, R.id.fragmentContainer)
                 .currentDestination?.id == R.id.vocabularyListFragment
         ) {
-            EasyAlert.showAlertWithChoice(this, "Log out", "Do you want to Log out?")
+            EasyAlert.showAlertWithChoice(this, "Exit", "Do you want to exit?")
                 .observe(this, Observer {
                     if (it) {
-                        FirebaseSource.firebaseAuth.signOut()
-                        PreferenceManager.isLoggedIn = false
                         finish()
                     }
                 })
