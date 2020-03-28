@@ -28,6 +28,7 @@ data class Translation(val meaning: String, val description: String, val example
 }
 
 data class User(val name: String, val email: String, val phone: String) {
+    constructor():this("","","")
 }
 
 data class ResponseModel(val status: Boolean, val message: String)

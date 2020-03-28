@@ -9,11 +9,14 @@ import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.jakir.cse24.easyalert.EasyAlert
 import com.jakir.cse24.easyalert.EasyToast
+import com.jakir.cse24.personaldictionary.BuildConfig
 
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
+import com.jakir.cse24.personaldictionary.base.BaseRepository
 import com.jakir.cse24.personaldictionary.data.FirebaseSource
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
+import com.jakir.cse24.personaldictionary.data.repositories.UserRepository
 import kotlinx.android.synthetic.main.fragment_bottom_navigation_drawer.*
 
 /**
@@ -32,6 +35,11 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        UserRepository().getUserInfo().observe(this, Observer {user->
+            tvName.text = user.name
+            tvEmail.text = user.email
+        })
+        tvAppVersion.text = "Version: ${BuildConfig.VERSION_NAME}"
         navigationView.setNavigationItemSelectedListener {
             dismiss()
             when(it.itemId){
