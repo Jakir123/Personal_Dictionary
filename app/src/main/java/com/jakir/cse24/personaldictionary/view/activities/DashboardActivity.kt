@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.jakir.cse24.easyalert.EasyAlert
@@ -19,13 +20,14 @@ import com.jakir.cse24.personaldictionary.view.fragments.BottomNavigationDrawerF
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class DashboardActivity : BaseActivity() {
+    private lateinit var navController: NavController
     override fun getContentView() {
         setContentView(R.layout.activity_dashboard)
     }
 
     override fun onViewReady(savedInstanceState: Bundle?) {
         setSupportActionBar(bottomBar)
-        val navController = Navigation.findNavController(this, R.id.fragmentContainer)
+        navController = Navigation.findNavController(this, R.id.fragmentContainer)
 //        setupBottomNavMenu(navController)
         setupFragmentsTitle(navController)
     }
@@ -78,6 +80,9 @@ class DashboardActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_search -> showToast("Search clicked")
+            R.id.add_favourite -> {
+                navController.navigate(R.id.action_favouriteFragment)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

@@ -15,10 +15,18 @@ data class Vocabulary(
     val synonyms: String,
     val antonyms: String,
     @ServerTimestamp
-    val timeStamp: Date? = null
+    val timeStamp: Date? = null,
+    var favourite: Boolean = false
 ) : Parcelable {
-    constructor(word:String,type: String,translation: Translation,synonyms: String, antonyms: String) : this("","",word, type, translation,synonyms,antonyms)
-    constructor() : this("","","", "", Translation("", "", ""),"","")
+    constructor(
+        word: String,
+        type: String,
+        translation: Translation,
+        synonyms: String,
+        antonyms: String
+    ) : this("", "", word, type, translation, synonyms, antonyms)
+
+    constructor() : this("", "", "", "", Translation("", "", ""), "", "")
 }
 
 @Parcelize
@@ -28,7 +36,7 @@ data class Translation(val meaning: String, val description: String, val example
 }
 
 data class User(val name: String, val email: String, val phone: String) {
-    constructor():this("","","")
+    constructor() : this("", "", "")
 }
 
 data class ResponseModel(val status: Boolean, val message: String)

@@ -15,4 +15,8 @@ class WordDetailsViewModel : ViewModel() {
     fun removeVocabulary(id: String): MutableLiveData<ResponseModel> {
         return VocabularyRepository().deleteVocabulary(id)
     }
+
+    fun addRemoveFavourite(id: String,status:Boolean): MutableLiveData<ResponseModel> {
+        return VocabularyRepository().addRemoveFavourite(id,status)
+    }
 }

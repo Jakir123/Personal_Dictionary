@@ -39,6 +39,28 @@ class VocabularyRepository :BaseRepository(){
         return vocabularies
     }
 
+    fun getFavouriteVocabularies(pageSize: Int = 20): MutableLiveData<ArrayList<Vocabulary>> {
+        val items = ArrayList<Vocabulary>()
+        val vocabularies: MutableLiveData<ArrayList<Vocabulary>> = MutableLiveData()
+        vocabularyCollection.whereEqualTo("userId",PreferenceManager.userId)
+            .whereEqualTo("favourite", true)
+            .get()
+            .addOnCompleteListener{task ->
+                task.result?.run {
+                    for (doc in documents){
+                        items.add(doc.toObject(Vocabulary::class.java)!!)
+                    }
+                    vocabularies.value = items
+                }
+            }.addOnFailureListener {
+                EasyLog.logE(
+                    "Exception in getVocabularies: ${it.localizedMessage}",
+                    "VocabularyListRepository"
+                )
+            }
+        return vocabularies
+    }
+
 
     fun addVocabulary(vocabulary: Vocabulary): MutableLiveData<ResponseModel> {
         val response: MutableLiveData<ResponseModel> = MutableLiveData()
@@ -50,6 +72,19 @@ class VocabularyRepository :BaseRepository(){
             response.value = ResponseModel(true,"New vocabulary added")
         }.addOnFailureListener {
             response.value = ResponseModel(false,it.message.toString())
+        }.addOnCanceledListener {
+            response.value = ResponseModel(false, "Request canceled!")
+        }
+        return response
+    }
+
+    fun addRemoveFavourite(id: String,status: Boolean):MutableLiveData<ResponseModel>{
+        val response = MutableLiveData<ResponseModel>()
+        vocabularyCollection.document(id).update("favourite",status).addOnFailureListener {
+            EasyLog.logE("Update failed: ${it.localizedMessage}")
+            response.value = ResponseModel(false,it.message.toString())
+        }.addOnSuccessListener {
+            response.value = ResponseModel(true,"Vocabulary updated.")
         }.addOnCanceledListener {
             response.value = ResponseModel(false, "Request canceled!")
         }

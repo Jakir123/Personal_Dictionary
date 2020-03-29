@@ -11,6 +11,10 @@ class VocabularyListViewModel : ViewModel(){
         return VocabularyRepository().getVocabularies()
     }
 
+    fun getFavouriteVocabularies(): MutableLiveData<ArrayList<Vocabulary>>{
+        return VocabularyRepository().getFavouriteVocabularies()
+    }
+
     fun removeItem(vocabulary: Vocabulary) {
         VocabularyRepository().deleteVocabulary(vocabulary.id);
     }

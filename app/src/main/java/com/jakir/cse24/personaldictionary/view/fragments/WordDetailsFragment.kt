@@ -3,6 +3,7 @@ package com.jakir.cse24.personaldictionary.view.fragments
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -30,6 +31,7 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
  */
 class WordDetailsFragment : BaseFragment() {
 
+    private lateinit var favIcon: MenuItem
     private lateinit var binding: FragmentWordDetailsBinding
     private lateinit var viewModel: WordDetailsViewModel
 
@@ -77,24 +79,38 @@ class WordDetailsFragment : BaseFragment() {
         menu.findItem(R.id.app_bar_search).isVisible = false
         menu.findItem(R.id.quiz).isVisible = false
         menu.findItem(R.id.delete).isVisible = true
-        menu.findItem(R.id.add_favourite).isVisible = true
+        favIcon = menu.findItem(R.id.add_favourite)
+        favIcon.isVisible = true
+        if (vocabulary.favourite) favIcon.icon =
+            ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_yellow_24dp)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.add_favourite -> {
+                viewModel.addRemoveFavourite(vocabulary.id, !vocabulary.favourite)
+                    .observe(viewLifecycleOwner,
+                        Observer {
+                            if (it.status) {
+                                vocabulary.favourite = !vocabulary.favourite
+                                val icon =
+                                    if (vocabulary.favourite) R.drawable.ic_favorite_yellow_24dp else R.drawable.ic_favorite_border
+                                favIcon.icon = ContextCompat.getDrawable(requireContext(), icon)
+                            }
+                        })
             }
             R.id.delete -> {
-                showAlertWithChoice(
+                EasyAlert.showAlertWithChoice(
+                    requireContext(),
                     getString(R.string.delete),
                     getString(R.string.delete_warning),
                     R.drawable.ic_delete_white_24dp
                 ).observe(this,
                     Observer { it ->
                         if (it) {
-                            EasyAlert.showProgressDialog(requireActivity(),"Deleting...")
+                            EasyAlert.showProgressDialog(requireActivity(), "Deleting...")
                             viewModel.removeVocabulary(vocabulary.id)
-                                .observe(viewLifecycleOwner, Observer {response->
+                                .observe(viewLifecycleOwner, Observer { response ->
                                     EasyAlert.hideProgressDialog()
                                     if (response.status) {
                                         Navigation.findNavController(mView).navigateUp()
@@ -105,7 +121,7 @@ class WordDetailsFragment : BaseFragment() {
 
             }
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item)
     }
 
 
