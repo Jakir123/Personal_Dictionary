@@ -3,6 +3,7 @@ package com.jakir.cse24.personaldictionary.view.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +16,7 @@ import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
 import kotlinx.android.synthetic.main.activity_vocabulary_list.*
 
 class VocabularyListActivity : BaseActivity(), ItemClickListener {
-    override fun onItemClick(vocabulary: Vocabulary) {
+    override fun onItemClick(vocabulary: Vocabulary,view: View) {
         showToast(vocabulary.translation.meaning)
     }
 

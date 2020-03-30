@@ -32,6 +32,7 @@
                 android:layout_marginEnd="@dimen/default_10"
                 android:fontFamily="monospace"
                 android:text="@{item.word}"
+                android:transitionName="word"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/textview_medium_text_size"
                 android:textStyle="bold"

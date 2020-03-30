@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -40,10 +41,13 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
     private lateinit var vocabularyList: ArrayList<Vocabulary>
     private lateinit var mActivity: DashboardActivity
 
-    override fun onItemClick(vocabulary: Vocabulary) {
+    override fun onItemClick(vocabulary: Vocabulary,view: View) {
 //        showToast(vocabulary.translation.meaning)
         val bundle = bundleOf("vocabulary" to vocabulary)
-        view?.findNavController()?.navigate(R.id.action_wordDetails,bundle)
+        val extras = FragmentNavigatorExtras(
+            view to "word"
+        )
+        view?.findNavController()?.navigate(R.id.action_wordDetails,bundle,null,extras)
     }
 
     override fun onCreateView(

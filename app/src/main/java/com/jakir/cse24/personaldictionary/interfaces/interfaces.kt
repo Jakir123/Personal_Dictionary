@@ -1,10 +1,11 @@
 package com.jakir.cse24.personaldictionary.interfaces
 
+import android.view.View
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 
 interface ItemClickListener {
-    fun onItemClick(vocabulary: Vocabulary)
+    fun onItemClick(vocabulary: Vocabulary,view:View)
 }
 
 interface AuthListener {

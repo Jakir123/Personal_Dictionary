@@ -13,6 +13,7 @@ import androidx.navigation.Navigation
 import androidx.navigation.Navigator
 import androidx.navigation.NavigatorProvider
 import androidx.navigation.findNavController
+import androidx.transition.TransitionInflater
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.jakir.cse24.easyalert.EasyAlert
@@ -55,6 +56,7 @@ class WordDetailsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
