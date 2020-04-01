@@ -5,17 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.os.bundleOf
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
-import com.jakir.cse24.easyalert.EasyToast
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
@@ -36,18 +37,18 @@ import kotlinx.android.synthetic.main.fragment_vocabulary_list.*
  */
 class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListener {
 
-    private lateinit var viewModel: VocabularyListViewModel
+    private  val viewModel: VocabularyListViewModel by activityViewModels()
     private lateinit var adapter: VocabularyListAdapter
     private lateinit var vocabularyList: ArrayList<Vocabulary>
     private lateinit var mActivity: DashboardActivity
 
-    override fun onItemClick(vocabulary: Vocabulary,view: View) {
+    override fun onItemClick(vocabulary: Vocabulary, view: View) {
 //        showToast(vocabulary.translation.meaning)
         val bundle = bundleOf("vocabulary" to vocabulary)
         val extras = FragmentNavigatorExtras(
-            view to "word"
+            view as TextView to "word"
         )
-        view?.findNavController()?.navigate(R.id.action_wordDetails,bundle,null,extras)
+        view?.findNavController()?.navigate(R.id.action_wordDetails, bundle, null, extras)
     }
 
     override fun onCreateView(
@@ -60,7 +61,7 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this)[VocabularyListViewModel::class.java]
+//        viewModel = ViewModelProviders.of(this)[VocabularyListViewModel::class.java]
 
         mActivity = activity as DashboardActivity
         mActivity.fabAdd.setOnClickListener {
@@ -81,11 +82,12 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
         recyclerView.layoutManager = layoutManager
         recyclerView.hasFixedSize()
         vocabularyList = ArrayList()
-        adapter = VocabularyListAdapter(vocabularyList,this)
+        adapter = VocabularyListAdapter(vocabularyList, this)
         recyclerView.adapter = adapter
 //        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
 
-        viewModel.getVocabularies().observe(viewLifecycleOwner, Observer {
+        viewModel.getVocabularies()
+        viewModel.vocabularies.observe(viewLifecycleOwner, Observer {
             vocabularyList.addAll(it)
             adapter.notifyDataSetChanged()
         })
@@ -97,17 +99,17 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
     override fun onItemSwiped(position: Int) {
         val vocabulary = vocabularyList[position]
         adapter.removeItem(position)
-        showUndoSnackbar(vocabulary,position)
+        showUndoSnackbar(vocabulary, position)
     }
 
-    private fun showUndoSnackbar(vocabulary: Vocabulary,position: Int){
-        val snack= Snackbar.make(container, "${vocabulary.word} deleted...", Snackbar.LENGTH_LONG)
+    private fun showUndoSnackbar(vocabulary: Vocabulary, position: Int) {
+        val snack = Snackbar.make(container, "${vocabulary.word} deleted...", Snackbar.LENGTH_LONG)
         snack.setAction(R.string.undo, View.OnClickListener {
-            adapter.restoreItem(vocabulary,position)
-        }).addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>(){
+            adapter.restoreItem(vocabulary, position)
+        }).addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
             override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
                 super.onDismissed(transientBottomBar, event)
-                if (event != DISMISS_EVENT_ACTION){
+                if (event != DISMISS_EVENT_ACTION) {
                     viewModel.removeItem(vocabulary)
                 }
             }

@@ -8,13 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProviders
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.databinding.FragmentQuizBinding
-import com.jakir.cse24.personaldictionary.data.model.Translation
-import com.jakir.cse24.personaldictionary.data.model.Vocabulary
-import com.jakir.cse24.personaldictionary.view_model.QuizViewModel
+import com.jakir.cse24.personaldictionary.view.activities.DashboardActivity
+import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
+import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.fragment_quiz.*
 
 
@@ -27,8 +28,8 @@ class QuizFragment : BaseFragment() {
     private lateinit var mSetLeftIn: AnimatorSet
     private lateinit var mSetRightOut: AnimatorSet
     private lateinit var binding: FragmentQuizBinding
-    private lateinit var viewModel: QuizViewModel
-
+    private val viewModel: VocabularyListViewModel by activityViewModels()
+    private lateinit var mActivity: DashboardActivity
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,22 +55,28 @@ class QuizFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this)[QuizViewModel::class.java]
+//        viewModel = ViewModelProviders.of(this)[VocabularyListViewModel::class.java]
         loadAnimations()
         changeCameraDistance()
-//        val vocabulary: Vocabulary =
-//            Vocabulary("Hello", "noun", Translation("Ohe", "HI", "Hello, How are you?"))
-//        binding.data = vocabulary
+        viewModel.randomVocabulary.observe(viewLifecycleOwner, Observer {
+            binding.data = it
+        })
+        viewModel.generateRandomVocabulary()
+
+        mActivity = activity as DashboardActivity
+        mActivity.fabAdd.setOnClickListener {
+            viewModel.generateRandomVocabulary()
+        }
 
         flipCard.setOnClickListener {
-            logD("Quiz","Flip click listener....")
-            isBackVisiable = if (!isBackVisiable){
+            logD("Quiz", "Flip click listener....")
+            isBackVisiable = if (!isBackVisiable) {
                 mSetRightOut.setTarget(card_front)
                 mSetLeftIn.setTarget(card_back)
                 mSetRightOut.start()
                 mSetLeftIn.start()
                 true
-            }else{
+            } else {
                 mSetRightOut.setTarget(card_back)
                 mSetLeftIn.setTarget(card_front)
                 mSetRightOut.start()

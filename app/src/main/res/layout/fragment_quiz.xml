@@ -12,7 +12,6 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/flipCard"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
         android:layout_height="match_parent">
 
         <FrameLayout
@@ -32,7 +31,7 @@
             android:id="@+id/card_front"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/background_gradient"
             android:gravity="center">
 
             <include

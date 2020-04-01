@@ -2,20 +2,35 @@ package com.jakir.cse24.personaldictionary.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.data.repositories.VocabularyRepository
+import kotlin.random.Random
 
-class VocabularyListViewModel : ViewModel(){
+class VocabularyListViewModel : ViewModel() {
+    private val vocabularyRepository: VocabularyRepository by lazy { VocabularyRepository() }
 
-    fun getVocabularies(): MutableLiveData<ArrayList<Vocabulary>>{
-        return VocabularyRepository().getVocabularies()
+    lateinit var vocabularies: MutableLiveData<ArrayList<Vocabulary>>
+
+    fun getVocabularies() {
+        vocabularies = vocabularyRepository.getVocabularies()
     }
 
-    fun getFavouriteVocabularies(): MutableLiveData<ArrayList<Vocabulary>>{
-        return VocabularyRepository().getFavouriteVocabularies()
+    fun getFavouriteVocabularies(): MutableLiveData<ArrayList<Vocabulary>> {
+        return vocabularyRepository.getFavouriteVocabularies()
     }
 
     fun removeItem(vocabulary: Vocabulary) {
-        VocabularyRepository().deleteVocabulary(vocabulary.id);
+        vocabularyRepository.deleteVocabulary(vocabulary.id);
     }
+
+    val randomVocabulary = MutableLiveData<Vocabulary>()
+
+    fun generateRandomVocabulary(){
+        val randomIndex: Int? = vocabularies.value?.size?.let { Random.nextInt(0, it) }
+        randomVocabulary.apply {
+           postValue(randomIndex?.let { vocabularies.value?.get(it) })
+        }
+    }
+
 }

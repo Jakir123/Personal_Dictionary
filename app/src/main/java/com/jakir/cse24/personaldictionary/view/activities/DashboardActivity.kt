@@ -83,6 +83,9 @@ class DashboardActivity : BaseActivity() {
             R.id.add_favourite -> {
                 navController.navigate(R.id.action_favouriteFragment)
             }
+            R.id.quiz -> {
+                navController.navigate(R.id.action_quizFragment)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
