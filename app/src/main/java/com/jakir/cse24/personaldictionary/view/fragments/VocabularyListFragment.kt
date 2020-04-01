@@ -2,10 +2,9 @@ package com.jakir.cse24.personaldictionary.view.fragments
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -49,6 +48,25 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
             view as TextView to "word"
         )
         view?.findNavController()?.navigate(R.id.action_wordDetails, bundle, null, extras)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.findItem(R.id.delete).isVisible = false
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.app_bar_search -> showToast("Search clicked")
+            R.id.add_favourite -> {
+                view?.findNavController()?.navigate(R.id.action_favouriteFragment)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+
     }
 
     override fun onCreateView(

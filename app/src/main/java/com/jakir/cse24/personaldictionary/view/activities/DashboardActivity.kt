@@ -55,6 +55,18 @@ class DashboardActivity : BaseActivity() {
                     bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
                     fabAdd.setImageDrawable(getDrawable(R.drawable.ic_edit_white_24dp))
                 }
+                R.id.quizFragment -> {
+//                    bottomBar.replaceMenu(R.menu.menu_word_details)
+                    bottomBar.navigationIcon = getDrawable(R.drawable.ic_arrow_back_white_24dp)
+                    bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                    fabAdd.setImageDrawable(getDrawable(R.drawable.ic_autorenew_white_24dp))
+                }
+                R.id.favouriteFragment -> {
+//                    bottomBar.replaceMenu(R.menu.menu_word_details)
+                    bottomBar.navigationIcon = getDrawable(R.drawable.ic_arrow_back_white_24dp)
+//                    bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+//                    fabAdd.setImageDrawable(getDrawable(R.drawable.ic_autorenew_white_24dp))
+                }
                 R.id.addVocabularyFragment -> {
                     bottomBar.navigationIcon = getDrawable(R.drawable.ic_arrow_back_white_24dp)
 //                    bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
@@ -72,17 +84,12 @@ class DashboardActivity : BaseActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.bottom_appbar_menu, menu)
-        menu!!.findItem(R.id.delete).isVisible = false
         return super.onCreateOptionsMenu(menu)
     }
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.app_bar_search -> showToast("Search clicked")
-            R.id.add_favourite -> {
-                navController.navigate(R.id.action_favouriteFragment)
-            }
             R.id.quiz -> {
                 navController.navigate(R.id.action_quizFragment)
             }

@@ -3,6 +3,7 @@ package com.jakir.cse24.personaldictionary.view_model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.data.repositories.VocabularyRepository
 import kotlin.random.Random
@@ -31,6 +32,10 @@ class VocabularyListViewModel : ViewModel() {
         randomVocabulary.apply {
            postValue(randomIndex?.let { vocabularies.value?.get(it) })
         }
+    }
+
+    fun addRemoveFavourite(id: String,status:Boolean): MutableLiveData<ResponseModel> {
+        return vocabularyRepository.addRemoveFavourite(id,status)
     }
 
 }
