@@ -33,9 +33,6 @@ class VocabularyListAdapter(private var vocabularyList: ArrayList<Vocabulary>, p
 
     fun removeItem(position: Int) {
         vocabularyList.removeAt(position)
-        // notify the item removed by position
-// to perform recycler view delete animations
-// NOTE: don't call notifyDataSetChanged()
         notifyItemRemoved(position)
         notifyItemRangeChanged(position, vocabularyList.size)
     }

@@ -79,30 +79,22 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel = ViewModelProviders.of(this)[VocabularyListViewModel::class.java]
 
         mActivity = activity as DashboardActivity
         mActivity.fabAdd.setOnClickListener {
             view.findNavController().navigate(R.id.addVocabularyFragment)
         }
         mActivity.bottomBar.setNavigationOnClickListener {
-//            Navigation.findNavController(view).navigateUp()
             mActivity.onNavigationPressed()
         }
 
         val layoutManager = LinearLayoutManager(requireContext())
-
-//        fabAdd.setOnClickListener {
-//            showSnack("Snack message!")
-//            Navigation.findNavController(it).navigate(R.id.action_addVocabulary)
-//        }
 
         recyclerView.layoutManager = layoutManager
         recyclerView.hasFixedSize()
         vocabularyList = ArrayList()
         adapter = VocabularyListAdapter(vocabularyList, this)
         recyclerView.adapter = adapter
-//        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
 
         viewModel.getVocabularies()
         viewModel.vocabularies.observe(viewLifecycleOwner, Observer {

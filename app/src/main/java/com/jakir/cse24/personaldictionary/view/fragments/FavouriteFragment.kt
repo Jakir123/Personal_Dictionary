@@ -58,22 +58,15 @@ class FavouriteFragment : BaseFragment(), ItemClickListener, ItemSwipeListener {
         }
         mActivity.bottomBar.setNavigationOnClickListener {
             Navigation.findNavController(view).navigateUp()
-//            mActivity.onNavigationPressed()
         }
 
         val layoutManager = LinearLayoutManager(requireContext())
-
-//        fabAdd.setOnClickListener {
-//            showSnack("Snack message!")
-//            Navigation.findNavController(it).navigate(R.id.action_addVocabulary)
-//        }
 
         recyclerView.layoutManager = layoutManager
         recyclerView.hasFixedSize()
         vocabularyList = ArrayList()
         adapter = VocabularyListAdapter(vocabularyList, this)
         recyclerView.adapter = adapter
-//        recyclerView.addItemDecoration(DividerItemDecoration(requireContext(), layoutManager.orientation))
 
         viewModel.getFavouriteVocabularies().observe(viewLifecycleOwner, Observer {
             vocabularyList.addAll(it)

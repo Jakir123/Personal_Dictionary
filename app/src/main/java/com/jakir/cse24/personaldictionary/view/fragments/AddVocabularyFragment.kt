@@ -63,9 +63,6 @@ class AddVocabularyFragment : BaseFragment() {
         mActivity.fabAdd.setOnClickListener {
 
         }
-//        (activity as AppCompatActivity).supportActionBar?.title = "Example 1"
-//        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
 
         val types = arrayOf(
             "Select word type..",
