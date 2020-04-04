@@ -27,7 +27,7 @@
                 android:layout_height="80dp"
                 android:layout_marginBottom="@dimen/x_large_20"
                 android:scaleType="fitXY"
-                android:src="@drawable/jakir" />
+                android:src="@drawable/ic_person_outline" />
         </com.google.android.material.card.MaterialCardView>
 
         <androidx.constraintlayout.widget.ConstraintLayout

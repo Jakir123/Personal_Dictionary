@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -37,32 +38,32 @@ class DashboardActivity : BaseActivity() {
             when (destination.id) {
                 R.id.wordDetailsFragment -> {
 //                    bottomBar.replaceMenu(R.menu.menu_word_details)
-                    bottomBar.navigationIcon = getDrawable(R.drawable.ic_arrow_back_white_24dp)
+                    bottomBar.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_arrow_back_white_24dp)
                     bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                    fabAdd.setImageDrawable(getDrawable(R.drawable.ic_edit_white_24dp))
+                    fabAdd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_edit_white_24dp))
                 }
                 R.id.quizFragment -> {
 //                    bottomBar.replaceMenu(R.menu.menu_word_details)
-                    bottomBar.navigationIcon = getDrawable(R.drawable.ic_arrow_back_white_24dp)
+                    bottomBar.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_arrow_back_white_24dp)
                     bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                    fabAdd.setImageDrawable(getDrawable(R.drawable.ic_autorenew_white_24dp))
+                    fabAdd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_autorenew_white_24dp))
                 }
                 R.id.favouriteFragment -> {
 //                    bottomBar.replaceMenu(R.menu.menu_word_details)
-                    bottomBar.navigationIcon = getDrawable(R.drawable.ic_arrow_back_white_24dp)
+                    bottomBar.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_arrow_back_white_24dp)
 //                    bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
 //                    fabAdd.setImageDrawable(getDrawable(R.drawable.ic_autorenew_white_24dp))
                 }
                 R.id.addVocabularyFragment -> {
-                    bottomBar.navigationIcon = getDrawable(R.drawable.ic_arrow_back_white_24dp)
+                    bottomBar.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_arrow_back_white_24dp)
 //                    bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
 //                    fabAdd.setImageDrawable(getDrawable(R.drawable.ic_edit_white_24dp))
                 }
                 else -> {
 //                    bottomBar.replaceMenu(R.menu.bottom_appbar_menu)
-                    bottomBar.navigationIcon = getDrawable(R.drawable.ic_menu_white_24dp)
+                    bottomBar.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_menu_white_24dp)
                     bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                    fabAdd.setImageDrawable(getDrawable(R.drawable.ic_add))
+                    fabAdd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_add))
                 }
             }
         }

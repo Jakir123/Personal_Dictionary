@@ -47,7 +47,7 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
         val extras = FragmentNavigatorExtras(
             view as TextView to "word"
         )
-        view?.findNavController()?.navigate(R.id.action_wordDetails, bundle, null, extras)
+        view?.findNavController()?.navigate(R.id.action_wordDetails, bundle)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
