@@ -8,6 +8,10 @@ interface ItemClickListener {
     fun onItemClick(vocabulary: Vocabulary,view:View)
 }
 
+interface LogoutListener{
+    fun onLogoutPressed()
+}
+
 interface AuthListener {
     fun onStarted()
     fun onSuccess(responseModel: ResponseModel)

@@ -1,26 +1,25 @@
 package com.jakir.cse24.personaldictionary.view.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
-import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.jakir.cse24.easyalert.EasyAlert
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseActivity
 import com.jakir.cse24.personaldictionary.data.FirebaseSource
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
+import com.jakir.cse24.personaldictionary.interfaces.LogoutListener
 import com.jakir.cse24.personaldictionary.view.fragments.BottomNavigationDrawerFragment
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
-class DashboardActivity : BaseActivity() {
+
+class DashboardActivity : BaseActivity(), LogoutListener {
     private lateinit var navController: NavController
     override fun getContentView() {
         setContentView(R.layout.activity_dashboard)
@@ -38,32 +37,47 @@ class DashboardActivity : BaseActivity() {
             when (destination.id) {
                 R.id.wordDetailsFragment -> {
 //                    bottomBar.replaceMenu(R.menu.menu_word_details)
-                    bottomBar.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_arrow_back_white_24dp)
+                    bottomBar.navigationIcon =
+                        ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
                     bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-                    fabAdd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_edit_white_24dp))
+                    fabAdd.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_edit_white_24dp
+                        )
+                    )
                 }
                 R.id.quizFragment -> {
 //                    bottomBar.replaceMenu(R.menu.menu_word_details)
-                    bottomBar.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_arrow_back_white_24dp)
-                    bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                    fabAdd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_autorenew_white_24dp))
+                    bottomBar.navigationIcon =
+                        ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
+                    bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+                    fabAdd.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            this,
+                            R.drawable.ic_autorenew_white_24dp
+                        )
+                    )
                 }
                 R.id.favouriteFragment -> {
 //                    bottomBar.replaceMenu(R.menu.menu_word_details)
-                    bottomBar.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_arrow_back_white_24dp)
-//                    bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
+                    bottomBar.navigationIcon =
+                        ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
+                    bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
 //                    fabAdd.setImageDrawable(getDrawable(R.drawable.ic_autorenew_white_24dp))
                 }
                 R.id.addVocabularyFragment -> {
-                    bottomBar.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_arrow_back_white_24dp)
-//                    bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-//                    fabAdd.setImageDrawable(getDrawable(R.drawable.ic_edit_white_24dp))
+                    bottomBar.navigationIcon =
+                        ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
+                    bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
+                    fabAdd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_save_white_24dp))
                 }
                 else -> {
 //                    bottomBar.replaceMenu(R.menu.bottom_appbar_menu)
-                    bottomBar.navigationIcon = ContextCompat.getDrawable(this,R.drawable.ic_menu_white_24dp)
+                    bottomBar.navigationIcon =
+                        ContextCompat.getDrawable(this, R.drawable.ic_menu_white_24dp)
                     bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_CENTER
-                    fabAdd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_add))
+                    fabAdd.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.ic_add))
                 }
             }
         }
@@ -91,7 +105,10 @@ class DashboardActivity : BaseActivity() {
             EasyAlert.showAlertWithChoice(this, "Exit", "Do you want to exit?")
                 .observe(this, Observer {
                     if (it) {
-                        finish()
+                        val intent = Intent(Intent.ACTION_MAIN)
+                        intent.addCategory(Intent.CATEGORY_HOME)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
                     }
                 })
             return
@@ -100,7 +117,18 @@ class DashboardActivity : BaseActivity() {
     }
 
     fun onNavigationPressed() {
-        val bottomNavDrawerFragment = BottomNavigationDrawerFragment()
+        val bottomNavDrawerFragment = BottomNavigationDrawerFragment(this)
         bottomNavDrawerFragment.show(supportFragmentManager, bottomNavDrawerFragment.tag)
+    }
+
+    override fun onLogoutPressed() {
+        EasyAlert.showAlertWithChoice(this, "Log out", "Do you want to Log out?")
+            .observe(this, Observer { status ->
+                if (status) {
+                    FirebaseSource.firebaseAuth.signOut()
+                    PreferenceManager.isLoggedIn = false
+                    finish()
+                }
+            })
     }
 }

@@ -17,6 +17,10 @@ class LoginActivity : BaseActivity() {
     private lateinit var viewModel: LoginViewModel
     private lateinit var binding: ActivityLoginBinding
     override fun getContentView() {
+        if (PreferenceManager.isLoggedIn) {
+            startActivity(Intent(this,
+                DashboardActivity::class.java ))
+        }
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
     }
 
@@ -52,8 +56,6 @@ class LoginActivity : BaseActivity() {
                     startActivity(Intent(this@LoginActivity,
                         DashboardActivity::class.java ))
                     PreferenceManager.isLoggedIn = true
-                    binding.etEmail.setText("")
-                    binding.etPassword.setText("")
                 } else {
                     showToast(it.message)
                 }
@@ -63,5 +65,11 @@ class LoginActivity : BaseActivity() {
         tvSignUp.setOnClickListener {
             startActivity(Intent(this@LoginActivity, RegistrationActivity::class.java))
         }
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        binding.etEmail.setText("")
+        binding.etPassword.setText("")
     }
 }

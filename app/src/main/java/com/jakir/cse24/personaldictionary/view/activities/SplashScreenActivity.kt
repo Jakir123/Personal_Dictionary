@@ -15,12 +15,7 @@ class SplashScreenActivity : BaseActivity() {
 
     override fun onViewReady(savedInstanceState: Bundle?) {
         Handler().postDelayed({
-            if (PreferenceManager.isLoggedIn) {
-                startActivity(Intent(this,
-                    DashboardActivity::class.java ))
-            } else {
-                startActivity(Intent(this, LoginActivity::class.java))
-            }
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }, 3000) // 3 sec
     }

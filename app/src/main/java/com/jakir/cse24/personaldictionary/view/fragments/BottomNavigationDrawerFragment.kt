@@ -1,13 +1,17 @@
 package com.jakir.cse24.personaldictionary.view.fragments
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.jakir.cse24.easyalert.EasyAlert
+import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.easyalert.EasyToast
 import com.jakir.cse24.personaldictionary.BuildConfig
 
@@ -17,12 +21,13 @@ import com.jakir.cse24.personaldictionary.base.BaseRepository
 import com.jakir.cse24.personaldictionary.data.FirebaseSource
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.repositories.UserRepository
+import com.jakir.cse24.personaldictionary.interfaces.LogoutListener
 import kotlinx.android.synthetic.main.fragment_bottom_navigation_drawer.*
 
 /**
  * A simple [BottomSheetDialogFragment] subclass.
  */
-class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
+class BottomNavigationDrawerFragment(private val logoutListener: LogoutListener) : BottomSheetDialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,14 +55,7 @@ class BottomNavigationDrawerFragment : BottomSheetDialogFragment() {
                     EasyToast.showToast(requireContext(),"Long way to go...")
                 }
                 R.id.actionLogout->{
-                    EasyAlert.showAlertWithChoice(requireContext(), "Log out", "Do you want to Log out?")
-                        .observe(this, Observer {
-                            if (it) {
-                                FirebaseSource.firebaseAuth.signOut()
-                                PreferenceManager.isLoggedIn = false
-                                activity?.finish()
-                            }
-                        })
+                    logoutListener.onLogoutPressed()
                 }
             }
             true
