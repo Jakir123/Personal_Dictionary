@@ -32,6 +32,7 @@ class AddVocabularyFragment : BaseFragment() {
     private lateinit var viewModel: VocabularyAddViewModel
     private lateinit var binding: FragmentAddVocabularyBinding
     private lateinit var mActivity: DashboardActivity
+    private var isUpdate: Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,7 +54,8 @@ class AddVocabularyFragment : BaseFragment() {
         vocabulary = arguments?.getParcelable("vocabulary")
         if (vocabulary != null) {
             viewModel.setValue(vocabulary!!)
-            btnSave.text = getString(R.string.update)
+            isUpdate = true
+            tvHeader.text = getString(R.string.header_update_vocabulary)
         }
         binding.viewModel = viewModel
 
@@ -61,7 +63,7 @@ class AddVocabularyFragment : BaseFragment() {
             Navigation.findNavController(view).navigateUp()
         }
         mActivity.fabAdd.setOnClickListener {
-
+            saveOrUpdateVocabulary()
         }
 
         val types = arrayOf(
@@ -109,64 +111,64 @@ class AddVocabularyFragment : BaseFragment() {
                 // Another interface callback
             }
         }
+    }
 
-        btnSave.setOnClickListener {
-            val word = viewModel.word.value
-            val meaning = viewModel.meaning.value
-            var description = viewModel.description.value
-            var example = viewModel.example.value
-            var synonyms = viewModel.synonyms.value
-            var antonyms = viewModel.antonyms.value
+    private fun saveOrUpdateVocabulary(){
+        val word = viewModel.word.value
+        val meaning = viewModel.meaning.value
+        var description = viewModel.description.value
+        var example = viewModel.example.value
+        var synonyms = viewModel.synonyms.value
+        var antonyms = viewModel.antonyms.value
 
-            if (word == null || word == "") {
-                binding.etWord.error = getString(R.string.word_hint)
-                binding.etWord.requestFocus()
-                return@setOnClickListener
-            }
-            if (meaning == null || meaning == "") {
-                binding.etMeaning.error = getString(R.string.meaning_hint)
-                binding.etMeaning.requestFocus()
-                return@setOnClickListener
-            }
-            if (type == "Select word type..") {
-                showToast("You have to select word type!")
-                return@setOnClickListener
-            }
-            if (synonyms == null || synonyms == "") {
-                synonyms = ""
-            }
-            if (antonyms == null || antonyms == "") {
-                antonyms = ""
-            }
-            if (description == null) {
-                description = ""
-            }
-            if (example == null) {
-                example = ""
-            }
+        if (word == null || word == "") {
+            binding.etWord.error = getString(R.string.word_hint)
+            binding.etWord.requestFocus()
+            return
+        }
+        if (meaning == null || meaning == "") {
+            binding.etMeaning.error = getString(R.string.meaning_hint)
+            binding.etMeaning.requestFocus()
+            return
+        }
+        if (type == "Select word type..") {
+            showToast("You have to select word type!")
+            return
+        }
+        if (synonyms == null || synonyms == "") {
+            synonyms = ""
+        }
+        if (antonyms == null || antonyms == "") {
+            antonyms = ""
+        }
+        if (description == null) {
+            description = ""
+        }
+        if (example == null) {
+            example = ""
+        }
 
-            if (btnSave.text == getString(R.string.update)) {
-                EasyAlert.showProgressDialog(requireActivity(),"Updating vocabulary...")
-                viewModel.updateVocabulary(vocabulary!!.id,
-                    Vocabulary(
-                        word, type,
-                        Translation(meaning, description, example),
-                        synonyms,
-                        antonyms
-                    )).observe(this, Observer {
-                    updateViews(it,view)
-                })
-            } else {
-                EasyAlert.showProgressDialog(requireActivity(),"Adding new vocabulary...")
-                viewModel.addVocabulary(Vocabulary(
+        if (isUpdate) {
+            EasyAlert.showProgressDialog(requireActivity(),"Updating vocabulary...")
+            viewModel.updateVocabulary(vocabulary!!.id,
+                Vocabulary(
                     word, type,
                     Translation(meaning, description, example),
                     synonyms,
                     antonyms
                 )).observe(this, Observer {
-                    updateViews(it,view)
-                })
-            }
+                updateViews(it)
+            })
+        } else {
+            EasyAlert.showProgressDialog(requireActivity(),"Adding new vocabulary...")
+            viewModel.addVocabulary(Vocabulary(
+                word, type,
+                Translation(meaning, description, example),
+                synonyms,
+                antonyms
+            )).observe(this, Observer {
+                updateViews(it)
+            })
         }
     }
 
@@ -178,12 +180,12 @@ class AddVocabularyFragment : BaseFragment() {
 
     }
 
-    private fun updateViews(it:ResponseModel,view: View) {
+    private fun updateViews(response:ResponseModel) {
         EasyAlert.hideProgressDialog()
-        showToast(it.message)
-        if (it.status) {
-            val navController = Navigation.findNavController(view)
-            navController.navigateUp()
+        showToast(response.message)
+        if (response.status) {
+            val navController = view?.let { it -> Navigation.findNavController(it) }
+            navController?.navigateUp()
         }
     }
 }

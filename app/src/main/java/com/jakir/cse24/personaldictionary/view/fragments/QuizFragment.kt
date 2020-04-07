@@ -31,7 +31,7 @@ class QuizFragment : BaseFragment() {
     private lateinit var binding: FragmentQuizBinding
     private val viewModel: VocabularyListViewModel by activityViewModels()
     private lateinit var mActivity: DashboardActivity
-    private  lateinit var favIcon: MenuItem
+    private var favIcon: MenuItem? = null
     private lateinit var vocabulary: Vocabulary
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -101,11 +101,11 @@ class QuizFragment : BaseFragment() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        favIcon = menu.findItem(R.id.add_favourite)
+        favIcon?.isVisible = true
         menu.findItem(R.id.app_bar_search).isVisible = false
         menu.findItem(R.id.quiz).isVisible = false
         menu.findItem(R.id.delete).isVisible = false
-        favIcon = menu.findItem(R.id.add_favourite)
-        favIcon.isVisible = true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -126,8 +126,8 @@ class QuizFragment : BaseFragment() {
 
     private fun updateFavIcon() {
         val icon =
-            if (vocabulary.favourite) R.drawable.ic_favorite_yellow_24dp else R.drawable.ic_favorite_border
-        favIcon.icon = ContextCompat.getDrawable(requireContext(), icon)
+            if (vocabulary.favourite) R.drawable.ic_favorite_white_24dp else R.drawable.ic_favorite_border
+        favIcon?.icon = ContextCompat.getDrawable(requireContext(), icon)
     }
 
 

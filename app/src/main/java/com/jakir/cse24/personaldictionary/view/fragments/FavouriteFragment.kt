@@ -1,10 +1,8 @@
 package com.jakir.cse24.personaldictionary.view.fragments
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -45,6 +43,17 @@ class FavouriteFragment : BaseFragment(), ItemClickListener, ItemSwipeListener {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_vocabulary_list, container, false)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        menu.findItem(R.id.app_bar_search).isVisible = false
+        menu.findItem(R.id.quiz).isVisible = false
+        menu.findItem(R.id.delete).isVisible = false
+        menu.findItem(R.id.add_favourite).isVisible = false
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

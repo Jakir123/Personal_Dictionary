@@ -18,7 +18,7 @@
         android:title="@string/add_new"/>
     <item
         android:id="@+id/quizFragment"
-        android:icon="@drawable/ic_question_answer"
+        android:icon="@drawable/ic_question_answer_white_24dp"
         android:title="@string/quiz"/>
 
     <item

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.jakir.cse24.personaldictionary.view_model.VocabularyAddViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_gradient"
+        android:padding="@dimen/small_8">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/round_background"
+            android:padding="@dimen/default_10"
+            tools:context=".view.fragments.AddVocabularyFragment">
+
+            <TextView
+                android:id="@+id/tvHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/andada"
+                android:text="@string/header_add_vocabulary"
+                android:textAlignment="center"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:typeface="monospace"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilWord"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/tvHeader">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etWord"
+                    style="@style/editTextStyle"
+                    android:hint="@string/word_hint"
+                    android:inputType="text"
+                    android:text="@={viewModel.word}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMeaning"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/tilWord">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMeaning"
+                    style="@style/editTextStyle"
+                    android:hint="@string/meaning_hint"
+                    android:inputType="text"
+                    android:text="@={viewModel.meaning}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinnerType"
+                style="@style/editTextStyle"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/spinner_background"
+                app:layout_constraintTop_toBottomOf="@+id/tilMeaning" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDescription"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerType">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDescription"
+                    style="@style/editTextStyle"
+                    android:inputType="textPersonName"
+                    android:hint="@string/description_hint"
+                    android:text="@={viewModel.description}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSynonyms"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/tilDescription">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etSynonyms"
+                    style="@style/editTextStyle"
+                    android:inputType="textPersonName"
+                    android:hint="@string/synonyms_hint"
+                    android:text="@={viewModel.synonyms}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilAntonyms"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/tilSynonyms">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAntonyms"
+                    style="@style/editTextStyle"
+                    android:inputType="text"
+                    android:hint="@string/antonyms_hint"
+                    android:text="@={viewModel.antonyms}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilExample"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:hintEnabled="false"
+                app:layout_constraintTop_toBottomOf="@+id/tilAntonyms">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etExample"
+                    style="@style/editTextStyle"
+                    android:hint="@string/eample_hint"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPersonName"
+                    android:text="@={viewModel.example}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSave"
+                style="@style/buttonStyle"
+                android:text="@string/save"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tilExample" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</layout>

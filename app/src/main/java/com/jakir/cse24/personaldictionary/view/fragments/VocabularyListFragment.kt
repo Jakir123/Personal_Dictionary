@@ -56,6 +56,7 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.findItem(R.id.delete).isVisible = false
+        menu.findItem(R.id.app_bar_search).isVisible = false
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

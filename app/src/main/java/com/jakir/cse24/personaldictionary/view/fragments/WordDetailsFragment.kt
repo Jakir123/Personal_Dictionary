@@ -7,14 +7,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
-import androidx.navigation.Navigator
-import androidx.navigation.NavigatorProvider
 import androidx.navigation.findNavController
-import androidx.transition.TransitionInflater
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.jakir.cse24.easyalert.EasyAlert
 
@@ -84,7 +79,7 @@ class WordDetailsFragment : BaseFragment() {
         favIcon = menu.findItem(R.id.add_favourite)
         favIcon.isVisible = true
         if (vocabulary.favourite) favIcon.icon =
-            ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_yellow_24dp)
+            ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_white_24dp)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -96,7 +91,7 @@ class WordDetailsFragment : BaseFragment() {
                             if (it.status) {
                                 vocabulary.favourite = !vocabulary.favourite
                                 val icon =
-                                    if (vocabulary.favourite) R.drawable.ic_favorite_yellow_24dp else R.drawable.ic_favorite_border
+                                    if (vocabulary.favourite) R.drawable.ic_favorite_white_24dp else R.drawable.ic_favorite_border
                                 favIcon.icon = ContextCompat.getDrawable(requireContext(), icon)
                             }
                         })
