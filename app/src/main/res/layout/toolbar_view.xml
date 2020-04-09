@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.jakir.cse24.personaldictionary.data.model.Vocabulary" />
+    </data>
+
+    <com.jakir.cse24.personaldictionary.utils.ToolbarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/textViewTitle2Style"
+            android:text="@{item.word}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/tvSubTitle"
+            style="@style/textViewSubTitle1Style"
+            android:layout_width="wrap_content"
+            android:text="@{item.type}"
+            android:layout_height="wrap_content" />
+
+
+    </com.jakir.cse24.personaldictionary.utils.ToolbarView>
+</layout>
