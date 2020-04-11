@@ -3,6 +3,7 @@ package com.jakir.cse24.personaldictionary.view.fragments
 
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import androidx.core.content.ContextCompat
@@ -10,6 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.switchmaterial.SwitchMaterial
+import com.jakir.cse24.easyalert.EasyToast
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
@@ -18,6 +22,7 @@ import com.jakir.cse24.personaldictionary.view.activities.DashboardActivity
 import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.fragment_quiz.*
+import kotlinx.android.synthetic.main.fragment_word_details.*
 
 
 /**
@@ -69,6 +74,7 @@ class QuizFragment : BaseFragment() {
         viewModel.randomVocabulary.observe(viewLifecycleOwner, Observer {
             binding.data = it
             vocabulary = it
+            collapsingToolbar.title = vocabulary.word
             updateFavIcon()
         })
         viewModel.generateRandomVocabulary()
@@ -82,22 +88,52 @@ class QuizFragment : BaseFragment() {
             Navigation.findNavController(view).navigateUp()
         }
 
-        flipCard.setOnClickListener {
-            logD("Quiz", "Flip click listener....")
-            isBackVisiable = if (!isBackVisiable) {
-                mSetRightOut.setTarget(card_front)
-                mSetLeftIn.setTarget(card_back)
-                mSetRightOut.start()
-                mSetLeftIn.start()
-                true
-            } else {
-                mSetRightOut.setTarget(card_back)
-                mSetLeftIn.setTarget(card_front)
-                mSetRightOut.start()
-                mSetLeftIn.start()
-                false
-            }
+        fabSpeak.setOnClickListener {
+            EasyToast.showToast(requireContext(), "Long way to go...")
         }
+
+        collapsingToolbarSetup()
+    }
+
+    private fun showHideAnswer() {
+        isBackVisiable = if (!isBackVisiable) {
+            mSetRightOut.setTarget(card_front)
+            mSetLeftIn.setTarget(card_back)
+            mSetRightOut.start()
+            mSetLeftIn.start()
+            true
+        } else {
+            mSetRightOut.setTarget(card_back)
+            mSetLeftIn.setTarget(card_front)
+            mSetRightOut.start()
+            mSetLeftIn.start()
+            false
+        }
+    }
+
+    private fun collapsingToolbarSetup() {
+        appbarLayout.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
+
+            var isShow = true
+            var scrollRange = -1
+            override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
+                if (scrollRange == -1) {
+                    scrollRange = appBarLayout.totalScrollRange
+                }
+                if (scrollRange + verticalOffset == 0) {
+//                    collapsingToolbar.title = vocabulary.word
+                    collapsingToolbar.setCollapsedTitleTextAppearance(R.style.coll_toolbar_title)
+                    isShow = true
+                } else if (verticalOffset >= 0 || verticalOffset < -230) {
+//                    collapsingToolbar.title = vocabulary.word
+                    collapsingToolbar.setExpandedTitleTextAppearance(R.style.exp_toolbar_title)
+                } else if (isShow) {
+//                    collapsingToolbar.title = vocabulary.word //carefull there should a space between double quote otherwise it wont work
+                    collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE)
+                    isShow = false
+                }
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -106,6 +142,12 @@ class QuizFragment : BaseFragment() {
         menu.findItem(R.id.app_bar_search).isVisible = false
         menu.findItem(R.id.quiz).isVisible = false
         menu.findItem(R.id.delete).isVisible = false
+        val switchItem = menu.findItem(R.id.show_hide_answer)
+        switchItem.isVisible = true
+        val switch: SwitchMaterial = switchItem.actionView as SwitchMaterial
+        switch.setOnCheckedChangeListener { compoundButton, isChecked ->
+            showHideAnswer()
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -17,21 +17,17 @@
         <FrameLayout
             android:id="@+id/card_back"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimaryDark">
+            android:layout_height="match_parent">
 
             <include
                 layout="@layout/fragment_word_details"
                 bind:data="@{data}" />
-
-
         </FrameLayout>
 
         <FrameLayout
             android:id="@+id/card_front"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/background_gradient"
             android:gravity="center">
 
             <include
