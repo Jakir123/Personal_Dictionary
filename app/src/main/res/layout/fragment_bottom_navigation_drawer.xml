@@ -1,56 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:elevation="@dimen/large_16"
-        app:cardCornerRadius="60dp"
-        android:layout_marginTop="@dimen/default_10"
-        android:layout_marginStart="@dimen/default_10"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:strokeWidth="1dp">
-
-        <ImageView
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_marginBottom="@dimen/x_large_20"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_person_outline" />
-    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/tvName"
         style="@style/textViewTitle1Style"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
         android:layout_marginStart="@dimen/default_10"
-        android:layout_marginBottom="@dimen/x_large_20"
+        android:layout_marginLeft="@dimen/default_10"
+        android:layout_marginTop="@dimen/x_large_20"
         android:text="@string/app_name"
-        app:layout_constraintBottom_toBottomOf="@id/card"
-        app:layout_constraintStart_toEndOf="@id/card"
-        app:layout_constraintTop_toTopOf="@id/card" />
+        android:gravity="start"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvEmail"
         style="@style/textViewSubTitle1Style"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_10"
-        android:layout_marginTop="@dimen/x_large_20"
-        android:text="@string/app_name"
         android:fontFamily="sans-serif"
+        android:text="@string/app_name"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@id/card"
-        app:layout_constraintStart_toEndOf="@id/card"
-        app:layout_constraintTop_toTopOf="@id/card" />
+        app:layout_constraintTop_toBottomOf="@id/tvName"
+        app:layout_constraintStart_toStartOf="@id/tvName"/>
 
     <TextView
         android:id="@+id/tvAppVersion"
@@ -59,27 +38,28 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/default_10"
         android:text="@string/app_name"
+        android:textColor="@color/colorGray"
         android:textSize="10sp"
         app:layout_constraintBottom_toTopOf="@id/view"
-android:textColor="@color/colorGray"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <View
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="@dimen/default_10"
+        android:layout_marginTop="@dimen/x_large_20"
         android:background="@color/colorGray"
-        app:layout_constraintTop_toBottomOf="@id/card" />
+        app:layout_constraintTop_toBottomOf="@id/tvEmail" />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        app:itemTextColor="@color/colorWhite"
-        app:itemIconTint="@color/colorWhite"
         android:layout_gravity="bottom"
+        app:layout_constraintCircleRadius="@dimen/x_large_20"
+        android:background="@color/colorPrimaryDark"
+        app:itemIconTint="@color/colorWhite"
+        app:itemTextColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view"
