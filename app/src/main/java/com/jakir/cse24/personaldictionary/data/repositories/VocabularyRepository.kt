@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.base.BaseRepository
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
@@ -19,6 +20,7 @@ class VocabularyRepository :BaseRepository(){
         val items = ArrayList<Vocabulary>()
         val vocabularies: MutableLiveData<ArrayList<Vocabulary>> = MutableLiveData()
         vocabularyCollection.whereEqualTo("userId",PreferenceManager.userId)
+            .orderBy("timeStamp", Query.Direction.DESCENDING)
             .get()
             .addOnCompleteListener{task ->
                 task.result?.run {
