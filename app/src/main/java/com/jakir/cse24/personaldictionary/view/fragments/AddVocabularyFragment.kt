@@ -1,6 +1,7 @@
 package com.jakir.cse24.personaldictionary.view.fragments
 
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.*
 import android.widget.AdapterView
@@ -56,6 +57,10 @@ class AddVocabularyFragment : BaseFragment() {
             viewModel.setValue(vocabulary!!)
             isUpdate = true
             tvHeader.text = getString(R.string.header_update_vocabulary)
+            if (vocabulary!!.antonyms != "" || vocabulary!!.synonyms != "" ||
+                vocabulary!!.translation.description != "" || vocabulary!!.translation.example != ""){
+                group.visibility = View.VISIBLE
+            }
         }
         binding.viewModel = viewModel
 
@@ -110,6 +115,11 @@ class AddVocabularyFragment : BaseFragment() {
             override fun onNothingSelected(parent: AdapterView<*>) {
                 // Another interface callback
             }
+        }
+
+        btnAddAdditional.setOnClickListener {
+            it.visibility = View.GONE
+            group.visibility = View.VISIBLE
         }
     }
 

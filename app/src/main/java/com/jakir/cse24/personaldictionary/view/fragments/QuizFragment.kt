@@ -4,7 +4,9 @@ package com.jakir.cse24.personaldictionary.view.fragments
 import android.animation.AnimatorInflater
 import android.animation.AnimatorSet
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
@@ -23,6 +25,7 @@ import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.fragment_quiz.*
 import kotlinx.android.synthetic.main.fragment_word_details.*
+import java.util.*
 
 
 /**
@@ -38,6 +41,8 @@ class QuizFragment : BaseFragment() {
     private lateinit var mActivity: DashboardActivity
     private var favIcon: MenuItem? = null
     private lateinit var vocabulary: Vocabulary
+    private lateinit var tts: TextToSpeech
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -64,6 +69,18 @@ class QuizFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        tts = TextToSpeech(requireContext(), TextToSpeech.OnInitListener {
+            if (it == TextToSpeech.SUCCESS) {
+                tts.language = Locale.UK
+            }
+        })
+    }
+
+
+    override fun onDetach() {
+        super.onDetach()
+        tts.stop()
+        tts.shutdown()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -89,7 +106,11 @@ class QuizFragment : BaseFragment() {
         }
 
         fabSpeak.setOnClickListener {
-            EasyToast.showToast(requireContext(), "Long way to go...")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                tts.speak(vocabulary.word,TextToSpeech.QUEUE_FLUSH,null,null);
+            } else {
+                tts.speak(vocabulary.word, TextToSpeech.QUEUE_FLUSH, null);
+            }
         }
 
         collapsingToolbarSetup()

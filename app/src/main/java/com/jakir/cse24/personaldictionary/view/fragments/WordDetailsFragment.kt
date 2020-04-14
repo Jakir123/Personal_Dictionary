@@ -130,7 +130,7 @@ class WordDetailsFragment : BaseFragment() {
         menu.findItem(R.id.app_bar_search).isVisible = false
         menu.findItem(R.id.quiz).isVisible = false
         menu.findItem(R.id.delete).isVisible = true
-        menu.findItem(R.id.show_hide_answer).isVisible = true
+        menu.findItem(R.id.show_hide_answer).isVisible = false
         favIcon = menu.findItem(R.id.add_favourite)
         favIcon.isVisible = true
         if (vocabulary.favourite) favIcon.icon =
