@@ -2,7 +2,9 @@ package com.jakir.cse24.personaldictionary.view.fragments
 
 
 import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
@@ -14,17 +16,15 @@ import androidx.navigation.findNavController
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.jakir.cse24.easyalert.EasyAlert
-import com.jakir.cse24.easyalert.EasyToast
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.databinding.FragmentWordDetailsBinding
-import com.jakir.cse24.personaldictionary.utils.ToolbarView
 import com.jakir.cse24.personaldictionary.view.activities.DashboardActivity
 import com.jakir.cse24.personaldictionary.view_model.WordDetailsViewModel
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.fragment_word_details.*
-import kotlin.math.abs
+import java.util.*
 
 /**
  * A simple [BaseFragment] subclass.
@@ -40,7 +40,7 @@ class WordDetailsFragment : BaseFragment() {
     private lateinit var mView: View
 
     private lateinit var mActivity: DashboardActivity
-    private lateinit var mBottomAppBar: BottomAppBar
+    private lateinit var tts: TextToSpeech
 
 //    private var isHideToolbarView = false
 //    private lateinit var _toolbarView: ToolbarView
@@ -58,7 +58,18 @@ class WordDetailsFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        tts = TextToSpeech(requireContext(), TextToSpeech.OnInitListener {
+            if (it == TextToSpeech.SUCCESS) {
+                tts.language = Locale.UK
+            }
+        })
 //        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        tts.stop()
+        tts.shutdown()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,7 +90,11 @@ class WordDetailsFragment : BaseFragment() {
         }
 
         fabSpeak.setOnClickListener {
-            EasyToast.showToast(requireContext(),"Long way to go...")
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                tts.speak(vocabulary.word,TextToSpeech.QUEUE_FLUSH,null,null);
+            } else {
+                tts.speak(vocabulary.word, TextToSpeech.QUEUE_FLUSH, null);
+            }
         }
 
         collapsingToolbarSetup()
@@ -115,6 +130,7 @@ class WordDetailsFragment : BaseFragment() {
         menu.findItem(R.id.app_bar_search).isVisible = false
         menu.findItem(R.id.quiz).isVisible = false
         menu.findItem(R.id.delete).isVisible = true
+        menu.findItem(R.id.show_hide_answer).isVisible = true
         favIcon = menu.findItem(R.id.add_favourite)
         favIcon.isVisible = true
         if (vocabulary.favourite) favIcon.icon =
