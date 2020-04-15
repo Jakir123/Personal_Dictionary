@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="item"
             type="com.jakir.cse24.personaldictionary.data.model.Vocabulary" />
@@ -26,19 +25,23 @@
 
             <TextView
                 android:id="@+id/tvWord"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_10"
-                android:layout_marginEnd="@dimen/default_10"
+                android:layout_marginStart="@dimen/very_small_5"
+                android:layout_marginEnd="@dimen/very_small_5"
                 android:fontFamily="monospace"
                 android:text="@{item.word}"
-                android:transitionName="word"
+                android:ellipsize="end"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/textview_medium_text_size"
+                android:maxLines="2"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/tvType"
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawablePadding="@dimen/small_8"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:drawableRight="@drawable/arrow_right" />
 
             <TextView
                 android:id="@+id/tvType"
@@ -49,9 +52,11 @@
                 android:drawablePadding="@dimen/small_8"
                 android:drawableTint="@color/colorWhite"
                 android:textColor="@color/colorWhite"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/tvWord" />
+                app:layout_constraintTop_toTopOf="@id/tvWord"
+                android:layout_marginRight="10dp"
+                android:drawableRight="@drawable/arrow_right" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 </layout>

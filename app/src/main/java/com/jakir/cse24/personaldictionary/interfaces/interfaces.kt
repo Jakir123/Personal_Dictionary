@@ -5,7 +5,7 @@ import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 
 interface ItemClickListener {
-    fun onItemClick(vocabulary: Vocabulary,view:View)
+    fun onItemClick(vocabulary: Vocabulary)
 }
 
 interface LogoutListener{

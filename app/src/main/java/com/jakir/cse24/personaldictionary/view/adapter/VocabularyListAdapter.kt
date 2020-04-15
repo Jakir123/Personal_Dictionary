@@ -25,7 +25,7 @@ class VocabularyListAdapter(private var vocabularyList: ArrayList<Vocabulary>, p
         fun bind(item: Vocabulary) {
             binding.item = item
             binding.root.setOnClickListener {
-                listener.onItemClick(item,binding.tvWord)
+                listener.onItemClick(item)
             }
             binding.executePendingBindings()
         }

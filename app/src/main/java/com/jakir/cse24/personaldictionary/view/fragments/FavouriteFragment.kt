@@ -86,7 +86,7 @@ class FavouriteFragment : BaseFragment(), ItemClickListener, ItemSwipeListener {
         itemTouchHelper.attachToRecyclerView(recyclerView)
     }
 
-    override fun onItemClick(vocabulary: Vocabulary,view: View) {
+    override fun onItemClick(vocabulary: Vocabulary) {
         val bundle = bundleOf("vocabulary" to vocabulary)
         view?.findNavController()?.navigate(R.id.action_wordDetails, bundle)
     }

@@ -41,12 +41,9 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
     private lateinit var vocabularyList: ArrayList<Vocabulary>
     private lateinit var mActivity: DashboardActivity
 
-    override fun onItemClick(vocabulary: Vocabulary, view: View) {
+    override fun onItemClick(vocabulary: Vocabulary) {
 //        showToast(vocabulary.translation.meaning)
         val bundle = bundleOf("vocabulary" to vocabulary)
-        val extras = FragmentNavigatorExtras(
-            view as TextView to "word"
-        )
         view?.findNavController()?.navigate(R.id.action_wordDetails, bundle)
     }
 

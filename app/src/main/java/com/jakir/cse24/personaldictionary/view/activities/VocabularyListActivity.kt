@@ -16,7 +16,7 @@ import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
 import kotlinx.android.synthetic.main.activity_vocabulary_list.*
 
 class VocabularyListActivity : BaseActivity(), ItemClickListener {
-    override fun onItemClick(vocabulary: Vocabulary,view: View) {
+    override fun onItemClick(vocabulary: Vocabulary) {
         showToast(vocabulary.translation.meaning)
     }
 
