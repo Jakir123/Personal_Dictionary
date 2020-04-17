@@ -14,6 +14,10 @@
             android:id="@+id/actionRate"
             android:icon="@drawable/ic_star_border_white_24dp"
             android:title="@string/rate_this_app" />
+        <item
+            android:id="@+id/actionAboutDeveloper"
+            android:icon="@drawable/ic_developer_board_white_24dp"
+            android:title="@string/about_developer" />
     </group>
 
     <item

@@ -40,3 +40,13 @@ data class User(val name: String, val email: String, val phone: String) {
 }
 
 data class ResponseModel(val status: Boolean, val message: String)
+
+@Parcelize
+data class AppInfo(
+    val version_code: Int,
+    val version_name: String,
+    val developer_name: String,
+    val developer_email: String,
+    val developer_image: String,
+    val playstore_link: String
+) : Parcelable

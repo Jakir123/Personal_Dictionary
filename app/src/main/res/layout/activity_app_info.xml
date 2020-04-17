@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.jakir.cse24.personaldictionary.data.model.AppInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/small_8"
+        android:background="@drawable/background_gradient"
+        tools:context=".view.activities.AppInfoActivity">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="3dp"
+            app:cardCornerRadius="@dimen/small_8"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/very_small_5"
+                android:paddingLeft="@dimen/very_small_5"
+                android:paddingTop="@dimen/small_8"
+                android:paddingBottom="@dimen/small_8">
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:id="@+id/progressBar"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="wrap_content" />
+
+                <ImageView
+                    android:id="@+id/imvProfile"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:profileImage="@{data.developer_image}" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/textViewTitle1Style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/very_small_5"
+                    android:layout_marginLeft="@dimen/very_small_5"
+                    android:layout_marginBottom="@dimen/x_large_20"
+                    android:gravity="start"
+                    android:text="@{data.developer_name}"
+                    android:textColor="@color/colorPrimaryDark"
+                    app:layout_constraintBottom_toBottomOf="@id/imvProfile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/imvProfile"
+                    app:layout_constraintTop_toTopOf="@id/imvProfile"
+                    tools:text="Md.Jakir Hossain" />
+
+                <TextView
+                    android:id="@+id/tvEmail"
+                    style="@style/textViewSubTitle1Style"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/x_large_20"
+                    android:text="@{data.developer_email}"
+                    android:textColor="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@id/imvProfile"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tvName"
+                    app:layout_constraintTop_toTopOf="@id/imvProfile"
+                    tools:text="jakir.cse24@gmail.com" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

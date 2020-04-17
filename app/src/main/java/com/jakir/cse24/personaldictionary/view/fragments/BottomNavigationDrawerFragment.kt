@@ -1,6 +1,7 @@
 package com.jakir.cse24.personaldictionary.view.fragments
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ import com.jakir.cse24.personaldictionary.data.FirebaseSource
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.repositories.UserRepository
 import com.jakir.cse24.personaldictionary.interfaces.LogoutListener
+import com.jakir.cse24.personaldictionary.view.activities.AppInfoActivity
 import kotlinx.android.synthetic.main.fragment_bottom_navigation_drawer.*
 
 /**
@@ -53,6 +55,9 @@ class BottomNavigationDrawerFragment(private val logoutListener: LogoutListener)
                 }
                 R.id.actionRate->{
                     EasyToast.showToast(requireContext(),"Long way to go...")
+                }
+                R.id.actionAboutDeveloper->{
+                    requireContext().startActivity(Intent(requireContext(),AppInfoActivity::class.java))
                 }
                 R.id.actionLogout->{
                     logoutListener.onLogoutPressed()
