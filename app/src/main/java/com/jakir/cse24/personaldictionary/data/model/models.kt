@@ -9,11 +9,11 @@ import java.util.*
 data class Vocabulary(
     var id: String,
     var userId: String,
-    val word: String,
-    val type: String,
-    val translation: Translation,
-    val synonyms: String,
-    val antonyms: String,
+    var word: String,
+    var type: String,
+    var translation: Translation,
+    var synonyms: String,
+    var antonyms: String,
     @ServerTimestamp
     val timeStamp: Date? = null,
     var favourite: Boolean = false
@@ -30,7 +30,7 @@ data class Vocabulary(
 }
 
 @Parcelize
-data class Translation(val meaning: String, val description: String, val example: String) :
+data class Translation(var meaning: String, var description: String, var example: String) :
     Parcelable {
     constructor() : this("", "", "")
 }

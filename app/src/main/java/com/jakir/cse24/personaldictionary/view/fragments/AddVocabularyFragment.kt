@@ -160,13 +160,14 @@ class AddVocabularyFragment : BaseFragment() {
 
         if (isUpdate) {
             EasyAlert.showProgressDialog(requireActivity(),"Updating vocabulary...")
-            viewModel.updateVocabulary(vocabulary!!.id,
-                Vocabulary(
-                    word, type,
-                    Translation(meaning, description, example),
-                    synonyms,
-                    antonyms
-                )).observe(this, Observer {
+            vocabulary?.word = word
+            vocabulary?.type = type
+            vocabulary?.synonyms = synonyms
+            vocabulary?.antonyms = antonyms
+            vocabulary?.translation?.meaning = meaning
+            vocabulary?.translation?.description = description
+            vocabulary?.translation?.example = example
+            viewModel.updateVocabulary(vocabulary!!.id, vocabulary!!).observe(this, Observer {
                 updateViews(it)
             })
         } else {
