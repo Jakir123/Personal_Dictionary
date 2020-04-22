@@ -24,6 +24,7 @@ import com.jakir.cse24.personaldictionary.view.activities.DashboardActivity
 import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.fragment_quiz.*
+import kotlinx.android.synthetic.main.fragment_word.*
 import kotlinx.android.synthetic.main.fragment_word_details.*
 import java.util.*
 
@@ -106,14 +107,22 @@ class QuizFragment : BaseFragment() {
         }
 
         fabSpeak.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                tts.speak(vocabulary.word,TextToSpeech.QUEUE_FLUSH,null,null);
-            } else {
-                tts.speak(vocabulary.word, TextToSpeech.QUEUE_FLUSH, null);
-            }
+            speakWord()
+        }
+
+        imvSpeaker.setOnClickListener {
+            speakWord()
         }
 
         collapsingToolbarSetup()
+    }
+
+    private fun speakWord(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            tts.speak(vocabulary.word,TextToSpeech.QUEUE_FLUSH,null,null);
+        } else {
+            tts.speak(vocabulary.word, TextToSpeech.QUEUE_FLUSH, null);
+        }
     }
 
     private fun showHideAnswer() {
