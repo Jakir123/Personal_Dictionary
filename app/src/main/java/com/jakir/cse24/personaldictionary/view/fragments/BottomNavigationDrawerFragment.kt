@@ -45,6 +45,7 @@ class BottomNavigationDrawerFragment(private val logoutListener: LogoutListener)
         UserRepository().getUserInfo().observe(this, Observer {user->
             tvName.text = user.name
             tvEmail.text = user.email
+            progressBar.visibility = View.GONE
         })
         tvAppVersion.text = "Version: ${BuildConfig.VERSION_NAME}"
         navigationView.setNavigationItemSelectedListener {
