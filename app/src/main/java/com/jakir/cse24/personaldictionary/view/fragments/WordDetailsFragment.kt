@@ -97,7 +97,7 @@ class WordDetailsFragment : BaseFragment() {
             }
         }
 
-        collapsingToolbarSetup()
+//        collapsingToolbarSetup()
     }
 
     private fun collapsingToolbarSetup() {

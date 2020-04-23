@@ -292,6 +292,34 @@
             app:layout_anchor="@id/appbarLayout"
             app:layout_anchorGravity="bottom|end"
             app:tint="@color/colorWhite" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            app:layout_anchor="@id/collapsingToolbar"
+            app:layout_anchorGravity="center"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@{data.word}"
+                style="@style/textViewTitle2Style"
+                tools:text="word"
+                android:id="@+id/tvWord"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="@{'('+data.type+')'}"
+                style="@style/textViewSubTitle1Style"
+                app:elevation="@dimen/default_10"
+                tools:text="(Verb)"
+                android:textColor="@color/secondaryTextColor"
+                app:layout_constraintTop_toBottomOf="@id/tvWord"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_height="wrap_content"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
