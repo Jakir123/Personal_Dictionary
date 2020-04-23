@@ -2,150 +2,136 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.jakir.cse24.personaldictionary.view_model.SignUpViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         style="@style/matchParent"
         android:background="@drawable/background_gradient"
         android:padding="@dimen/large_16"
         tools:context=".view.activities.RegistrationActivity">
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            app:cardCornerRadius="40dp"
-            android:elevation="1dp"
-            app:layout_anchor="@id/container"
-            app:layout_anchorGravity="top|center">
+        <TextView
+            android:id="@+id/tvHeader"
+            style="@style/textViewTitle4Style"
+            android:text="@string/sign_up"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginBottom="@dimen/x_large_20"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_person_outline" />
-        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/very_small_5"
+            app:hintEnabled="false"
+            android:layout_marginTop="@dimen/x_large_20"
+            app:layout_constraintTop_toBottomOf="@id/tvHeader">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/container"
-            style="@style/matchParentWrapContent"
-            android:layout_gravity="center"
-            android:background="@drawable/round_background"
-            android:paddingStart="@dimen/large_16"
-            android:paddingTop="60dp"
-            android:paddingEnd="@dimen/large_16"
-            android:paddingBottom="@dimen/large_16"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                style="@style/editTextStyle"
+                android:drawableStart="@drawable/ic_person_outline"
+                android:drawableLeft="@drawable/ic_person_outline"
+                android:hint="@string/name_hint"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.name}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilName"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintEnabled="false"
-                android:layout_marginBottom="@dimen/very_small_5"
-                app:layout_constraintTop_toTopOf="parent">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilEmail"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/very_small_5"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/tilName">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etName"
-                    style="@style/editTextStyle"
-                    android:drawableStart="@drawable/ic_person_outline"
-                    android:hint="@string/name_hint"
-                    android:inputType="textPersonName"
-                    android:text="@={viewModel.name}" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etEmail"
+                style="@style/editTextStyle"
+                android:drawableStart="@drawable/ic_mail_outline"
+                android:hint="@string/email_hint"
+                android:inputType="textEmailAddress"
+                android:text="@={viewModel.email}"
+                android:drawableLeft="@drawable/ic_mail_outline" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilEmail"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintEnabled="false"
-                android:layout_marginTop="@dimen/very_small_5"
-                app:layout_constraintTop_toBottomOf="@+id/tilName">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPhone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/very_small_5"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/tilEmail">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etEmail"
-                    style="@style/editTextStyle"
-                    android:drawableStart="@drawable/ic_mail_outline"
-                    android:hint="@string/email_hint"
-                    android:inputType="textEmailAddress"
-                    android:text="@={viewModel.email}" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhone"
+                style="@style/editTextStyle"
+                android:drawableStart="@drawable/ic_phone"
+                android:hint="@string/phone_hint"
+                android:inputType="phone"
+                android:text="@={viewModel.phoneNumber}"
+                android:drawableLeft="@drawable/ic_phone" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilPhone"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/very_small_5"
-                app:hintEnabled="false"
-                app:layout_constraintTop_toBottomOf="@+id/tilEmail">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilPassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/very_small_5"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@id/tilPhone">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPhone"
-                    style="@style/editTextStyle"
-                    android:drawableStart="@drawable/ic_phone"
-                    android:hint="@string/phone_hint"
-                    android:inputType="phone"
-                    android:text="@={viewModel.phoneNumber}" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                style="@style/editTextStyle"
+                android:drawableStart="@drawable/ic_lock_outline"
+                android:hint="@string/password_hint"
+                android:inputType="textPassword"
+                android:text="@={viewModel.password}"
+                android:drawableLeft="@drawable/ic_lock_outline" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilPassword"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/very_small_5"
-                app:hintEnabled="false"
-                app:layout_constraintTop_toBottomOf="@id/tilPhone">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilConfirmPassword"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/very_small_5"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@+id/tilPassword">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etPassword"
-                    style="@style/editTextStyle"
-                    android:drawableStart="@drawable/ic_lock_outline"
-                    android:hint="@string/password_hint"
-                    android:inputType="textPassword"
-                    android:text="@={viewModel.password}" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfirmPassword"
+                style="@style/editTextStyle"
+                android:drawableStart="@drawable/ic_lock_outline"
+                android:hint="@string/password_confirm_hint"
+                android:imeOptions="actionDone"
+                android:text="@={viewModel.confirmPassword}"
+                android:drawableLeft="@drawable/ic_lock_outline" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilConfirmPassword"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:hintEnabled="false"
-                android:layout_marginTop="@dimen/very_small_5"
-                app:layout_constraintTop_toBottomOf="@+id/tilPassword">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignUp"
+            style="@style/buttonStyle"
+            android:text="@string/sign_up"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etConfirmPassword"
-                    style="@style/editTextStyle"
-                    android:drawableStart="@drawable/ic_lock_outline"
-                    android:hint="@string/password_confirm_hint"
-                    android:imeOptions="actionDone"
-                    android:text="@={viewModel.confirmPassword}" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSignUp"
-                style="@style/buttonStyle"
-                android:text="@string/sign_up"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilConfirmPassword" />
-
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvLogin"
-                style="@style/defaultTextViewStyle"
-                android:layout_marginTop="2dp"
-                android:text="@string/have_account_label"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvLogin"
+            style="@style/defaultTextViewStyle"
+            android:layout_marginTop="2dp"
+            android:text="@string/have_account_label"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSignUp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
