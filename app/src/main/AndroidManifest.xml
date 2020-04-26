@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".view.activities.AppInfoActivity"/>
+        <activity android:name=".view.activities.SettingActivity"/>
+        <activity android:name=".view.activities.AppInfoActivity" />
         <activity android:name=".view.activities.DashboardActivity" />
         <activity android:name=".view.activities.RegistrationActivity" />
         <activity android:name=".view.activities.LoginActivity" />

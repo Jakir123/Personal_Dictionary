@@ -54,4 +54,8 @@
     <string name="show_hide_answer">Show/Hide answer</string>
     <string name="add_additional">Add Additional</string>
     <string name="about_developer">About developer</string>
+    <string name="notifications">Notifications</string>
+    <string name="daily_word_notification">Daily word notification</string>
+    <string name="ringtone">"Notification Ringtone"</string>
+    <string name="vibration">Vibration on new notification</string>
 </resources>

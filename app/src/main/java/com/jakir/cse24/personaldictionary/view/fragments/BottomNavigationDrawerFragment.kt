@@ -24,6 +24,7 @@ import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.repositories.UserRepository
 import com.jakir.cse24.personaldictionary.interfaces.LogoutListener
 import com.jakir.cse24.personaldictionary.view.activities.AppInfoActivity
+import com.jakir.cse24.personaldictionary.view.activities.SettingActivity
 import kotlinx.android.synthetic.main.fragment_bottom_navigation_drawer.*
 
 /**
@@ -52,7 +53,7 @@ class BottomNavigationDrawerFragment(private val logoutListener: LogoutListener)
             dismiss()
             when(it.itemId){
                 R.id.actionSetting->{
-                    EasyToast.showToast(requireContext(),"Long way to go...")
+                    requireContext().startActivity(Intent(requireContext(),SettingActivity::class.java))
                 }
                 R.id.actionRate->{
                     EasyToast.showToast(requireContext(),"Long way to go...")
