@@ -58,4 +58,7 @@
     <string name="daily_word_notification">Daily word notification</string>
     <string name="ringtone">"Notification Ringtone"</string>
     <string name="vibration">Vibration on new notification</string>
+    <string name="general">General</string>
+    <string name="language">Language</string>
+    <string name="theme">Theme</string>
 </resources>
