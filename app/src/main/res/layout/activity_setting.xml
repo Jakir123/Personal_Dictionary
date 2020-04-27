@@ -77,7 +77,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/small_8"
-                            android:onClick="@{()->viewModel.languageSelectionPressed()}"
+                            android:onClick="@{(view)->viewModel.languageSelectionPressed(view)}"
                             android:text="@string/language"
                             android:textColor="@color/colorBlack"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -89,9 +89,9 @@
                             style="@style/textViewSubTitle1Style"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="@{viewModel.selectedLanguage}"
+                            android:onClick="@{(view)->viewModel.languageSelectionPressed(view)}"
+                            android:text="@{viewModel.currentLanguage}"
                             android:textColor="@color/colorGray"
-                            android:onClick="@{()->viewModel.languageSelectionPressed()}"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tvLanguageLabel"
@@ -100,8 +100,8 @@
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:onClick="@{(view)->viewModel.languageSelectionPressed(view)}"
                             android:src="@drawable/arrow_right_black"
-                            android:onClick="@{()->viewModel.languageSelectionPressed()}"
                             app:layout_constraintBottom_toBottomOf="@id/tvLanguage"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@id/tvLanguageLabel" />
@@ -120,6 +120,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/small_8"
+                            android:onClick="@{()->viewModel.themeSelectionPressed()}"
                             android:text="@string/theme"
                             android:textColor="@color/colorBlack"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -131,6 +132,7 @@
                             style="@style/textViewSubTitle1Style"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:onClick="@{()->viewModel.themeSelectionPressed()}"
                             android:text="@{viewModel.selectedTheme}"
                             android:textColor="@color/colorGray"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -141,6 +143,7 @@
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:onClick="@{()->viewModel.themeSelectionPressed()}"
                             android:src="@drawable/arrow_right_black"
                             app:layout_constraintBottom_toBottomOf="@id/tvTheme"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -190,9 +193,8 @@
                         <com.google.android.material.switchmaterial.SwitchMaterial
                             android:id="@+id/switchNotification"
                             android:layout_width="wrap_content"
-                            android:checked="@{viewModel.notificationStatus}"
                             android:layout_height="wrap_content"
-                            app:layout_constraintBottom_toBottomOf="@id/tvNotificationMessage"
+                            android:checked="@={viewModel.notificationStatus}"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@id/tvNotificationMessage" />
 
@@ -210,6 +212,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/small_8"
+                            android:onClick="@{()->viewModel.notificationToneSelectionPressed()}"
                             android:text="@string/ringtone"
                             android:textColor="@color/colorBlack"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -221,12 +224,22 @@
                             style="@style/textViewSubTitle1Style"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:onClick="@{()->viewModel.notificationToneSelectionPressed()}"
                             android:text="@{viewModel.selectedRingTone}"
                             android:textColor="@color/colorGray"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@id/tvRingToneLabel"
                             tools:text="Beep Beep" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:onClick="@{()->viewModel.themeSelectionPressed()}"
+                            android:src="@drawable/arrow_right_black"
+                            app:layout_constraintBottom_toBottomOf="@id/tvRingTone"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/tvRingToneLabel" />
 
                         <View
                             android:id="@+id/view1"
@@ -252,7 +265,7 @@
                             android:id="@+id/switchVibration"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="@{viewModel.vibrationStatus}"
+                            android:checked="@={viewModel.vibrationStatus}"
                             app:layout_constraintBottom_toBottomOf="@id/tvVibrationLabel"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@id/tvVibrationLabel" />

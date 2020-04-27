@@ -3,7 +3,7 @@ package com.jakir.cse24.personaldictionary.data
 import android.content.Context
 import android.content.SharedPreferences
 
-object PreferenceManager{
+object PreferenceManager {
     private lateinit var prefs: SharedPreferences
     private lateinit var editor: SharedPreferences.Editor
 
@@ -19,14 +19,54 @@ object PreferenceManager{
             editor.apply()
         }
 
-
-
     var isLoggedIn: Boolean
         get() = prefs.getBoolean("isLoggedIn", false)
         set(isLoggedIn) {
             editor.putBoolean("isLoggedIn", isLoggedIn)
             editor.apply()
         }
+
+    var isNotificationActive: Boolean
+        get() = prefs.getBoolean("notification", false)
+        set(status) {
+            editor.putBoolean("notification", status)
+            editor.apply()
+        }
+    var isVibrationActive: Boolean
+        get() = prefs.getBoolean("vibration", false)
+        set(status) {
+            editor.putBoolean("vibration", status)
+            editor.apply()
+        }
+
+    var currentTheme: String
+        get() = prefs.getString("theme", "Default")!!
+        set(theme) {
+            editor.putString("theme", theme)
+            editor.apply()
+        }
+
+    var currentLanguage: String
+        get() = prefs.getString("language", "English")!!
+        set(language) {
+            editor.putString("language", language)
+            editor.apply()
+        }
+
+    var currentLanguagePosition: Int
+        get() = prefs.getInt("languagePos", 1)
+        set(language) {
+            editor.putInt("languagePos", language)
+            editor.apply()
+        }
+
+    var currentNotificationTone: String
+        get() = prefs.getString("notificationTone", "Default")!!
+        set(notificationTone) {
+            editor.putString("notificationTone", notificationTone)
+            editor.apply()
+        }
+
     fun init(context: Context) {
         prefs = context.getSharedPreferences("PD", Context.MODE_PRIVATE)
         editor = prefs.edit()
