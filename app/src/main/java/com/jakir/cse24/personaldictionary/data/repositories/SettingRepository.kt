@@ -6,6 +6,10 @@ class SettingRepository {
         "Bangla",
         "English"
     )
+    var languageCodes = arrayOf(
+        "bn",
+        "en"
+    )
 
     var notificationTones = arrayOf(
         "Beep",

@@ -60,6 +60,13 @@ object PreferenceManager {
             editor.apply()
         }
 
+    var currentLanguageCode: String
+        get() = prefs.getString("languageCode", "en")!!
+        set(language) {
+            editor.putString("languageCode", language)
+            editor.apply()
+        }
+
     var currentLanguagePosition: Int
         get() = prefs.getInt("languagePos", 1)
         set(language) {

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.repositories.SettingRepository
+import com.jakir.cse24.personaldictionary.utils.LocalHelper
 
 
 class SettingViewModel : ViewModel() {
@@ -25,9 +26,8 @@ class SettingViewModel : ViewModel() {
             if (PreferenceManager.currentLanguagePosition != position) {
                 // handle language selection
                 PreferenceManager.currentLanguagePosition = position
-                PreferenceManager.currentLanguage = settingRepository.languages[position]
-                currentLanguage.value = PreferenceManager.currentLanguage
-
+                PreferenceManager.currentLanguageCode = settingRepository.languageCodes[position]
+                currentLanguage.value = settingRepository.languages[position]
             }
             dialog.dismiss()
         }

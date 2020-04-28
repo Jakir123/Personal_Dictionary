@@ -21,7 +21,7 @@
             style="@style/textViewTitle4Style"
             android:layout_marginBottom="50dp"
             android:elevation="@dimen/large_16"
-            android:text="@string/header_login"
+            android:text="@string/login"
             app:layout_anchor="@id/view" />
 
         <View

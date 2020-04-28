@@ -165,4 +165,6 @@ abstract class BaseActivity : AppCompatActivity() {
     fun isEmailValid(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.toRegex().matches(email)
     }
+
+
 }

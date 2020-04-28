@@ -23,7 +23,7 @@
             app:layout_constraintBottom_toTopOf="@id/tilEmail"
             android:layout_marginBottom="50dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/header_login" />
+            android:text="@string/login" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ব্যক্তিগত অভিধান</string>
+    <string name="type">Noun</string>
+    <string name="login">লগইন</string>
+    <string name="password_hint">আপনার পাসওয়ার্ড লিখুন</string>
+    <string name="phone_hint">আপনার ফোন নম্বর লিখুন</string>
+    <string name="create_new_account_label">অ্যাকাউন্ট নেই? অ্যাকাউন্ট তৈরি করতে এখানে ক্লিক করুন</string>
+    <string name="password_outline_hint">পাসওয়ার্ড</string>
+    <string name="phone_outline_hint">ফোন নম্বর</string>
+    <string name="sign_up">নিবন্ধন করুন</string>
+    <string name="have_account_label">একাউন্ট আছে? লগইন করতে এখানে ক্লিক করুন</string>
+    <string name="name_hint">আপনার নাম লিখুন</string>
+    <string name="password_confirm_hint">পুনরায় একই পাসওয়ার্ড লিখুন</string>
+    <string name="welcome">স্বাগতম\n আপনার  \n ব্যক্তিগত অভিধানে</string>
+    <string name="password_confirm_mismatch_error">দুঃখিত, আপনার পাসওয়ার্ড মিলছে না!</string>
+    <string name="phone_validation_error">ফোন নম্বরটি 11 সংখ্যার হওয়া উচিত।</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="header_add_vocabulary">নতুন শব্দ যুক্ত করুন</string>
+    <string name="word_hint">আপনার শব্দ এখানে লিখুন</string>
+    <string name="meaning_hint">এখানে শব্দ অর্থ লিখুন</string>
+    <string name="eample_hint">একটি উদাহরণ লিখুন (বাধ্যতামূলক নয়)</string>
+    <string name="description_hint">শব্দটির একটি বিবরণ লিখুন (বাধ্যতামূলক নয়)</string>
+    <string name="save">সংরক্ষণ করুন</string>
+    <string name="meaning">অর্থ</string>
+    <string name="description">বিবরণ</string>
+    <string name="example">উদাহরণ</string>
+    <string name="email_hint">আপনার ইমেইল ঠিকানা লিখুন</string>
+    <string name="email_validation_error">ইমেলটি  বৈধ নয়, একটি বৈধ ইমেইল ঠিকানা লিখুন।</string>
+    <string name="home">হোম</string>
+    <string name="favourite">প্রিয়</string>
+    <string name="quiz">কুইজ</string>
+    <string name="add_new">যোগ করা</string>
+    <string name="vocabulary_list">শব্দভাণ্ডার তালিকা</string>
+    <string name="undo">বাতিল করুন</string>
+    <string name="synonyms_hint">প্রতিশব্দ (বাধ্যতামূলক নয়)</string>
+    <string name="antonyms_hint">বিপরীতার্থক শব্দ (বাধ্যতামূলক নয়)</string>
+    <string name="synonyms">প্রতিশব্দ</string>
+    <string name="antonyms">বিপরীতার্থক শব্দ</string>
+    <string name="search">অনুসন্ধান করুন</string>
+    <string name="edit">সম্পাদন করা</string>
+    <string name="delete">মুছে ফেলা</string>
+    <string name="update">আপডেট করুন</string>
+    <string name="delete_warning">আপনি কি নিশ্চিত এটি মুছে ফেলতে চাচ্ছেন?</string>
+    <string name="logout">লগআউট</string>
+    <string name="settings">সেটিংস</string>
+    <string name="rate_this_app">এই অ্যাপ্লিকেশনের রেটিং দিন </string>
+    <string name="profile">আপনার প্রোফাইল</string>
+    <string name="favourite_vocab_list">পআপনার ্রিয় শব্দভান্ডারের তালিকা</string>
+    <string name="header_update_vocabulary">শব্দভান্ডার আপডেট করুন</string>
+    <string name="show_hide_answer">উত্তর দেখান / লুকান</string>
+    <string name="add_additional">অতিরিক্ত যুক্ত করুন</string>
+    <string name="about_developer">ডেভেলপার সম্পর্কে জানতে</string>
+    <string name="notifications">নোটিফিকেশন্স</string>
+    <string name="daily_word_notification">প্রতিদিন নতুন শব্দের নোটিফিকেশন পেতে চান</string>
+    <string name="ringtone">"নোটিফিকেশন রিংটোন"</string>
+    <string name="vibration">নোটিফিকেশন ভাইব্রেশন</string>
+    <string name="general">সাধারণ</string>
+    <string name="language">Language</string>
+    <string name="theme">থিম</string>
+    <string name="language_selection">Select your language</string>
+    <string name="notification_tone_selection">নোটিফিকেশনের রিংটোন নির্বাচন করুন</string>
+    <string name="theme_selection">থিম নির্বাচন করুন</string>
+</resources>
