@@ -17,8 +17,9 @@ import kotlinx.android.synthetic.main.layout_progress_dialog.view.*
 
 abstract class BaseActivity : AppCompatActivity() {
     private var dialog: AlertDialog? = null
-
-
+    companion object{
+        var isLanguageChange = false
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         getContentView()

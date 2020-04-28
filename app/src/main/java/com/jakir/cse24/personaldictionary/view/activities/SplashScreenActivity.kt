@@ -7,9 +7,11 @@ import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseActivity
 import com.jakir.cse24.personaldictionary.data.FirebaseSource
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
+import com.jakir.cse24.personaldictionary.utils.LocalHelper
 
 class SplashScreenActivity : BaseActivity() {
     override fun getContentView() {
+        LocalHelper.setLocale(this,PreferenceManager.currentLanguageCode)
         setContentView(R.layout.activity_splash_screen)
     }
 

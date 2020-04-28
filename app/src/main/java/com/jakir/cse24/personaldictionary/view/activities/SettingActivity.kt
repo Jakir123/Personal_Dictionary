@@ -29,6 +29,7 @@ class SettingActivity : BaseActivity() {
 
         viewModel.getCurrentLanguage().observe(this, Observer {
             if (PreferenceManager.currentLanguage != it){
+                isLanguageChange = true
                 PreferenceManager.currentLanguage = it
                 LocalHelper.setLocale(this,PreferenceManager.currentLanguageCode)
                 recreate()

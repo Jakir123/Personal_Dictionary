@@ -131,4 +131,11 @@ class DashboardActivity : BaseActivity(), LogoutListener {
                 }
             })
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        if (isLanguageChange){
+            recreate()
+        }
+    }
 }
