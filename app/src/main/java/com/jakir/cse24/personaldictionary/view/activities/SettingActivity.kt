@@ -19,6 +19,7 @@ class SettingActivity : BaseActivity() {
     override fun onViewReady(savedInstanceState: Bundle?) {
         viewModel = ViewModelProviders.of(this)[SettingViewModel::class.java]
         binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         imvBack.setOnClickListener {
             finish()
         }

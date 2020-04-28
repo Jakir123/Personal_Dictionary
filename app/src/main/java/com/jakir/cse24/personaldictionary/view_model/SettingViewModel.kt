@@ -2,7 +2,7 @@ package com.jakir.cse24.personaldictionary.view_model
 
 import android.app.AlertDialog
 import android.view.View
-import androidx.databinding.Bindable
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jakir.cse24.personaldictionary.R
@@ -12,11 +12,9 @@ import com.jakir.cse24.personaldictionary.data.repositories.SettingRepository
 
 class SettingViewModel : ViewModel() {
     private val settingRepository: SettingRepository by lazy { SettingRepository() }
-
-    var currentLanguage  = PreferenceManager.currentLanguage
-    var selectedTheme: MutableLiveData<String> = MutableLiveData(PreferenceManager.currentTheme)
-    var selectedRingTone: MutableLiveData<String> =
-        MutableLiveData(PreferenceManager.currentNotificationTone)
+    private val currentLanguage: MutableLiveData<String> =  MutableLiveData(PreferenceManager.currentLanguage)
+    private val currentTheme: MutableLiveData<String> = MutableLiveData(PreferenceManager.currentTheme)
+    private val currentRingTone: MutableLiveData<String> = MutableLiveData(PreferenceManager.currentNotificationTone)
 
     fun languageSelectionPressed(view: View) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(view.context)
@@ -28,13 +26,35 @@ class SettingViewModel : ViewModel() {
                 // handle language selection
                 PreferenceManager.currentLanguagePosition = position
                 PreferenceManager.currentLanguage = settingRepository.languages[position]
-                currentLanguage = PreferenceManager.currentLanguage
+                currentLanguage.value = PreferenceManager.currentLanguage
 
             }
             dialog.dismiss()
         }
         builder.create().show()
     }
+
+    /**
+     * Expose LiveData if you do not use two-way data binding
+     */
+    fun getCurrentLanguage(): LiveData<String> {
+        return currentLanguage
+    }
+
+    fun getCurrentTheme(): LiveData<String> {
+        return currentTheme
+    }
+
+    fun getCurrentRingTone(): LiveData<String> {
+        return currentRingTone
+    }
+
+//    /**
+//     * Expose MutableLiveData to use two-way data binding
+//     */
+//    fun getLastName(): MutableLiveData<String> {
+//        return lastName
+//    }
 
     fun themeSelectionPressed() {
 
