@@ -46,6 +46,13 @@ object PreferenceManager {
             editor.apply()
         }
 
+    var currentThemePosition: Int
+        get() = prefs.getInt("themePos", 0)
+        set(themePos) {
+            editor.putInt("themePos", themePos)
+            editor.apply()
+        }
+
     var currentLanguage: String
         get() = prefs.getString("language", "English")!!
         set(language) {
@@ -64,6 +71,12 @@ object PreferenceManager {
         get() = prefs.getString("notificationTone", "Default")!!
         set(notificationTone) {
             editor.putString("notificationTone", notificationTone)
+            editor.apply()
+        }
+    var currentNotificationTonePosition: Int
+        get() = prefs.getInt("notificationTonePos", 0)
+        set(notificationTonePos) {
+            editor.putInt("notificationTonePos", notificationTonePos)
             editor.apply()
         }
 

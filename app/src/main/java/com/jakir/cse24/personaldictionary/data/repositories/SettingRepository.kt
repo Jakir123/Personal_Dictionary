@@ -7,4 +7,15 @@ class SettingRepository {
         "English"
     )
 
+    var notificationTones = arrayOf(
+        "Beep",
+        "Morning wake"
+    )
+
+    var themes = arrayOf(
+        "Classic",
+        "Dark",
+        "light"
+    )
+
 }

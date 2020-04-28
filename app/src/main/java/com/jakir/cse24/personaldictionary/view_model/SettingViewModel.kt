@@ -14,7 +14,7 @@ class SettingViewModel : ViewModel() {
     private val settingRepository: SettingRepository by lazy { SettingRepository() }
     private val currentLanguage: MutableLiveData<String> =  MutableLiveData(PreferenceManager.currentLanguage)
     private val currentTheme: MutableLiveData<String> = MutableLiveData(PreferenceManager.currentTheme)
-    private val currentRingTone: MutableLiveData<String> = MutableLiveData(PreferenceManager.currentNotificationTone)
+    private val currentNotificationTone: MutableLiveData<String> = MutableLiveData(PreferenceManager.currentNotificationTone)
 
     fun languageSelectionPressed(view: View) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(view.context)
@@ -46,7 +46,7 @@ class SettingViewModel : ViewModel() {
     }
 
     fun getCurrentRingTone(): LiveData<String> {
-        return currentRingTone
+        return currentNotificationTone
     }
 
 //    /**
@@ -56,12 +56,40 @@ class SettingViewModel : ViewModel() {
 //        return lastName
 //    }
 
-    fun themeSelectionPressed() {
+    fun themeSelectionPressed(view: View) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(view.context)
+        builder.setTitle(view.context.getString(R.string.theme_selection))
+        builder.setSingleChoiceItems(
+            settingRepository.themes, PreferenceManager.currentThemePosition
+        ) { dialog, position ->
+            if (PreferenceManager.currentThemePosition != position) {
+                // handle language selection
+                PreferenceManager.currentThemePosition = position
+                PreferenceManager.currentTheme = settingRepository.themes[position]
+                currentTheme.value = PreferenceManager.currentTheme
 
+            }
+            dialog.dismiss()
+        }
+        builder.create().show()
     }
 
-    fun notificationToneSelectionPressed() {
+    fun notificationToneSelectionPressed(view: View) {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(view.context)
+        builder.setTitle(view.context.getString(R.string.notification_tone_selection))
+        builder.setSingleChoiceItems(
+            settingRepository.notificationTones, PreferenceManager.currentNotificationTonePosition
+        ) { dialog, position ->
+            if (PreferenceManager.currentNotificationTonePosition != position) {
+                // handle language selection
+                PreferenceManager.currentNotificationTonePosition = position
+                PreferenceManager.currentNotificationTone = settingRepository.notificationTones[position]
+                currentNotificationTone.value = PreferenceManager.currentNotificationTone
 
+            }
+            dialog.dismiss()
+        }
+        builder.create().show()
     }
 
     fun getNotificationStatus(): Boolean {
