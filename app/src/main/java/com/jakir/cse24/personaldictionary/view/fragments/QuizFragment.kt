@@ -11,13 +11,18 @@ import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.switchmaterial.SwitchMaterial
-import com.jakir.cse24.easyalert.EasyToast
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
+import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.databinding.FragmentQuizBinding
 import com.jakir.cse24.personaldictionary.view.activities.DashboardActivity
@@ -89,13 +94,15 @@ class QuizFragment : BaseFragment() {
 //        viewModel = ViewModelProviders.of(this)[VocabularyListViewModel::class.java]
         loadAnimations()
         changeCameraDistance()
-        viewModel.randomVocabulary.observe(viewLifecycleOwner, Observer {
-            binding.data = it
+
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+        viewModel.generateRandomVocabulary()
+        viewModel.getRandomVocabulary().observe(viewLifecycleOwner, Observer {
             vocabulary = it
-            collapsingToolbar.title = vocabulary.word
+//            collapsingToolbar.title = vocabulary.word
             updateFavIcon()
         })
-        viewModel.generateRandomVocabulary()
 
         mActivity = activity as DashboardActivity
 
@@ -114,12 +121,12 @@ class QuizFragment : BaseFragment() {
             speakWord()
         }
 
-        collapsingToolbarSetup()
+//        collapsingToolbarSetup()
     }
 
-    private fun speakWord(){
+    private fun speakWord() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            tts.speak(vocabulary.word,TextToSpeech.QUEUE_FLUSH,null,null);
+            tts.speak(vocabulary.word, TextToSpeech.QUEUE_FLUSH, null, null);
         } else {
             tts.speak(vocabulary.word, TextToSpeech.QUEUE_FLUSH, null);
         }
@@ -191,6 +198,9 @@ class QuizFragment : BaseFragment() {
                                 updateFavIcon()
                             }
                         })
+            }
+            R.id.reverse -> {
+                viewModel.setReverseEnable()
             }
         }
         return super.onOptionsItemSelected(item)

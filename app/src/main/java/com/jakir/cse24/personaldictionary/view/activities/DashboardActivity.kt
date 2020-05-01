@@ -49,13 +49,12 @@ class DashboardActivity : BaseActivity(), LogoutListener {
                 }
                 R.id.quizFragment -> {
 //                    bottomBar.replaceMenu(R.menu.menu_word_details)
-                    bottomBar.navigationIcon =
-                        ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
+                    bottomBar.navigationIcon = null
                     bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
                     fabAdd.setImageDrawable(
                         ContextCompat.getDrawable(
                             this,
-                            R.drawable.ic_autorenew_white_24dp
+                            R.drawable.ic_refresh_white_24dp
                         )
                     )
                 }
@@ -64,7 +63,7 @@ class DashboardActivity : BaseActivity(), LogoutListener {
                     bottomBar.navigationIcon =
                         ContextCompat.getDrawable(this, R.drawable.ic_arrow_back_white_24dp)
                     bottomBar.fabAlignmentMode = BottomAppBar.FAB_ALIGNMENT_MODE_END
-//                    fabAdd.setImageDrawable(getDrawable(R.drawable.ic_autorenew_white_24dp))
+//                    fabAdd.setImageDrawable(getDrawable(R.drawable.ic_reverse_white_24dp))
                 }
                 R.id.addVocabularyFragment -> {
                     bottomBar.navigationIcon =

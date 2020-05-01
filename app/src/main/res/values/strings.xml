@@ -62,4 +62,5 @@
     <string name="language_selection">Select your language</string>
     <string name="notification_tone_selection">Select notification Ringtone</string>
     <string name="theme_selection">Select a theme</string>
+    <string name="vocabulary_loading">Vocabulary loading...</string>
 </resources>

@@ -189,6 +189,7 @@ class AddVocabularyFragment : BaseFragment() {
         menu.findItem(R.id.delete).isVisible = false
         menu.findItem(R.id.add_favourite).isVisible = false
         menu.findItem(R.id.show_hide_answer).isVisible = false
+        menu.findItem(R.id.reverse).isVisible = false
     }
 
     private fun updateViews(response:ResponseModel) {

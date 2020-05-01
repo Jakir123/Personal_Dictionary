@@ -5,8 +5,9 @@
     <data>
 
         <variable
-            name="data"
-            type="com.jakir.cse24.personaldictionary.data.model.Vocabulary" />
+            name="viewModel"
+            type="com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +22,7 @@
 
             <include
                 layout="@layout/fragment_word_details"
-                bind:data="@{data}" />
+                bind:data="@{viewModel.randomVocabulary}" />
         </FrameLayout>
 
         <FrameLayout
@@ -32,7 +33,7 @@
 
             <include
                 layout="@layout/fragment_word"
-                bind:data="@{data}" />
+                bind:data="@{viewModel}"/>
 
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

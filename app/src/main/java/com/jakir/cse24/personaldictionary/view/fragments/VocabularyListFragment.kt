@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import com.jakir.cse24.easyalert.EasyAlert
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
@@ -50,11 +51,13 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        viewModel.getVocabularies()
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.findItem(R.id.delete).isVisible = false
         menu.findItem(R.id.app_bar_search).isVisible = false
         menu.findItem(R.id.show_hide_answer).isVisible = false
+        menu.findItem(R.id.reverse).isVisible = false
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -95,9 +98,10 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
         adapter = VocabularyListAdapter(vocabularyList, this)
         recyclerView.adapter = adapter
 
-        viewModel.getVocabularies()
+        EasyAlert.showProgressDialog(requireActivity(),getString(R.string.vocabulary_loading))
         viewModel.vocabularies.observe(viewLifecycleOwner, Observer {
             vocabularyList.addAll(it)
+            EasyAlert.hideProgressDialog()
             adapter.notifyDataSetChanged()
         })
         val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(requireContext(), this))
