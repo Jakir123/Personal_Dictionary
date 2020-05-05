@@ -28,6 +28,67 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
+    <!--    custom themes    -->
+    <style name="darkTheme">
+        <item name="pageBgColor">@color/colorBlack</item>
+
+        <item name="buttonBgColor">@color/colorPrimaryDark</item>
+        <item name="buttonTextColor">@color/colorWhite</item>
+
+        <item name="inputFieldBgColor">@color/colorGray</item>
+
+        <item name="checkboxBorderColor">@color/colorPrimaryDark</item>
+
+        <item name="primaryTextColor">@color/colorWhite</item>
+        <item name="subTextColor">@color/subTextColor</item>
+        <item name="titleTextColor">@color/colorPrimaryDark</item>
+
+        <item name="cardBgColor">@color/colorBlack</item>
+        <item name="cardPrimaryTextColor">@color/colorWhite</item>
+        <item name="cardSubTextColor">@color/subTextColor</item>
+        <item name="cardStrokeColor">@color/colorGray</item>
+    </style>
+
+    <style name="lightTheme" parent="AppTheme">
+        <item name="pageBgColor">@color/colorWhite</item>
+
+        <item name="buttonBgColor">@color/colorPrimaryDark</item>
+        <item name="buttonTextColor">@color/colorWhite</item>
+
+        <item name="inputFieldBgColor">@color/colorGray</item>
+
+        <item name="checkboxBorderColor">@color/colorPrimaryDark</item>
+
+        <item name="primaryTextColor">@color/colorBlack</item>
+        <item name="subTextColor">#6A000000</item>
+        <item name="titleTextColor">@color/colorPrimaryDark</item>
+
+        <item name="cardBgColor">@color/colorWhite</item>
+        <item name="cardPrimaryTextColor">@color/colorBlack</item>
+        <item name="cardSubTextColor">#6A000000</item>
+        <item name="cardStrokeColor">@color/colorGray</item>
+    </style>
+
+    <style name="classicTheme">
+        <item name="pageBgColor">@drawable/background_gradient</item>
+
+        <item name="buttonBgColor">@color/colorPrimaryDark</item>
+        <item name="buttonTextColor">@color/colorWhite</item>
+
+        <item name="inputFieldBgColor">@color/colorGray</item>
+
+        <item name="checkboxBorderColor">@color/colorPrimaryDark</item>
+
+        <item name="primaryTextColor">@color/colorBlack</item>
+        <item name="subTextColor">#6A000000</item>
+        <item name="titleTextColor">@color/colorPrimaryDark</item>
+
+        <item name="cardBgColor">@color/colorWhite</item>
+        <item name="cardPrimaryTextColor">@color/colorBlack</item>
+        <item name="cardSubTextColor">#6A000000</item>
+        <item name="cardStrokeColor">@color/colorGray</item>
+    </style>
+
     <!--  collapsing toolbar tile style  -->
     <style name="exp_toolbar_title" parent="@android:style/TextAppearance.Holo.Medium">
         <item name="android:textSize">20sp</item>
@@ -35,6 +96,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="coll_toolbar_title" parent="@android:style/TextAppearance.Medium">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@android:color/white</item>
@@ -62,6 +124,7 @@
     <style name="textViewSubTitle1Style" parent="defaultTextViewStyle">
         <item name="android:textSize">@dimen/textview_subtitle1_text_size</item>
         <item name="android:textStyle">normal</item>
+        <item name="android:textColor">?subTextColor</item>
     </style>
 
     <style name="textViewSubTitle3Style" parent="textViewSubTitle1Style">
@@ -81,7 +144,7 @@
     </style>
 
     <style name="defaultTextViewStyle" parent="matchParentWrapContent">
-        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textColor">?primaryTextColor</item>
         <item name="android:textSize">@dimen/textview_standard_text_size</item>
         <item name="android:textStyle">normal</item>
         <item name="android:fontFamily">sans-serif-smallcaps</item>
@@ -92,8 +155,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/default_10</item>
         <item name="android:padding">@dimen/default_10</item>
-        <item name="backgroundTint">@color/colorOrangeLight</item>
+        <item name="backgroundTint">?buttonBgColor</item>
         <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">?buttonTextColor</item>
         <item name="android:textSize">@dimen/button_default_text_size</item>
         <item name="android:textStyle">bold</item>
     </style>
@@ -127,6 +191,7 @@
     <style name="modalSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_background</item>
     </style>
+
     <style name="switchStyle" parent="Theme.AppCompat.Light">
         <!-- active thumb & track color (30% transparency) -->
         <item name="colorControlActivated">@color/colorPrimaryDark</item>
@@ -134,5 +199,21 @@
         <item name="colorSwitchThumbNormal">@color/colorWhite</item>
         <!-- inactive track color (30% transparency) -->
         <item name="android:colorForeground">#42221f1f</item>
+    </style>
+
+    <style name="cardStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">?cardBgColor</item>
+        <item name="cardCornerRadius">@dimen/default_10</item>
+        <item name="cardElevation">@dimen/very_small_5</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="strokeColor">?cardStrokeColor</item>
+        <item name="strokeWidth">1dp</item>
+
+    </style>
+    <style name="cardPrimaryTextStyle" parent="defaultTextViewStyle">
+        <item name="android:textColor">?cardPrimaryTextColor</item>
+    </style>
+    <style name="cardSubTextStyle" parent="defaultTextViewStyle">
+        <item name="android:textColor">?cardSubTextColor</item>
     </style>
 </resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="pageBgColor" format="reference|color"/>
+
+    <attr name="buttonBgColor" format="reference|color"/>
+    <attr name="buttonTextColor" format="color"/>
+
+    <attr name="inputFieldBgColor" format="color"/>
+
+    <attr name="checkboxBorderColor" format="color"/>
+
+    <attr name="primaryTextColor" format="color"/>
+    <attr name="subTextColor" format="color"/>
+    <attr name="titleTextColor" format="color"/>
+
+    <attr name="cardBgColor" format="reference|color"/>
+    <attr name="cardPrimaryTextColor" format="color"/>
+    <attr name="cardSubTextColor" format="color"/>
+    <attr name="cardStrokeColor" format="color"/>
+</resources>

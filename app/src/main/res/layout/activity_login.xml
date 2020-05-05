@@ -12,7 +12,7 @@
         android:id="@+id/container"
         style="@style/matchParent"
         android:layout_gravity="center"
-        android:background="@drawable/background_gradient"
+        android:background="?pageBgColor"
         android:paddingStart="@dimen/large_16"
         android:paddingTop="50dp"
         android:paddingEnd="@dimen/large_16"
@@ -22,6 +22,7 @@
             style="@style/textViewTitle4Style"
             app:layout_constraintBottom_toTopOf="@id/tilEmail"
             android:layout_marginBottom="50dp"
+            android:textColor="?titleTextColor"
             app:layout_constraintStart_toStartOf="parent"
             android:text="@string/login" />
 
@@ -73,7 +74,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvSignUp"
-            style="@style/defaultTextViewStyle"
+            style="@style/textViewSubTitle1Style"
             android:layout_marginTop="2dp"
             android:text="@string/create_new_account_label"
             app:layout_constraintEnd_toEndOf="parent"

@@ -65,9 +65,7 @@ class SettingViewModel : ViewModel() {
             if (PreferenceManager.currentThemePosition != position) {
                 // handle language selection
                 PreferenceManager.currentThemePosition = position
-                PreferenceManager.currentTheme = settingRepository.themes[position]
-                currentTheme.value = PreferenceManager.currentTheme
-
+                currentTheme.value = settingRepository.themes[position]
             }
             dialog.dismiss()
         }

@@ -35,5 +35,13 @@ class SettingActivity : BaseActivity() {
                 recreate()
             }
         })
+
+        viewModel.getCurrentTheme().observe(this, Observer {
+            if (PreferenceManager.currentTheme != it){
+                isLanguageChange = true
+                PreferenceManager.currentTheme = it
+                recreate()
+            }
+        })
     }
 }

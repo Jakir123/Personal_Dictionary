@@ -40,7 +40,7 @@ object PreferenceManager {
         }
 
     var currentTheme: String
-        get() = prefs.getString("theme", "Default")!!
+        get() = prefs.getString("theme", "Classic")!!
         set(theme) {
             editor.putString("theme", theme)
             editor.apply()

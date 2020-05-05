@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.jakir.cse24.personaldictionary.R
+import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import kotlinx.android.synthetic.main.layout_progress_dialog.view.*
 
 
@@ -22,8 +23,18 @@ abstract class BaseActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(getCustomTheme())
         getContentView()
         onViewReady(savedInstanceState)
+    }
+
+    private fun getCustomTheme():Int{
+        return when(PreferenceManager.currentTheme){
+            "Light"-> R.style.lightTheme
+            "Dark"-> R.style.darkTheme
+            "Classic"-> R.style.classicTheme
+            else -> R.style.lightTheme
+        }
     }
 
     /**
