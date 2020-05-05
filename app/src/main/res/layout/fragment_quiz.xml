@@ -33,7 +33,7 @@
 
             <include
                 layout="@layout/fragment_word"
-                bind:data="@{viewModel}"/>
+                bind:data="@{viewModel.reverseEnable?viewModel.randomVocabulary.translation.meaning:viewModel.randomVocabulary.word}"/>
 
         </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

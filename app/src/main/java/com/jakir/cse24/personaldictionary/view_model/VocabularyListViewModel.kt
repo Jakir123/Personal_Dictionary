@@ -41,7 +41,7 @@ class VocabularyListViewModel : ViewModel() {
     }
 
     fun setReverseEnable() {
-        reverseEnable.value = true
+        reverseEnable.value = !reverseEnable.value!!
     }
 
     fun addRemoveFavourite(id: String, status: Boolean): MutableLiveData<ResponseModel> {
