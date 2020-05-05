@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/matchParent"
-    android:background="@drawable/background_gradient"
+    android:background="?pageBgColor"
     tools:context=".view.activities.DashboardActivity">
 
     <fragment
@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:backgroundTint="@color/colorPrimary"
+        app:backgroundTint="?bottomBarBgColor"
         app:navigationIcon="@drawable/ic_menu_white_24dp"
         app:fabAlignmentMode="center"
         app:fabAnimationMode="slide"
@@ -31,10 +31,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
-        app:backgroundTint="@color/colorPrimary"
-        app:elevation="@dimen/default_10"
-        app:layout_anchor="@id/bottomBar"
-        app:tint="@color/colorWhite" />
+        style="@style/fabStyle"
+        app:layout_anchor="@id/bottomBar" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

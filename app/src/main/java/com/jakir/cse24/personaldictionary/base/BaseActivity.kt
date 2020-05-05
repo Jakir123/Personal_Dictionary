@@ -23,12 +23,12 @@ abstract class BaseActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTheme(getCustomTheme())
+        setTheme(getSelectedTheme())
         getContentView()
         onViewReady(savedInstanceState)
     }
 
-    private fun getCustomTheme():Int{
+    private fun getSelectedTheme():Int{
         return when(PreferenceManager.currentTheme){
             "Light"-> R.style.lightTheme
             "Dark"-> R.style.darkTheme

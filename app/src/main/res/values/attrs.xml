@@ -17,4 +17,7 @@
     <attr name="cardPrimaryTextColor" format="color"/>
     <attr name="cardSubTextColor" format="color"/>
     <attr name="cardStrokeColor" format="color"/>
+
+    <attr name="bottomBarBgColor" format="color"/>
+    <attr name="fabBgColor" format="color"/>
 </resources>

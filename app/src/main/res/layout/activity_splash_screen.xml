@@ -7,7 +7,7 @@
     android:padding="10dp"
     tools:context=".view.activities.SplashScreenActivity">
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:id="@+id/tvWelcomeCard"
         style="@style/cardStyle"
         android:layout_width="match_parent"
@@ -23,6 +23,6 @@
             android:textColor="?titleTextColor"
             android:textAlignment="center"
             android:textSize="24sp" />
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

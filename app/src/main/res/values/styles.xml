@@ -47,6 +47,9 @@
         <item name="cardPrimaryTextColor">@color/colorWhite</item>
         <item name="cardSubTextColor">@color/subTextColor</item>
         <item name="cardStrokeColor">@color/colorGray</item>
+
+        <item name="bottomBarBgColor">@color/colorPrimary</item>
+        <item name="fabBgColor">@color/colorPrimary</item>
     </style>
 
     <style name="lightTheme" parent="AppTheme">
@@ -67,6 +70,9 @@
         <item name="cardPrimaryTextColor">@color/colorBlack</item>
         <item name="cardSubTextColor">#6A000000</item>
         <item name="cardStrokeColor">@color/colorGray</item>
+
+        <item name="bottomBarBgColor">@color/colorPrimary</item>
+        <item name="fabBgColor">@color/colorPrimary</item>
     </style>
 
     <style name="classicTheme">
@@ -87,6 +93,9 @@
         <item name="cardPrimaryTextColor">@color/colorBlack</item>
         <item name="cardSubTextColor">#6A000000</item>
         <item name="cardStrokeColor">@color/colorGray</item>
+
+        <item name="bottomBarBgColor">@color/colorPrimary</item>
+        <item name="fabBgColor">@color/colorPrimary</item>
     </style>
 
     <!--  collapsing toolbar tile style  -->
@@ -201,7 +210,7 @@
         <item name="android:colorForeground">#42221f1f</item>
     </style>
 
-    <style name="cardStyle" parent="Widget.MaterialComponents.CardView">
+    <style name="cardStyle" parent="CardView">
         <item name="cardBackgroundColor">?cardBgColor</item>
         <item name="cardCornerRadius">@dimen/default_10</item>
         <item name="cardElevation">@dimen/very_small_5</item>
@@ -210,10 +219,19 @@
         <item name="strokeWidth">1dp</item>
 
     </style>
+
     <style name="cardPrimaryTextStyle" parent="defaultTextViewStyle">
         <item name="android:textColor">?cardPrimaryTextColor</item>
     </style>
+
     <style name="cardSubTextStyle" parent="defaultTextViewStyle">
         <item name="android:textColor">?cardSubTextColor</item>
+    </style>
+
+    <style name="fabStyle" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="backgroundTint">?fabBgColor</item>
+        <item name="tint">@color/colorWhite</item>
+        <item name="elevation">@dimen/default_10</item>
+        <item name="fabSize">normal</item>
     </style>
 </resources>

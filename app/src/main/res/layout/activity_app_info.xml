@@ -13,17 +13,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?pageBgColor"
         android:padding="@dimen/small_8"
-        android:background="@drawable/background_gradient"
         tools:context=".view.activities.AppInfoActivity">
 
         <androidx.cardview.widget.CardView
+            style="@style/cardStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:elevation="3dp"
-            app:cardCornerRadius="@dimen/small_8"
             app:layout_constraintTop_toTopOf="parent">
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -34,13 +32,13 @@
                 android:paddingBottom="@dimen/small_8">
 
                 <ProgressBar
-                    android:layout_width="wrap_content"
                     android:id="@+id/progressBar"
-                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_height="wrap_content" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/imvProfile"
@@ -52,7 +50,7 @@
 
                 <TextView
                     android:id="@+id/tvName"
-                    style="@style/textViewTitle1Style"
+                    style="@style/cardPrimaryTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/very_small_5"
@@ -60,7 +58,6 @@
                     android:layout_marginBottom="@dimen/x_large_20"
                     android:gravity="start"
                     android:text="@{data.developer_name}"
-                    android:textColor="@color/colorPrimaryDark"
                     app:layout_constraintBottom_toBottomOf="@id/imvProfile"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/imvProfile"
@@ -69,12 +66,11 @@
 
                 <TextView
                     android:id="@+id/tvEmail"
-                    style="@style/textViewSubTitle1Style"
+                    style="@style/cardSubTextStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/x_large_20"
                     android:text="@{data.developer_email}"
-                    android:textColor="@color/colorPrimary"
                     app:layout_constraintBottom_toBottomOf="@id/imvProfile"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tvName"
