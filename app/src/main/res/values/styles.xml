@@ -30,7 +30,7 @@
 
     <!--    custom themes    -->
     <style name="darkTheme">
-        <item name="pageBgColor">@color/colorBlack</item>
+        <item name="pageBgColor">@color/colorLightBlack</item>
 
         <item name="buttonBgColor">@color/colorPrimaryDark</item>
         <item name="buttonTextColor">@color/colorWhite</item>
@@ -41,15 +41,17 @@
 
         <item name="primaryTextColor">@color/colorWhite</item>
         <item name="subTextColor">@color/subTextColor</item>
-        <item name="titleTextColor">@color/colorPrimaryDark</item>
+        <item name="titleTextColor">@color/colorWhite</item>
 
-        <item name="cardBgColor">@color/colorBlack</item>
+        <item name="cardBgColor">@color/colorLightBlack</item>
         <item name="cardPrimaryTextColor">@color/colorWhite</item>
         <item name="cardSubTextColor">@color/subTextColor</item>
-        <item name="cardStrokeColor">@color/colorGray</item>
+        <item name="cardStrokeColor">@color/colorWhite</item>
 
-        <item name="bottomBarBgColor">@color/colorPrimary</item>
-        <item name="fabBgColor">@color/colorPrimary</item>
+        <item name="bottomBarBgColor">@color/colorBlack</item>
+        <item name="fabBgColor">@color/colorBlack</item>
+
+        <item name="toolbarColor">@color/colorBlack</item>
     </style>
 
     <style name="lightTheme" parent="AppTheme">
@@ -73,6 +75,7 @@
 
         <item name="bottomBarBgColor">@color/colorPrimary</item>
         <item name="fabBgColor">@color/colorPrimary</item>
+        <item name="toolbarColor">@color/colorPrimaryDark</item>
     </style>
 
     <style name="classicTheme">
@@ -96,6 +99,7 @@
 
         <item name="bottomBarBgColor">@color/colorPrimary</item>
         <item name="fabBgColor">@color/colorPrimary</item>
+        <item name="toolbarColor">@color/colorPrimaryDark</item>
     </style>
 
     <!--  collapsing toolbar tile style  -->
@@ -210,7 +214,7 @@
         <item name="android:colorForeground">#42221f1f</item>
     </style>
 
-    <style name="cardStyle" parent="CardView">
+    <style name="cardStyle">
         <item name="cardBackgroundColor">?cardBgColor</item>
         <item name="cardCornerRadius">@dimen/default_10</item>
         <item name="cardElevation">@dimen/very_small_5</item>

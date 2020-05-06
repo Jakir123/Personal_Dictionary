@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/container"
-    android:background="@drawable/background_gradient"
     tools:context=".view.activities.VocabularyListActivity">
 
     <TextView
         android:id="@+id/tvHeader"
         style="@style/textViewTitle1Style"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="?toolbarColor"
         android:textAllCaps="true"
         android:layout_height="?android:attr/actionBarSize"
         android:text="@string/vocabulary_list"
@@ -23,7 +22,6 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvHeader"
         tools:listitem="@layout/rv_sample" />

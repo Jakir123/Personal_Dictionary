@@ -14,7 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="@dimen/very_small_5"
-        android:background="@drawable/background_gradient"
         android:orientation="vertical">
 
         <TextView

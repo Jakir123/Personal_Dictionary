@@ -20,4 +20,6 @@
 
     <attr name="bottomBarBgColor" format="color"/>
     <attr name="fabBgColor" format="color"/>
+
+    <attr name="toolbarColor" format="color"/>
 </resources>

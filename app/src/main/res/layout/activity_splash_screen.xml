@@ -3,15 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="?pageBgColor"
     android:padding="10dp"
     tools:context=".view.activities.SplashScreenActivity">
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/tvWelcomeCard"
         style="@style/cardStyle"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        app:cardUseCompatPadding="false"
+        app:elevation="0dp"
         android:layout_gravity="center">
 
         <TextView
@@ -23,6 +26,6 @@
             android:textColor="?titleTextColor"
             android:textAlignment="center"
             android:textSize="24sp" />
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

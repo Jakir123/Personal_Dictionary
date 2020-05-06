@@ -8,14 +8,14 @@
             type="com.jakir.cse24.personaldictionary.data.model.Vocabulary" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
         android:minHeight="60dp"
+        style="@style/cardStyle"
+        app:cardUseCompatPadding="false"
+        app:cardElevation="0dp"
         android:padding="@dimen/very_small_5"
-        app:cardBackgroundColor="@color/transparent"
-        app:cardCornerRadius="@dimen/very_small_5"
         app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -58,5 +58,5 @@
                 android:layout_marginRight="10dp"
                 android:drawableRight="@drawable/arrow_right_white" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 </layout>

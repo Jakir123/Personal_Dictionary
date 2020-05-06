@@ -11,8 +11,10 @@
     <color name="full_transparent">#00000000</color>
     <color name="transparent_button">#26ffffff</color>
 
-    <color name="colorWhite">#FFF</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorLightWhite">#88FFFFFF</color>
     <color name="colorBlack">#000</color>
+    <color name="colorLightBlack">#74000000</color>
     <color name="colorOrange">#ff5722</color>
     <color name="colorOrangeDark">#bf360c</color>
     <color name="colorOrangeLight">#ff7043</color>
