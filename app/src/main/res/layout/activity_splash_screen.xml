@@ -15,6 +15,7 @@
         android:layout_height="300dp"
         app:cardUseCompatPadding="false"
         app:elevation="0dp"
+        app:cardBackgroundColor="#07222F"
         android:layout_gravity="center">
 
         <TextView
@@ -23,9 +24,14 @@
             android:layout_gravity="center"
             android:lineSpacingExtra="10sp"
             android:text="@string/welcome"
+            android:visibility="gone"
             android:textColor="?titleTextColor"
             android:textAlignment="center"
             android:textSize="24sp" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:src="@drawable/ic_personal_dictionary__logo_white"
+            android:layout_height="match_parent"/>
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
