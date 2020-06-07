@@ -1,40 +1,36 @@
 package com.jakir.cse24.personaldictionary.data.repositories
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.base.BaseRepository
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
-import com.jakir.cse24.personaldictionary.data.model.Translation
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 
-class VocabularyRepository :BaseRepository(){
+class VocabularyRepository : BaseRepository() {
     private var nextItem = 1
 
     @SuppressLint("LongLogTag")
     fun getVocabularies(pageSize: Int = 20): MutableLiveData<ArrayList<Vocabulary>> {
-        val items = ArrayList<Vocabulary>()
         val vocabularies: MutableLiveData<ArrayList<Vocabulary>> = MutableLiveData()
-        vocabularyCollection.whereEqualTo("userId",PreferenceManager.userId)
+        vocabularyCollection.whereEqualTo("userId", PreferenceManager.userId)
             .orderBy("timeStamp", Query.Direction.DESCENDING)
-            .get()
-            .addOnCompleteListener{task ->
-                task.result?.run {
-                    for (doc in documents){
-                        items.add(doc.toObject(Vocabulary::class.java)!!)
-                    }
-                    vocabularies.value = items
+            .addSnapshotListener { value, exception ->
+                if (exception != null) {
+                    EasyLog.logE(
+                        "Exception in getVocabularies: ${exception.localizedMessage}",
+                        "VocabularyListRepository"
+                    )
+                    return@addSnapshotListener
                 }
-            }.addOnFailureListener {
-            EasyLog.logE(
-                "Exception in getVocabularies: ${it.localizedMessage}",
-                "VocabularyListRepository"
-            )
-        }
+                val items = ArrayList<Vocabulary>()
+                for (doc in value!!) {
+                    items.add(doc.toObject(Vocabulary::class.java)!!)
+                }
+                vocabularies.value = items
+            }
 
 //        val lastItem = nextItem + pageSize - 1
 
@@ -44,12 +40,12 @@ class VocabularyRepository :BaseRepository(){
     fun getFavouriteVocabularies(pageSize: Int = 20): MutableLiveData<ArrayList<Vocabulary>> {
         val items = ArrayList<Vocabulary>()
         val vocabularies: MutableLiveData<ArrayList<Vocabulary>> = MutableLiveData()
-        vocabularyCollection.whereEqualTo("userId",PreferenceManager.userId)
+        vocabularyCollection.whereEqualTo("userId", PreferenceManager.userId)
             .whereEqualTo("favourite", true)
             .get()
-            .addOnCompleteListener{task ->
+            .addOnCompleteListener { task ->
                 task.result?.run {
-                    for (doc in documents){
+                    for (doc in documents) {
                         items.add(doc.toObject(Vocabulary::class.java)!!)
                     }
                     vocabularies.value = items
@@ -71,47 +67,50 @@ class VocabularyRepository :BaseRepository(){
         vocabulary.id = docRef.id
 
         docRef.set(vocabulary).addOnSuccessListener {
-            response.value = ResponseModel(true,"New vocabulary added")
+            response.value = ResponseModel(true, "New vocabulary added")
         }.addOnFailureListener {
-            response.value = ResponseModel(false,it.message.toString())
+            response.value = ResponseModel(false, it.message.toString())
         }.addOnCanceledListener {
             response.value = ResponseModel(false, "Request canceled!")
         }
         return response
     }
 
-    fun addRemoveFavourite(id: String,status: Boolean):MutableLiveData<ResponseModel>{
+    fun addRemoveFavourite(id: String, status: Boolean): MutableLiveData<ResponseModel> {
         val response = MutableLiveData<ResponseModel>()
-        vocabularyCollection.document(id).update("favourite",status).addOnFailureListener {
+        vocabularyCollection.document(id).update("favourite", status).addOnFailureListener {
             EasyLog.logE("Update failed: ${it.localizedMessage}")
-            response.value = ResponseModel(false,it.message.toString())
+            response.value = ResponseModel(false, it.message.toString())
         }.addOnSuccessListener {
-            response.value = ResponseModel(true,"Vocabulary updated.")
+            response.value = ResponseModel(true, "Vocabulary updated.")
         }.addOnCanceledListener {
             response.value = ResponseModel(false, "Request canceled!")
         }
         return response
     }
 
-    fun deleteVocabulary(id:String):MutableLiveData<ResponseModel>{
+    fun deleteVocabulary(id: String): MutableLiveData<ResponseModel> {
         val response = MutableLiveData<ResponseModel>()
         vocabularyCollection.document(id).delete().addOnCompleteListener {
-              response.value = ResponseModel(true,"Vocabulary deleted.")
+            response.value = ResponseModel(true, "Vocabulary deleted.")
         }.addOnFailureListener {
-            response.value = ResponseModel(false,it.message.toString())
+            response.value = ResponseModel(false, it.message.toString())
         }.addOnCanceledListener {
             response.value = ResponseModel(false, "Request canceled!")
         }
         return response
     }
 
-    fun updateVocabulary(id: String,vocabulary: MutableMap<String,Any>):MutableLiveData<ResponseModel>{
+    fun updateVocabulary(
+        id: String,
+        vocabulary: MutableMap<String, Any>
+    ): MutableLiveData<ResponseModel> {
         val response = MutableLiveData<ResponseModel>()
         vocabularyCollection.document(id).update(vocabulary).addOnFailureListener {
             EasyLog.logE("Update failed: ${it.localizedMessage}")
-            response.value = ResponseModel(false,it.message.toString())
+            response.value = ResponseModel(false, it.message.toString())
         }.addOnSuccessListener {
-            response.value = ResponseModel(true,"Vocabulary updated.")
+            response.value = ResponseModel(true, "Vocabulary updated.")
         }.addOnCanceledListener {
             response.value = ResponseModel(false, "Request canceled!")
         }

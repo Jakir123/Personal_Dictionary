@@ -12,11 +12,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.jakir.cse24.easyalert.EasyAlert
+import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
@@ -37,7 +39,8 @@ import kotlinx.android.synthetic.main.fragment_vocabulary_list.*
  */
 class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListener {
 
-    private  val viewModel: VocabularyListViewModel by activityViewModels()
+//    private  val viewModel: VocabularyListViewModel by activityViewModels()
+    private val viewModel: VocabularyListViewModel by navGraphViewModels(R.id.nav_graph)
     private lateinit var adapter: VocabularyListAdapter
     private lateinit var vocabularyList: ArrayList<Vocabulary>
     private lateinit var mActivity: DashboardActivity
@@ -51,7 +54,10 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+        EasyLog.logE("onViewCreated")
         viewModel.getVocabularies()
+        vocabularyList = ArrayList()
+        adapter = VocabularyListAdapter(vocabularyList, this)
     }
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.findItem(R.id.delete).isVisible = false
@@ -76,12 +82,13 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        EasyLog.logE("onCreateView")
         return inflater.inflate(R.layout.fragment_vocabulary_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        EasyLog.logE("onViewCreated")
         mActivity = activity as DashboardActivity
         mActivity.fabAdd.setOnClickListener {
             view.findNavController().navigate(R.id.addVocabularyFragment)
@@ -94,12 +101,12 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
 
         recyclerView.layoutManager = layoutManager
         recyclerView.hasFixedSize()
-        vocabularyList = ArrayList()
-        adapter = VocabularyListAdapter(vocabularyList, this)
+
         recyclerView.adapter = adapter
 
         EasyAlert.showProgressDialog(requireActivity(),getString(R.string.vocabulary_loading))
         viewModel.vocabularies.observe(viewLifecycleOwner, Observer {
+            vocabularyList.clear()
             vocabularyList.addAll(it)
             EasyAlert.hideProgressDialog()
             adapter.notifyDataSetChanged()
