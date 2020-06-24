@@ -33,7 +33,7 @@ abstract class BaseActivity : AppCompatActivity() {
             "Light"-> R.style.lightTheme
             "Dark"-> R.style.darkTheme
             "Classic"-> R.style.classicTheme
-            else -> R.style.lightTheme
+            else -> R.style.darkTheme
         }
     }
 
