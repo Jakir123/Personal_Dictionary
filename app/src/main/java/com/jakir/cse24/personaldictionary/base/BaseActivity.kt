@@ -1,13 +1,13 @@
 package com.jakir.cse24.personaldictionary.base
 
+import android.app.Activity
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -24,6 +24,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(getSelectedTheme())
+        makeStatusBarTransparent()
         getContentView()
         onViewReady(savedInstanceState)
     }
@@ -178,5 +179,20 @@ abstract class BaseActivity : AppCompatActivity() {
         return Patterns.EMAIL_ADDRESS.toRegex().matches(email)
     }
 
-
+    protected fun Activity.makeStatusBarTransparent() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.apply {
+                clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+                addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    decorView.systemUiVisibility =
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    statusBarColor = Color.TRANSPARENT
+                } else {
+                    decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                }
+                statusBarColor = Color.TRANSPARENT
+            }
+        }
+    }
 }
