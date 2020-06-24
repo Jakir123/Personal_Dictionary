@@ -6,20 +6,30 @@
     <attr name="buttonTextColor" format="color"/>
 
     <attr name="inputFieldBgColor" format="color"/>
+    <attr name="inputFieldTextColor" format="color"/>
+    <attr name="inputFieldHintTextColor" format="color"/>
+    <attr name="inputFieldIconColor" format="color"/>
+    <attr name="inputFieldStrokeColor" format="color"/>
 
     <attr name="checkboxBorderColor" format="color"/>
 
+    <attr name="titleTextColor" format="color"/>
     <attr name="primaryTextColor" format="color"/>
     <attr name="subTextColor" format="color"/>
-    <attr name="titleTextColor" format="color"/>
 
     <attr name="cardBgColor" format="reference|color"/>
+    <attr name="cardTitleTextColor" format="color"/>
     <attr name="cardPrimaryTextColor" format="color"/>
     <attr name="cardSubTextColor" format="color"/>
     <attr name="cardStrokeColor" format="color"/>
+    <attr name="cardIconColor" format="color"/>
 
     <attr name="bottomBarBgColor" format="color"/>
+    <attr name="bottomBarIconColor" format="color"/>
+
     <attr name="fabBgColor" format="color"/>
+    <attr name="fabIconColor" format="color"/>
 
     <attr name="toolbarColor" format="color"/>
+    <attr name="toolbarIconColor" format="color"/>
 </resources>

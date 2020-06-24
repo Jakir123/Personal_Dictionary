@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -35,7 +35,11 @@
         <item name="buttonBgColor">@color/colorPrimaryDark</item>
         <item name="buttonTextColor">@color/colorWhite</item>
 
-        <item name="inputFieldBgColor">@color/colorGray</item>
+        <item name="inputFieldBgColor">@color/transparent</item>
+        <item name="inputFieldTextColor">@color/color_white</item>
+        <item name="inputFieldHintTextColor">@color/colorLightWhite</item>
+        <item name="inputFieldIconColor">@color/colorPrimaryDark</item>
+        <item name="inputFieldStrokeColor">@color/color_white</item>
 
         <item name="checkboxBorderColor">@color/colorWhite</item>
 
@@ -44,14 +48,20 @@
         <item name="titleTextColor">@color/colorWhite</item>
 
         <item name="cardBgColor">@color/transparent</item>
+        <item name="cardTitleTextColor">@color/color_white</item>
         <item name="cardPrimaryTextColor">@color/colorWhite</item>
         <item name="cardSubTextColor">@color/colorLightWhite</item>
         <item name="cardStrokeColor">@color/colorWhite</item>
+        <item name="cardIconColor">@color/colorLightWhite</item>
 
         <item name="bottomBarBgColor">@color/colorPrimaryDark</item>
+        <item name="bottomBarIconColor">@color/color_white</item>
+
         <item name="fabBgColor">@color/colorPrimaryDark</item>
+        <item name="fabIconColor">@color/color_white</item>
 
         <item name="toolbarColor">@color/colorPrimaryDark</item>
+        <item name="toolbarIconColor">@color/color_white</item>
     </style>
 
     <style name="lightTheme" parent="AppTheme">
@@ -175,10 +185,31 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <!--    EditText Style    -->
     <style name="editTextStyle" parent="matchParent">
-        <item name="android:background">@drawable/round_edittext</item>
+<!--        <item name="android:background">@drawable/round_edittext</item>-->
         <item name="android:drawablePadding">@dimen/very_small_5</item>
         <item name="android:imeOptions">actionNext</item>
+        <item name="android:textColor">?inputFieldTextColor</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:drawableTint" tools:targetApi="m">?inputFieldIconColor</item>
+    </style>
+    <style name="textInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="errorTextAppearance">@style/errorText</item>
+        <item name="hintEnabled">true</item>
+        <item name="hintAnimationEnabled">true</item>
+        <item name="boxBackgroundColor">?inputFieldBgColor</item>
+        <item name="boxStrokeColor">?inputFieldStrokeColor</item>
+        <item name="boxStrokeErrorColor">@color/color_error</item>
+        <item name="android:textColorHint">?inputFieldHintTextColor</item>
+        <item name="boxCornerRadiusTopStart">0dp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/large_16</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/large_16</item>
+        <item name="boxCornerRadiusBottomEnd">0dp</item>
+    </style>
+    <style name="errorText" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/color_error</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="matchParent">
@@ -234,7 +265,7 @@
 
     <style name="fabStyle" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="backgroundTint">?fabBgColor</item>
-        <item name="tint">@color/colorWhite</item>
+        <item name="tint">?fabIconColor</item>
         <item name="elevation">@dimen/default_10</item>
         <item name="fabSize">normal</item>
     </style>
