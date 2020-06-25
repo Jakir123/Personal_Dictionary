@@ -47,20 +47,20 @@
         <item name="subTextColor">@color/colorLightWhite</item>
         <item name="titleTextColor">@color/colorWhite</item>
 
-        <item name="cardBgColor">@color/transparent</item>
+        <item name="cardBgColor">@color/color_grey</item>
         <item name="cardTitleTextColor">@color/color_white</item>
         <item name="cardPrimaryTextColor">@color/colorWhite</item>
         <item name="cardSubTextColor">@color/colorLightWhite</item>
         <item name="cardStrokeColor">@color/colorWhite</item>
         <item name="cardIconColor">@color/colorLightWhite</item>
 
-        <item name="bottomBarBgColor">@color/colorPrimaryDark</item>
+        <item name="bottomBarBgColor">@color/colorBlack</item>
         <item name="bottomBarIconColor">@color/color_white</item>
 
         <item name="fabBgColor">@color/colorPrimaryDark</item>
         <item name="fabIconColor">@color/color_white</item>
 
-        <item name="toolbarColor">@color/colorPrimaryDark</item>
+        <item name="toolbarColor">@color/colorBlack</item>
         <item name="toolbarIconColor">@color/color_white</item>
     </style>
 
@@ -259,7 +259,7 @@
         <item name="android:textColor">?cardPrimaryTextColor</item>
     </style>
 
-    <style name="cardSubTextStyle" parent="defaultTextViewStyle">
+    <style name="cardSubTextStyle" parent="textViewSubTitle1Style">
         <item name="android:textColor">?cardSubTextColor</item>
     </style>
 
