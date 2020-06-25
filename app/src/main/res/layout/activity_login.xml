@@ -32,7 +32,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/very_small_5"
-            app:hintEnabled="false"
             app:layout_constraintBottom_toTopOf="@+id/tilPassword">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -50,7 +49,6 @@
             style="@style/textInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:hintEnabled="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 

@@ -26,11 +26,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilName"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/textInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/very_small_5"
-            app:hintEnabled="false"
             android:layout_marginTop="@dimen/x_large_20"
             app:layout_constraintTop_toBottomOf="@id/tvHeader">
 
@@ -46,11 +45,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/textInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/very_small_5"
-            app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@id/tilName">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -65,11 +63,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPhone"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/textInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/very_small_5"
-            app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@id/tilEmail">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -84,11 +81,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/textInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/very_small_5"
-            app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@id/tilPhone">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -103,11 +99,10 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilConfirmPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/textInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/very_small_5"
-            app:hintEnabled="false"
             app:layout_constraintTop_toBottomOf="@+id/tilPassword">
 
             <com.google.android.material.textfield.TextInputEditText
