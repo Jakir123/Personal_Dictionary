@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="pageBgColor" format="reference|color"/>
+    <attr name="pageOppositeBgColor" format="reference"/>
 
     <attr name="buttonBgColor" format="reference|color"/>
     <attr name="buttonTextColor" format="color"/>

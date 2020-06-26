@@ -31,6 +31,7 @@
     <!--    custom themes    -->
     <style name="darkTheme">
         <item name="pageBgColor">@color/colorBlack</item>
+        <item name="pageOppositeBgColor">@color/colorWhite</item>
 
         <item name="buttonBgColor">@color/colorPrimaryDark</item>
         <item name="buttonTextColor">@color/colorWhite</item>
@@ -66,6 +67,7 @@
 
     <style name="lightTheme" parent="AppTheme">
         <item name="pageBgColor">@color/colorWhite</item>
+        <item name="pageOppositeBgColor">@color/colorBlack</item>
 
         <item name="buttonBgColor">@color/colorPrimaryDark</item>
         <item name="buttonTextColor">@color/colorWhite</item>
@@ -101,6 +103,7 @@
 
     <style name="classicTheme">
         <item name="pageBgColor">@drawable/background_gradient</item>
+        <item name="pageOppositeBgColor">@color/colorWhite</item>
 
         <item name="buttonBgColor">@color/colorPrimaryDark</item>
         <item name="buttonTextColor">@color/colorWhite</item>
