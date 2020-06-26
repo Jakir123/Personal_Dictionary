@@ -39,8 +39,8 @@ import kotlinx.android.synthetic.main.fragment_vocabulary_list.*
  */
 class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListener {
 
-//    private  val viewModel: VocabularyListViewModel by activityViewModels()
-    private val viewModel: VocabularyListViewModel by navGraphViewModels(R.id.nav_graph)
+    private  val viewModel: VocabularyListViewModel by activityViewModels()
+//    private val viewModel: VocabularyListViewModel by navGraphViewModels(R.id.nav_graph)
     private lateinit var adapter: VocabularyListAdapter
     private lateinit var vocabularyList: ArrayList<Vocabulary>
     private lateinit var mActivity: DashboardActivity

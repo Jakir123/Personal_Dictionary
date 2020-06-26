@@ -71,6 +71,10 @@
         <item name="buttonTextColor">@color/colorWhite</item>
 
         <item name="inputFieldBgColor">@color/colorGray</item>
+        <item name="inputFieldTextColor">@color/color_white</item>
+        <item name="inputFieldHintTextColor">@color/colorLightWhite</item>
+        <item name="inputFieldIconColor">@color/colorPrimaryDark</item>
+        <item name="inputFieldStrokeColor">@color/color_white</item>
 
         <item name="checkboxBorderColor">@color/colorPrimaryDark</item>
 
@@ -79,13 +83,20 @@
         <item name="titleTextColor">@color/colorPrimaryDark</item>
 
         <item name="cardBgColor">@color/colorWhite</item>
+        <item name="cardTitleTextColor">@color/color_white</item>
         <item name="cardPrimaryTextColor">@color/colorBlack</item>
         <item name="cardSubTextColor">#6A000000</item>
         <item name="cardStrokeColor">@color/colorGray</item>
+        <item name="cardIconColor">@color/colorLightWhite</item>
 
         <item name="bottomBarBgColor">@color/colorPrimary</item>
+        <item name="bottomBarIconColor">@color/color_white</item>
+
         <item name="fabBgColor">@color/colorPrimary</item>
+        <item name="fabIconColor">@color/color_white</item>
+
         <item name="toolbarColor">@color/colorPrimaryDark</item>
+        <item name="toolbarIconColor">@color/color_white</item>
     </style>
 
     <style name="classicTheme">
@@ -95,6 +106,10 @@
         <item name="buttonTextColor">@color/colorWhite</item>
 
         <item name="inputFieldBgColor">@color/colorGray</item>
+        <item name="inputFieldTextColor">@color/color_white</item>
+        <item name="inputFieldHintTextColor">@color/colorLightWhite</item>
+        <item name="inputFieldIconColor">@color/colorPrimaryDark</item>
+        <item name="inputFieldStrokeColor">@color/color_white</item>
 
         <item name="checkboxBorderColor">@color/colorPrimaryDark</item>
 
@@ -103,13 +118,20 @@
         <item name="titleTextColor">@color/colorPrimaryDark</item>
 
         <item name="cardBgColor">@color/colorWhite</item>
+        <item name="cardTitleTextColor">@color/color_white</item>
         <item name="cardPrimaryTextColor">@color/colorBlack</item>
         <item name="cardSubTextColor">#6A000000</item>
         <item name="cardStrokeColor">@color/colorGray</item>
+        <item name="cardIconColor">@color/colorLightWhite</item>
 
         <item name="bottomBarBgColor">@color/colorPrimary</item>
+        <item name="bottomBarIconColor">@color/color_white</item>
+
         <item name="fabBgColor">@color/colorPrimary</item>
+        <item name="fabIconColor">@color/color_white</item>
+
         <item name="toolbarColor">@color/colorPrimaryDark</item>
+        <item name="toolbarIconColor">@color/color_white</item>
     </style>
 
     <!--  collapsing toolbar tile style  -->

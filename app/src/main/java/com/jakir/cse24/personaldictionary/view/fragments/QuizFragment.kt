@@ -10,6 +10,7 @@ import android.speech.tts.TextToSpeech
 import android.view.*
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.navGraphViewModels
@@ -38,8 +39,8 @@ class QuizFragment : BaseFragment() {
     private lateinit var mSetRightOut: AnimatorSet
     private lateinit var binding: FragmentQuizBinding
 
-    //    private val viewModel: VocabularyListViewModel by activityViewModels()
-    private val viewModel: VocabularyListViewModel by navGraphViewModels(R.id.nav_graph)
+        private val viewModel: VocabularyListViewModel by activityViewModels()
+//    private val viewModel: VocabularyListViewModel by navGraphViewModels(R.id.nav_graph)
     private lateinit var mActivity: DashboardActivity
     private var favIcon: MenuItem? = null
     private lateinit var vocabulary: Vocabulary
