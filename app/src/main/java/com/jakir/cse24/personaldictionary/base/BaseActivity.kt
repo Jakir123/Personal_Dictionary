@@ -1,14 +1,18 @@
 package com.jakir.cse24.personaldictionary.base
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.util.Patterns
+import android.util.TypedValue
 import android.view.*
 import android.widget.Toast
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.jakir.cse24.personaldictionary.R
@@ -179,6 +183,16 @@ abstract class BaseActivity : AppCompatActivity() {
         return Patterns.EMAIL_ADDRESS.toRegex().matches(email)
     }
 
+    @ColorInt
+    fun Context.getColorFromAttr(
+        @AttrRes attrColor: Int,
+        typedValue: TypedValue = TypedValue(),
+        resolveRefs: Boolean = true
+    ): Int {
+        theme.resolveAttribute(attrColor, typedValue, resolveRefs)
+        return typedValue.data
+    }
+
     protected fun Activity.makeStatusBarTransparent() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.apply {
@@ -187,11 +201,11 @@ abstract class BaseActivity : AppCompatActivity() {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     decorView.systemUiVisibility =
                         View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    statusBarColor = Color.TRANSPARENT
+                    statusBarColor = getColorFromAttr(R.attr.pageBgColor)
                 } else {
                     decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
                 }
-                statusBarColor = Color.TRANSPARENT
+                statusBarColor = getColorFromAttr(R.attr.pageBgColor)
             }
         }
     }
