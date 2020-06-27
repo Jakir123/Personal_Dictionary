@@ -17,9 +17,9 @@ class SettingRepository {
     )
 
     var themes = arrayOf(
-        "Classic",
         "Dark",
-        "Light"
+        "Light",
+        "Classic"
     )
 
 }
