@@ -92,6 +92,8 @@ class QuizFragment : BaseFragment() {
         loadAnimations()
         changeCameraDistance()
 
+        card_back.visibility = View.INVISIBLE
+
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         viewModel.generateRandomVocabulary()
@@ -131,6 +133,7 @@ class QuizFragment : BaseFragment() {
 
     private fun showHideAnswer() {
         isBackVisiable = if (!isBackVisiable) {
+            card_back.visibility =View.VISIBLE
             mSetRightOut.setTarget(card_front)
             mSetLeftIn.setTarget(card_back)
             mSetRightOut.start()
