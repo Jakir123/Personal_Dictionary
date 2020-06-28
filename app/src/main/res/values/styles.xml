@@ -58,11 +58,13 @@
         <item name="bottomBarBgColor">@color/colorBlack</item>
         <item name="bottomBarIconColor">@color/color_white</item>
 
-        <item name="fabBgColor">@color/colorPrimaryDark</item>
-        <item name="fabIconColor">@color/color_white</item>
+        <item name="fabBgColor">?bottomBarBgColor</item>
+        <item name="fabIconColor">?bottomBarIconColor</item>
 
-        <item name="toolbarColor">@color/colorBlack</item>
-        <item name="toolbarIconColor">@color/color_white</item>
+        <item name="toolbarColor">?bottomBarBgColor</item>
+        <item name="toolbarIconColor">?bottomBarIconColor</item>
+
+        <item name="colorPrimaryDark">?toolbarColor</item>
     </style>
 
     <style name="lightTheme" parent="AppTheme">
