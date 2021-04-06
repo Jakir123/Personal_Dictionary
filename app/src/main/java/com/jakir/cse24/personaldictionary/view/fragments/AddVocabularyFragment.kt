@@ -79,7 +79,8 @@ class AddVocabularyFragment : BaseFragment() {
             "Adverb",
             "Adjective",
             "Preposition",
-            "Conjunction"
+            "Conjunction",
+            "Phrases"
         )
         val adapter = SpinnerAdapter(
             requireContext(), android.R.layout.simple_spinner_item,
@@ -97,6 +98,7 @@ class AddVocabularyFragment : BaseFragment() {
             "Adjective" -> 5
             "Preposition" -> 6
             "Conjunction" -> 7
+            "Phrases" -> 8
             else -> 0
         }
         spinnerType.setSelection(selectedPosition)
@@ -167,7 +169,7 @@ class AddVocabularyFragment : BaseFragment() {
             vocabulary?.translation?.meaning = meaning
             vocabulary?.translation?.description = description
             vocabulary?.translation?.example = example
-            viewModel.updateVocabulary(vocabulary!!.id, vocabulary!!).observe(this, Observer {
+            viewModel.updateVocabulary(vocabulary!!.id, vocabulary!!).observe(viewLifecycleOwner, Observer {
                 updateViews(it)
             })
         } else {
@@ -177,7 +179,7 @@ class AddVocabularyFragment : BaseFragment() {
                 Translation(meaning, description, example),
                 synonyms,
                 antonyms
-            )).observe(this, Observer {
+            )).observe(viewLifecycleOwner, Observer {
                 updateViews(it)
             })
         }

@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
+import com.jakir.cse24.personaldictionary.data.repositories.FilterType
 import com.jakir.cse24.personaldictionary.data.repositories.VocabularyRepository
 import kotlin.random.Random
 
@@ -13,9 +14,9 @@ class VocabularyListViewModel : ViewModel() {
     private val vocabularyRepository: VocabularyRepository by lazy { VocabularyRepository() }
     lateinit var vocabularies: MutableLiveData<ArrayList<Vocabulary>>
 
-    fun getVocabularies() {
+    fun getVocabularies(filterType: FilterType) {
         vocabularies = MutableLiveData()
-        vocabularyRepository.getVocabularies().observeForever {
+        vocabularyRepository.getVocabularies(filterType).observeForever {
             vocabularies.postValue(it)
         }
     }

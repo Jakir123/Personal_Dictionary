@@ -16,7 +16,13 @@
         android:layout_height="?android:attr/actionBarSize"
         android:text="@string/vocabulary_list"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:drawablePadding="@dimen/small_8"
+        android:paddingEnd="@dimen/small_8"
+        app:drawableEndCompat="@drawable/ic_filter_list_24"
+        app:drawableRightCompat="@drawable/ic_filter_list_24"
+        android:paddingRight="@dimen/small_8"
+        tools:ignore="RtlSymmetry" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

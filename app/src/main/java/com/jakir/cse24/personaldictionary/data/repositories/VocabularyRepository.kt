@@ -2,6 +2,8 @@ package com.jakir.cse24.personaldictionary.data.repositories
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.base.BaseRepository
@@ -13,27 +15,123 @@ class VocabularyRepository : BaseRepository() {
     private var nextItem = 1
 
     @SuppressLint("LongLogTag")
-    fun getVocabularies(pageSize: Int = 20): MutableLiveData<ArrayList<Vocabulary>> {
+    fun getVocabularies(filterType: FilterType): MutableLiveData<ArrayList<Vocabulary>> {
         val vocabularies: MutableLiveData<ArrayList<Vocabulary>> = MutableLiveData()
-        vocabularyCollection.whereEqualTo("userId", PreferenceManager.userId)
-            .orderBy("timeStamp", Query.Direction.DESCENDING)
-            .addSnapshotListener { value, exception ->
-                if (exception != null) {
-                    EasyLog.logE(
-                        "Exception in getVocabularies: ${exception.localizedMessage}",
-                        "VocabularyListRepository"
-                    )
-                    return@addSnapshotListener
-                }
-                val items = ArrayList<Vocabulary>()
-                for (doc in value!!) {
-                    items.add(doc.toObject(Vocabulary::class.java)!!)
-                }
-                vocabularies.value = items
+        when(filterType){
+            FilterType.ALL->{
+                vocabularyCollection.whereEqualTo("userId", PreferenceManager.userId)
+                    .orderBy("timeStamp", Query.Direction.DESCENDING)
+                    .addSnapshotListener { value, exception ->
+                        if (exception != null) {
+                            EasyLog.logE(
+                                "Exception in getVocabularies: ${exception.localizedMessage}",
+                                "VocabularyListRepository"
+                            )
+                            return@addSnapshotListener
+                        }
+                        val items = ArrayList<Vocabulary>()
+                        for (doc in value!!) {
+                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                        }
+                        vocabularies.value = items
+                    }
             }
-
-//        val lastItem = nextItem + pageSize - 1
-
+            FilterType.SEVEN_DAYS->{
+                vocabularyCollection.whereEqualTo("userId", PreferenceManager.userId)
+                    .whereLessThan("timeStamp", Timestamp.now()).whereGreaterThan("timeStamp",Timestamp(getDaysAgo(7)))
+                    .orderBy("timeStamp", Query.Direction.DESCENDING)
+                    .addSnapshotListener { value, exception ->
+                        if (exception != null) {
+                            EasyLog.logE(
+                                "Exception in getVocabularies: ${exception.localizedMessage}",
+                                "VocabularyListRepository"
+                            )
+                            return@addSnapshotListener
+                        }
+                        val items = ArrayList<Vocabulary>()
+                        for (doc in value!!) {
+                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                        }
+                        vocabularies.value = items
+                    }
+            }
+            FilterType.THIRTY_DAYS->{
+                vocabularyCollection.whereEqualTo("userId", PreferenceManager.userId)
+                    .whereLessThan("timeStamp", Timestamp.now()).whereGreaterThan("timeStamp",Timestamp(getDaysAgo(31)))
+                    .orderBy("timeStamp", Query.Direction.DESCENDING)
+                    .addSnapshotListener { value, exception ->
+                        if (exception != null) {
+                            EasyLog.logE(
+                                "Exception in getVocabularies: ${exception.localizedMessage}",
+                                "VocabularyListRepository"
+                            )
+                            return@addSnapshotListener
+                        }
+                        val items = ArrayList<Vocabulary>()
+                        for (doc in value!!) {
+                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                        }
+                        vocabularies.value = items
+                    }
+            }
+            FilterType.THREE_MONTHS->{
+                vocabularyCollection.whereEqualTo("userId", PreferenceManager.userId)
+                    .whereLessThan("timeStamp", Timestamp.now()).whereGreaterThan("timeStamp",Timestamp(getDaysAgo(92)))
+                    .orderBy("timeStamp", Query.Direction.DESCENDING)
+                    .addSnapshotListener { value, exception ->
+                        if (exception != null) {
+                            EasyLog.logE(
+                                "Exception in getVocabularies: ${exception.localizedMessage}",
+                                "VocabularyListRepository"
+                            )
+                            return@addSnapshotListener
+                        }
+                        val items = ArrayList<Vocabulary>()
+                        for (doc in value!!) {
+                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                        }
+                        vocabularies.value = items
+                    }
+            }
+            FilterType.SIX_MONTHS->{
+                vocabularyCollection.whereEqualTo("userId", PreferenceManager.userId)
+                    .whereLessThan("timeStamp", Timestamp.now()).whereGreaterThan("timeStamp",Timestamp(getDaysAgo(183)))
+                    .orderBy("timeStamp", Query.Direction.DESCENDING)
+                    .addSnapshotListener { value, exception ->
+                        if (exception != null) {
+                            EasyLog.logE(
+                                "Exception in getVocabularies: ${exception.localizedMessage}",
+                                "VocabularyListRepository"
+                            )
+                            return@addSnapshotListener
+                        }
+                        val items = ArrayList<Vocabulary>()
+                        for (doc in value!!) {
+                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                        }
+                        vocabularies.value = items
+                    }
+            }
+            FilterType.ONE_YEAR->{
+                vocabularyCollection.whereEqualTo("userId", PreferenceManager.userId)
+                    .whereLessThan("timeStamp", Timestamp.now()).whereGreaterThan("timeStamp",Timestamp(getDaysAgo(366)))
+                    .orderBy("timeStamp", Query.Direction.DESCENDING)
+                    .addSnapshotListener { value, exception ->
+                        if (exception != null) {
+                            EasyLog.logE(
+                                "Exception in getVocabularies: ${exception.localizedMessage}",
+                                "VocabularyListRepository"
+                            )
+                            return@addSnapshotListener
+                        }
+                        val items = ArrayList<Vocabulary>()
+                        for (doc in value!!) {
+                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                        }
+                        vocabularies.value = items
+                    }
+            }
+        }
         return vocabularies
     }
 
@@ -116,4 +214,13 @@ class VocabularyRepository : BaseRepository() {
         }
         return response
     }
+}
+
+enum class FilterType{
+    ALL,
+    SEVEN_DAYS,
+    THIRTY_DAYS,
+    THREE_MONTHS,
+    SIX_MONTHS,
+    ONE_YEAR
 }

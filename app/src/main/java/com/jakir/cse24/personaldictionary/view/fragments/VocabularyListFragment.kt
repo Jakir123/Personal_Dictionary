@@ -22,6 +22,7 @@ import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
+import com.jakir.cse24.personaldictionary.data.repositories.FilterType
 import com.jakir.cse24.personaldictionary.interfaces.ItemClickListener
 import com.jakir.cse24.personaldictionary.interfaces.ItemSwipeListener
 import com.jakir.cse24.personaldictionary.utils.SwipeToDeleteCallback
@@ -55,7 +56,7 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
         EasyLog.logE("onViewCreated")
-        viewModel.getVocabularies()
+        viewModel.getVocabularies(FilterType.ALL)
         vocabularyList = ArrayList()
         adapter = VocabularyListAdapter(vocabularyList, this)
     }
@@ -114,6 +115,53 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
         val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(requireContext(), this))
         itemTouchHelper.attachToRecyclerView(recyclerView)
 
+        tvHeader.setOnClickListener {
+            registerForContextMenu(it)
+            requireActivity().openContextMenu(it)
+            unregisterForContextMenu(it)
+        }
+
+    }
+
+    override fun onCreateContextMenu(
+        menu: ContextMenu,
+        v: View,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        menu.setHeaderTitle("Filter your vocabulary");
+        // add menu items
+        menu.add(0, v.id, 0, "All");
+        menu.add(0, v.id, 0, "Last 7 Days")
+        menu.add(0, v.id, 0, "Last 30 Days")
+        menu.add(0, v.id, 0, "Last 3 Months")
+        menu.add(0, v.id, 0, "Last 6 Months")
+        menu.add(0, v.id, 0, "Last 1 Year")
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        when(item.title){
+            "All"->{
+                viewModel.getVocabularies(FilterType.ALL)
+            }
+            "Last 7 Days"->{
+                viewModel.getVocabularies(FilterType.SEVEN_DAYS)
+            }
+            "Last 30 Days"->{
+                viewModel.getVocabularies(FilterType.THIRTY_DAYS)
+            }
+            "Last 3 Months"->{
+                viewModel.getVocabularies(FilterType.THREE_MONTHS)
+            }
+            "Last 6 Months"->{
+                viewModel.getVocabularies(FilterType.SIX_MONTHS)
+            }
+            "Last 1 Year"->{
+                viewModel.getVocabularies(FilterType.ONE_YEAR)
+            }
+
+        }
+        return true
     }
 
     override fun onItemSwiped(position: Int) {
