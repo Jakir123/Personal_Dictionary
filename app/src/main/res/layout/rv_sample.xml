@@ -13,15 +13,16 @@
         style="@style/cardStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="60dp"
-        android:padding="@dimen/very_small_5"
-        app:cardElevation="0dp"
-        app:cardUseCompatPadding="false"
+        android:minHeight="100dp"
+        app:cardElevation="@dimen/small_8"
+        app:cardUseCompatPadding="true"
         app:strokeWidth="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="@dimen/small_8"
+            android:paddingEnd="@dimen/small_8"
             android:layout_gravity="center">
 
             <TextView

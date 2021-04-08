@@ -12,10 +12,9 @@ import kotlin.random.Random
 
 class VocabularyListViewModel : ViewModel() {
     private val vocabularyRepository: VocabularyRepository by lazy { VocabularyRepository() }
-    lateinit var vocabularies: MutableLiveData<ArrayList<Vocabulary>>
+    var vocabularies: MutableLiveData<ArrayList<Vocabulary>> = MutableLiveData()
 
     fun getVocabularies(filterType: FilterType) {
-        vocabularies = MutableLiveData()
         vocabularyRepository.getVocabularies(filterType).observeForever {
             vocabularies.postValue(it)
         }
