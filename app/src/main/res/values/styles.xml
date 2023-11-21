@@ -37,10 +37,10 @@
         <item name="buttonTextColor">@color/colorWhite</item>
 
         <item name="inputFieldBgColor">@color/transparent</item>
-        <item name="inputFieldTextColor">@color/color_white</item>
+        <item name="inputFieldTextColor">@color/colorWhite</item>
         <item name="inputFieldHintTextColor">@color/colorLightWhite</item>
         <item name="inputFieldIconColor">@color/colorPrimaryDark</item>
-        <item name="inputFieldStrokeColor">@color/color_white</item>
+        <item name="inputFieldStrokeColor">@color/colorWhite</item>
 
         <item name="checkboxBorderColor">@color/colorWhite</item>
 
@@ -48,15 +48,15 @@
         <item name="subTextColor">@color/colorLightWhite</item>
         <item name="titleTextColor">@color/colorWhite</item>
 
-        <item name="cardBgColor">@color/color_grey</item>
-        <item name="cardTitleTextColor">@color/color_white</item>
+        <item name="cardBgColor">@color/colorGray</item>
+        <item name="cardTitleTextColor">@color/colorWhite</item>
         <item name="cardPrimaryTextColor">@color/colorWhite</item>
         <item name="cardSubTextColor">@color/colorLightWhite</item>
         <item name="cardStrokeColor">@color/colorWhite</item>
         <item name="cardIconColor">@color/colorLightWhite</item>
 
         <item name="bottomBarBgColor">@color/colorBlack</item>
-        <item name="bottomBarIconColor">@color/color_white</item>
+        <item name="bottomBarIconColor">@color/colorWhite</item>
 
         <item name="fabBgColor">?bottomBarBgColor</item>
         <item name="fabIconColor">?bottomBarIconColor</item>
@@ -75,10 +75,10 @@
         <item name="buttonTextColor">@color/colorWhite</item>
 
         <item name="inputFieldBgColor">@color/colorGray</item>
-        <item name="inputFieldTextColor">@color/color_white</item>
+        <item name="inputFieldTextColor">@color/colorWhite</item>
         <item name="inputFieldHintTextColor">@color/colorLightWhite</item>
         <item name="inputFieldIconColor">@color/colorPrimaryDark</item>
-        <item name="inputFieldStrokeColor">@color/color_white</item>
+        <item name="inputFieldStrokeColor">@color/colorWhite</item>
 
         <item name="checkboxBorderColor">@color/colorPrimaryDark</item>
 
@@ -87,20 +87,20 @@
         <item name="titleTextColor">@color/colorPrimaryDark</item>
 
         <item name="cardBgColor">@color/colorWhite</item>
-        <item name="cardTitleTextColor">@color/color_white</item>
+        <item name="cardTitleTextColor">@color/colorWhite</item>
         <item name="cardPrimaryTextColor">@color/colorBlack</item>
         <item name="cardSubTextColor">#6A000000</item>
         <item name="cardStrokeColor">@color/colorGray</item>
         <item name="cardIconColor">@color/colorLightWhite</item>
 
         <item name="bottomBarBgColor">@color/colorPrimary</item>
-        <item name="bottomBarIconColor">@color/color_white</item>
+        <item name="bottomBarIconColor">@color/colorWhite</item>
 
         <item name="fabBgColor">@color/colorPrimary</item>
-        <item name="fabIconColor">@color/color_white</item>
+        <item name="fabIconColor">@color/colorWhite</item>
 
         <item name="toolbarColor">@color/colorPrimaryDark</item>
-        <item name="toolbarIconColor">@color/color_white</item>
+        <item name="toolbarIconColor">@color/colorWhite</item>
     </style>
 
     <style name="classicTheme">
@@ -111,10 +111,10 @@
         <item name="buttonTextColor">@color/colorWhite</item>
 
         <item name="inputFieldBgColor">@color/colorGray</item>
-        <item name="inputFieldTextColor">@color/color_white</item>
+        <item name="inputFieldTextColor">@color/colorWhite</item>
         <item name="inputFieldHintTextColor">@color/colorLightWhite</item>
         <item name="inputFieldIconColor">@color/colorPrimaryDark</item>
-        <item name="inputFieldStrokeColor">@color/color_white</item>
+        <item name="inputFieldStrokeColor">@color/colorWhite</item>
 
         <item name="checkboxBorderColor">@color/colorPrimaryDark</item>
 
@@ -123,20 +123,20 @@
         <item name="titleTextColor">@color/colorPrimaryDark</item>
 
         <item name="cardBgColor">@color/colorWhite</item>
-        <item name="cardTitleTextColor">@color/color_white</item>
+        <item name="cardTitleTextColor">@color/colorWhite</item>
         <item name="cardPrimaryTextColor">@color/colorBlack</item>
         <item name="cardSubTextColor">#6A000000</item>
         <item name="cardStrokeColor">@color/colorGray</item>
         <item name="cardIconColor">@color/colorLightWhite</item>
 
         <item name="bottomBarBgColor">@color/colorPrimary</item>
-        <item name="bottomBarIconColor">@color/color_white</item>
+        <item name="bottomBarIconColor">@color/colorWhite</item>
 
         <item name="fabBgColor">@color/colorPrimary</item>
-        <item name="fabIconColor">@color/color_white</item>
+        <item name="fabIconColor">@color/colorWhite</item>
 
         <item name="toolbarColor">@color/colorPrimaryDark</item>
-        <item name="toolbarIconColor">@color/color_white</item>
+        <item name="toolbarIconColor">@color/colorWhite</item>
     </style>
 
     <!--  collapsing toolbar tile style  -->
@@ -227,7 +227,7 @@
         <item name="hintAnimationEnabled">true</item>
         <item name="boxBackgroundColor">?inputFieldBgColor</item>
         <item name="boxStrokeColor">?inputFieldStrokeColor</item>
-        <item name="boxStrokeErrorColor">@color/color_error</item>
+        <item name="boxStrokeErrorColor">@color/colorError</item>
         <item name="android:textColorHint">?inputFieldHintTextColor</item>
         <item name="boxCornerRadiusTopStart">0dp</item>
         <item name="boxCornerRadiusTopEnd">@dimen/large_16</item>
@@ -235,7 +235,7 @@
         <item name="boxCornerRadiusBottomEnd">0dp</item>
     </style>
     <style name="errorText" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/color_error</item>
+        <item name="android:textColor">@color/colorError</item>
         <item name="android:textSize">14sp</item>
     </style>
 

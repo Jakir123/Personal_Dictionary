@@ -4,7 +4,6 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.data.model.User
@@ -54,9 +53,6 @@ class SignUpRepository {
                         false,
                         it.message.toString()
                     )
-                EasyLog.logE("OnFailureListener: ${it.message}","SignUpRepository")
-                EasyLog.logE("OnFailureListener: ${it.localizedMessage}","SignUpRepository")
-                EasyLog.logE("OnFailureListener: ${it.stackTrace}","SignUpRepository")
             }
         return signUp
     }

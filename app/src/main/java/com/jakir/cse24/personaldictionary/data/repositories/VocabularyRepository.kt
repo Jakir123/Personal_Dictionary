@@ -3,9 +3,7 @@ package com.jakir.cse24.personaldictionary.data.repositories
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.Timestamp
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.base.BaseRepository
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
@@ -23,15 +21,12 @@ class VocabularyRepository : BaseRepository() {
                     .orderBy("timeStamp", Query.Direction.DESCENDING)
                     .addSnapshotListener { value, exception ->
                         if (exception != null) {
-                            EasyLog.logE(
-                                "Exception in getVocabularies: ${exception.localizedMessage}",
-                                "VocabularyListRepository"
-                            )
+
                             return@addSnapshotListener
                         }
                         val items = ArrayList<Vocabulary>()
                         for (doc in value!!) {
-                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                            items.add(doc.toObject(Vocabulary::class.java))
                         }
                         vocabularies.value = items
                     }
@@ -42,15 +37,12 @@ class VocabularyRepository : BaseRepository() {
                     .orderBy("timeStamp", Query.Direction.DESCENDING)
                     .addSnapshotListener { value, exception ->
                         if (exception != null) {
-                            EasyLog.logE(
-                                "Exception in getVocabularies: ${exception.localizedMessage}",
-                                "VocabularyListRepository"
-                            )
+
                             return@addSnapshotListener
                         }
                         val items = ArrayList<Vocabulary>()
                         for (doc in value!!) {
-                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                            items.add(doc.toObject(Vocabulary::class.java))
                         }
                         vocabularies.value = items
                     }
@@ -61,15 +53,12 @@ class VocabularyRepository : BaseRepository() {
                     .orderBy("timeStamp", Query.Direction.DESCENDING)
                     .addSnapshotListener { value, exception ->
                         if (exception != null) {
-                            EasyLog.logE(
-                                "Exception in getVocabularies: ${exception.localizedMessage}",
-                                "VocabularyListRepository"
-                            )
+
                             return@addSnapshotListener
                         }
                         val items = ArrayList<Vocabulary>()
                         for (doc in value!!) {
-                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                            items.add(doc.toObject(Vocabulary::class.java))
                         }
                         vocabularies.value = items
                     }
@@ -80,15 +69,12 @@ class VocabularyRepository : BaseRepository() {
                     .orderBy("timeStamp", Query.Direction.DESCENDING)
                     .addSnapshotListener { value, exception ->
                         if (exception != null) {
-                            EasyLog.logE(
-                                "Exception in getVocabularies: ${exception.localizedMessage}",
-                                "VocabularyListRepository"
-                            )
+
                             return@addSnapshotListener
                         }
                         val items = ArrayList<Vocabulary>()
                         for (doc in value!!) {
-                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                            items.add(doc.toObject(Vocabulary::class.java))
                         }
                         vocabularies.value = items
                     }
@@ -99,15 +85,12 @@ class VocabularyRepository : BaseRepository() {
                     .orderBy("timeStamp", Query.Direction.DESCENDING)
                     .addSnapshotListener { value, exception ->
                         if (exception != null) {
-                            EasyLog.logE(
-                                "Exception in getVocabularies: ${exception.localizedMessage}",
-                                "VocabularyListRepository"
-                            )
+
                             return@addSnapshotListener
                         }
                         val items = ArrayList<Vocabulary>()
                         for (doc in value!!) {
-                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                            items.add(doc.toObject(Vocabulary::class.java))
                         }
                         vocabularies.value = items
                     }
@@ -118,15 +101,12 @@ class VocabularyRepository : BaseRepository() {
                     .orderBy("timeStamp", Query.Direction.DESCENDING)
                     .addSnapshotListener { value, exception ->
                         if (exception != null) {
-                            EasyLog.logE(
-                                "Exception in getVocabularies: ${exception.localizedMessage}",
-                                "VocabularyListRepository"
-                            )
+
                             return@addSnapshotListener
                         }
                         val items = ArrayList<Vocabulary>()
                         for (doc in value!!) {
-                            items.add(doc.toObject(Vocabulary::class.java)!!)
+                            items.add(doc.toObject(Vocabulary::class.java))
                         }
                         vocabularies.value = items
                     }
@@ -149,10 +129,7 @@ class VocabularyRepository : BaseRepository() {
                     vocabularies.value = items
                 }
             }.addOnFailureListener {
-                EasyLog.logE(
-                    "Exception in getVocabularies: ${it.localizedMessage}",
-                    "VocabularyListRepository"
-                )
+
             }
         return vocabularies
     }
@@ -177,7 +154,7 @@ class VocabularyRepository : BaseRepository() {
     fun addRemoveFavourite(id: String, status: Boolean): MutableLiveData<ResponseModel> {
         val response = MutableLiveData<ResponseModel>()
         vocabularyCollection.document(id).update("favourite", status).addOnFailureListener {
-            EasyLog.logE("Update failed: ${it.localizedMessage}")
+//            EasyLog.logE("Update failed: ${it.localizedMessage}") Todo Need to fix
             response.value = ResponseModel(false, it.message.toString())
         }.addOnSuccessListener {
             response.value = ResponseModel(true, "Vocabulary updated.")
@@ -205,7 +182,6 @@ class VocabularyRepository : BaseRepository() {
     ): MutableLiveData<ResponseModel> {
         val response = MutableLiveData<ResponseModel>()
         vocabularyCollection.document(id).update(vocabulary).addOnFailureListener {
-            EasyLog.logE("Update failed: ${it.localizedMessage}")
             response.value = ResponseModel(false, it.message.toString())
         }.addOnSuccessListener {
             response.value = ResponseModel(true, "Vocabulary updated.")

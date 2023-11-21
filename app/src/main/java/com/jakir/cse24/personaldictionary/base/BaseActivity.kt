@@ -10,6 +10,7 @@ import android.util.Log
 import android.util.Patterns
 import android.util.TypedValue
 import android.view.*
+import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
@@ -17,7 +18,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
-import kotlinx.android.synthetic.main.layout_progress_dialog.view.*
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -141,10 +141,10 @@ abstract class BaseActivity : AppCompatActivity() {
         }
         dialog = alert.create()
         if (TextUtils.isEmpty(msg)) {
-            view.tvProgressMessage.visibility = View.GONE
+            view.findViewById<TextView>(R.id.tvProgressMessage).visibility = View.GONE
             dialog!!.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
         } else
-            view.tvProgressMessage.text = msg
+            view.findViewById<TextView>(R.id.tvProgressMessage).text = msg
 
         dialog!!.show()
     }

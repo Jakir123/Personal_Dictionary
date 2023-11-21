@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.google.firebase.auth.FirebaseAuth
 import com.jakir.cse24.personaldictionary.R
@@ -12,7 +13,6 @@ import com.jakir.cse24.personaldictionary.databinding.ActivityRegistrationBindin
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 import com.jakir.cse24.personaldictionary.data.model.User
 import com.jakir.cse24.personaldictionary.view_model.SignUpViewModel
-import kotlinx.android.synthetic.main.activity_registration.*
 
 class RegistrationActivity : BaseActivity() {
     private lateinit var viewModel: SignUpViewModel
@@ -26,12 +26,12 @@ class RegistrationActivity : BaseActivity() {
 
     override fun onViewReady(savedInstanceState: Bundle?) {
 //        settingActionBar(getString(R.string.sign_up),true)
-        viewModel = ViewModelProviders.of(this)[SignUpViewModel::class.java]
+        viewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
         binding.viewModel = viewModel
 
         mAuth = FirebaseAuth.getInstance()
 
-        btnSignUp.setOnClickListener {
+        binding.btnSignUp.setOnClickListener {
             val name = viewModel.name.value
             val email = viewModel.email.value
             val phone = viewModel.phoneNumber.value
@@ -93,7 +93,7 @@ class RegistrationActivity : BaseActivity() {
 
         }
 
-        tvLogin.setOnClickListener { finish() }
+        binding.tvLogin.setOnClickListener { finish() }
     }
 
 }

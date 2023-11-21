@@ -1,31 +1,21 @@
 package com.jakir.cse24.personaldictionary.view.fragments
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.jakir.cse24.easyalert.EasyAlert
-import com.jakir.cse24.easyalert.EasyLog
-import com.jakir.cse24.easyalert.EasyToast
+import com.google.android.material.navigation.NavigationView
 import com.jakir.cse24.personaldictionary.BuildConfig
-
 import com.jakir.cse24.personaldictionary.R
-import com.jakir.cse24.personaldictionary.base.BaseFragment
-import com.jakir.cse24.personaldictionary.base.BaseRepository
-import com.jakir.cse24.personaldictionary.data.FirebaseSource
-import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.repositories.UserRepository
 import com.jakir.cse24.personaldictionary.interfaces.LogoutListener
 import com.jakir.cse24.personaldictionary.view.activities.AppInfoActivity
 import com.jakir.cse24.personaldictionary.view.activities.SettingActivity
-import kotlinx.android.synthetic.main.fragment_bottom_navigation_drawer.*
 
 /**
  * A simple [BottomSheetDialogFragment] subclass.
@@ -42,6 +32,11 @@ class BottomNavigationDrawerFragment(private val logoutListener: LogoutListener)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val tvName = view.findViewById<TextView>(R.id.tvName)
+        val tvEmail = view.findViewById<TextView>(R.id.tvEmail)
+        val tvAppVersion = view.findViewById<TextView>(R.id.tvAppVersion)
+        val progressBar = view.findViewById<ProgressBar>(R.id.progressBar)
+        val navigationView = view.findViewById<NavigationView>(R.id.navigationView)
 
         UserRepository().getUserInfo().observe(this, Observer {user->
             tvName.text = user.name
@@ -56,7 +51,7 @@ class BottomNavigationDrawerFragment(private val logoutListener: LogoutListener)
                     requireContext().startActivity(Intent(requireContext(),SettingActivity::class.java))
                 }
                 R.id.actionRate->{
-                    EasyToast.showToast(requireContext(),"Long way to go...")
+//                    EasyToast.showToast(requireContext(),"Long way to go...") Todo need to fix
                 }
                 R.id.actionAboutDeveloper->{
                     requireContext().startActivity(Intent(requireContext(),AppInfoActivity::class.java))

@@ -2,7 +2,6 @@ package com.jakir.cse24.personaldictionary.data.repositories
 
 import androidx.lifecycle.MutableLiveData
 import com.google.gson.GsonBuilder
-import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.data.model.AppInfo
 import okhttp3.*
 import java.io.IOException
@@ -16,10 +15,11 @@ class AppInfoRepository {
             .build()
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                EasyLog.logE(
-                    "Exception in getting app info: ${e.localizedMessage}",
-                    "AppInfoRepository"
-                )
+                // TODO: Need to fix
+//                EasyLog.logE(
+//                    "Exception in getting app info: ${e.localizedMessage}",
+//                    "AppInfoRepository"
+//                )
             }
 
             override fun onResponse(call: Call, response: Response) {

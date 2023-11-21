@@ -13,19 +13,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
-import androidx.navigation.navGraphViewModels
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
+import com.jakir.cse24.personaldictionary.base.BaseFragment2
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.databinding.FragmentQuizBinding
 import com.jakir.cse24.personaldictionary.view.activities.DashboardActivity
 import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
-import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.fragment_quiz.*
-import kotlinx.android.synthetic.main.fragment_word.*
-import kotlinx.android.synthetic.main.fragment_word_details.*
 import java.util.*
 
 
@@ -33,33 +29,33 @@ import java.util.*
  * A simple [BaseFragment] subclass.
  * Created by Md. Jakir Hossain on 02/05/2019
  */
-class QuizFragment : BaseFragment() {
+class QuizFragment : BaseFragment2<FragmentQuizBinding>() {
     private var isBackVisiable: Boolean = false
     private lateinit var mSetLeftIn: AnimatorSet
     private lateinit var mSetRightOut: AnimatorSet
-    private lateinit var binding: FragmentQuizBinding
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentQuizBinding {
+        return DataBindingUtil.inflate(inflater, R.layout.fragment_quiz, container, false)
+    }
+    override fun onViewReady(savedInstanceState: Bundle?, view: View) {
 
-        private val viewModel: VocabularyListViewModel by activityViewModels()
+    }
+
+    private val viewModel: VocabularyListViewModel by activityViewModels()
 //    private val viewModel: VocabularyListViewModel by navGraphViewModels(R.id.nav_graph)
     private lateinit var mActivity: DashboardActivity
     private var favIcon: MenuItem? = null
     private lateinit var vocabulary: Vocabulary
     private lateinit var tts: TextToSpeech
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_quiz, container, false)
-        return binding.root
-    }
 
     private fun changeCameraDistance() {
         val distance = 8000
         val scale = resources.displayMetrics.density * distance
-        card_front.cameraDistance = scale
-        card_back.cameraDistance = scale
+        binding.cardFront.cameraDistance = scale
+        binding.cardBack.cameraDistance = scale
     }
 
     private fun loadAnimations() {
@@ -92,7 +88,7 @@ class QuizFragment : BaseFragment() {
         loadAnimations()
         changeCameraDistance()
 
-        card_back.visibility = View.INVISIBLE
+        binding.cardBack.visibility = View.INVISIBLE
 
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -105,18 +101,19 @@ class QuizFragment : BaseFragment() {
 
         mActivity = activity as DashboardActivity
 
-        mActivity.fabAdd.setOnClickListener {
-            viewModel.generateRandomVocabulary()
-        }
-        mActivity.bottomBar.setNavigationOnClickListener {
-            Navigation.findNavController(view).navigateUp()
-        }
+//        mActivity.fabAdd.setOnClickListener {
+//            viewModel.generateRandomVocabulary()
+//        }
+//        mActivity.bottomBar.setNavigationOnClickListener {
+//            Navigation.findNavController(view).navigateUp()
+//        }
+        // TODO: need to find a solution of the above code
 
-        fabSpeak.setOnClickListener {
+        binding.fragmentWordDetails.fabSpeak.setOnClickListener {
             speakWord()
         }
 
-        imvSpeaker.setOnClickListener {
+        binding.fragmentWord.imvSpeaker.setOnClickListener {
             speakWord()
         }
 
@@ -124,54 +121,26 @@ class QuizFragment : BaseFragment() {
     }
 
     private fun speakWord() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            tts.speak(vocabulary.word, TextToSpeech.QUEUE_FLUSH, null, null);
-        } else {
-            tts.speak(vocabulary.word, TextToSpeech.QUEUE_FLUSH, null);
-        }
+        tts.speak(vocabulary.word, TextToSpeech.QUEUE_FLUSH, null, null);
     }
 
     private fun showHideAnswer() {
         isBackVisiable = if (!isBackVisiable) {
-            card_back.visibility =View.VISIBLE
-            mSetRightOut.setTarget(card_front)
-            mSetLeftIn.setTarget(card_back)
+            binding.cardBack.visibility =View.VISIBLE
+            mSetRightOut.setTarget(binding.cardFront)
+            mSetLeftIn.setTarget(binding.cardBack)
             mSetRightOut.start()
             mSetLeftIn.start()
             true
         } else {
-            mSetRightOut.setTarget(card_back)
-            mSetLeftIn.setTarget(card_front)
+            mSetRightOut.setTarget(binding.cardBack)
+            mSetLeftIn.setTarget(binding.cardFront)
             mSetRightOut.start()
             mSetLeftIn.start()
             false
         }
     }
-
-    private fun collapsingToolbarSetup() {
-        appbarLayout.addOnOffsetChangedListener(object : AppBarLayout.OnOffsetChangedListener {
-
-            var isShow = true
-            var scrollRange = -1
-            override fun onOffsetChanged(appBarLayout: AppBarLayout, verticalOffset: Int) {
-                if (scrollRange == -1) {
-                    scrollRange = appBarLayout.totalScrollRange
-                }
-                if (scrollRange + verticalOffset == 0) {
-//                    collapsingToolbar.title = vocabulary.word
-                    collapsingToolbar.setCollapsedTitleTextAppearance(R.style.coll_toolbar_title)
-                    isShow = true
-                } else if (verticalOffset >= 0 || verticalOffset < -230) {
-//                    collapsingToolbar.title = vocabulary.word
-                    collapsingToolbar.setExpandedTitleTextAppearance(R.style.exp_toolbar_title)
-                } else if (isShow) {
-//                    collapsingToolbar.title = vocabulary.word //carefull there should a space between double quote otherwise it wont work
-                    collapsingToolbar.setCollapsedTitleTextColor(Color.WHITE)
-                    isShow = false
-                }
-            }
-        })
-    }
+    
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         favIcon = menu.findItem(R.id.add_favourite)

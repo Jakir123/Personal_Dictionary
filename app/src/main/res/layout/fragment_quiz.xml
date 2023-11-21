@@ -16,23 +16,25 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/card_back"
+            android:id="@+id/cardBack"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <include
                 layout="@layout/fragment_word_details"
+                android:id="@+id/fragmentWordDetails"
                 bind:data="@{viewModel.randomVocabulary}" />
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/card_front"
+            android:id="@+id/cardFront"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center">
 
             <include
                 layout="@layout/fragment_word"
+                android:id="@+id/fragmentWord"
                 bind:data="@{viewModel.reverseEnable?viewModel.randomVocabulary.translation.meaning:viewModel.randomVocabulary.word}"/>
 
         </FrameLayout>

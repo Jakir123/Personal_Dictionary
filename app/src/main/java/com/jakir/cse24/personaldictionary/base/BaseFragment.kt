@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
 import android.view.*
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +13,6 @@ import androidx.lifecycle.MutableLiveData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.jakir.cse24.personaldictionary.R
-import kotlinx.android.synthetic.main.layout_progress_dialog.view.*
 
 /**
  * A simple [Fragment] subclass.
@@ -133,10 +133,10 @@ abstract class BaseFragment : Fragment() {
         }
         dialog = alert.create()
         if (TextUtils.isEmpty(msg)) {
-            view.tvProgressMessage.visibility = View.GONE
+            view.findViewById<TextView>(R.id.tvProgressMessage).visibility = View.GONE
             dialog!!.getWindow()?.setBackgroundDrawableResource(android.R.color.transparent)
         } else
-            view.tvProgressMessage.text = msg
+            view.findViewById<TextView>(R.id.tvProgressMessage).text = msg
 
         dialog!!.show()
     }

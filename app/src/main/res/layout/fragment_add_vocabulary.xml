@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:id="@+id/btnAddAdditional"
-                    android:textColor="@color/color_warning"
+                    android:textColor="@color/colorError"
                     android:text="@string/add_additional"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

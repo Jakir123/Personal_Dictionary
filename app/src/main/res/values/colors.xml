@@ -13,6 +13,7 @@
 
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorLightWhite">#88FFFFFF</color>
+    <color name="colorError">#C83103</color>
     <color name="colorBlack">#000</color>
     <color name="colorLightBlack">#74000000</color>
     <color name="colorOrange">#ff5722</color>

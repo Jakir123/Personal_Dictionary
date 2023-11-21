@@ -17,5 +17,6 @@
         android:layout_weight="4"
         android:gravity="center|start"
         android:layout_marginStart="5dp"
-        android:id="@+id/tvProgressMessage" />
+        android:id="@+id/tvProgressMessage"
+        android:layout_marginLeft="5dp" />
 </LinearLayout>

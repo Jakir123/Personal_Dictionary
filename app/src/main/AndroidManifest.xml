@@ -22,7 +22,8 @@
         <activity android:name=".view.activities.DashboardActivity" />
         <activity android:name=".view.activities.RegistrationActivity" />
         <activity android:name=".view.activities.LoginActivity" />
-        <activity android:name=".view.activities.SplashScreenActivity">
+        <activity android:name=".view.activities.SplashScreenActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

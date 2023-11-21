@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-import kotlinx.android.synthetic.main.toolbar_view.view.*
+import com.jakir.cse24.personaldictionary.R
 
 
 class ToolbarView : LinearLayout {
@@ -35,8 +35,8 @@ class ToolbarView : LinearLayout {
     }
 
     fun bindTo(title: String?, subTitle: String?) {
-        hideOrSetText(tvTitle, title)
-        hideOrSetText(tvSubTitle, subTitle)
+        hideOrSetText(findViewById<TextView>(R.id.tvTitle), title)
+        hideOrSetText(findViewById(R.id.tvSubTitle), subTitle)
     }
 
     private fun hideOrSetText(tv: TextView, text: String?) {

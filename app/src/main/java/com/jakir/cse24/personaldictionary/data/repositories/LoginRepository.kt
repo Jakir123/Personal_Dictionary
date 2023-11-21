@@ -1,9 +1,7 @@
 package com.jakir.cse24.personaldictionary.data.repositories
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.auth.FirebaseAuth
-import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.data.PreferenceManager
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
 
@@ -42,9 +40,6 @@ class LoginRepository {
                         false,
                         it.message.toString()
                     )
-                EasyLog.logE("OnFailureListener: ${it.message}","SignUpRepository")
-                EasyLog.logE("OnFailureListener: ${it.localizedMessage}","SignUpRepository" )
-                EasyLog.logE("OnFailureListener: ${it.stackTrace}","SignUpRepository")
             }
         return signUp
     }

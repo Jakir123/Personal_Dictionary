@@ -1,26 +1,25 @@
 package com.jakir.cse24.personaldictionary.view.fragments
 
 
-import android.opengl.Visibility
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
-import com.jakir.cse24.easyalert.EasyAlert
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
 import com.jakir.cse24.personaldictionary.data.model.ResponseModel
-import com.jakir.cse24.personaldictionary.data.model.Translation
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.databinding.FragmentAddVocabularyBinding
 import com.jakir.cse24.personaldictionary.view.activities.DashboardActivity
 import com.jakir.cse24.personaldictionary.view.adapter.SpinnerAdapter
 import com.jakir.cse24.personaldictionary.view_model.VocabularyAddViewModel
-import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.fragment_add_vocabulary.*
 
 
 /**
@@ -50,26 +49,26 @@ class AddVocabularyFragment : BaseFragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProviders.of(this)[VocabularyAddViewModel::class.java]
+        viewModel = ViewModelProvider(this)[VocabularyAddViewModel::class.java]
         mActivity = activity as DashboardActivity
         vocabulary = arguments?.getParcelable("vocabulary")
         if (vocabulary != null) {
             viewModel.setValue(vocabulary!!)
             isUpdate = true
-            tvHeader.text = getString(R.string.header_update_vocabulary)
+            binding.tvHeader.text = getString(R.string.header_update_vocabulary)
             if (vocabulary!!.antonyms != "" || vocabulary!!.synonyms != "" ||
                 vocabulary!!.translation.description != "" || vocabulary!!.translation.example != ""){
-                group.visibility = View.VISIBLE
+                binding.group.visibility = View.VISIBLE
             }
         }
         binding.viewModel = viewModel
 
-        mActivity.bottomBar.setNavigationOnClickListener {
-            Navigation.findNavController(view).navigateUp()
-        }
-        mActivity.fabAdd.setOnClickListener {
-            saveOrUpdateVocabulary()
-        }
+//        mActivity.bottomBar.setNavigationOnClickListener {
+//            Navigation.findNavController(view).navigateUp()
+//        }
+//        mActivity.fabAdd.setOnClickListener {
+//            saveOrUpdateVocabulary()
+//        }
 
         val types = arrayOf(
             "Select word type..",
@@ -88,7 +87,7 @@ class AddVocabularyFragment : BaseFragment() {
         )
 
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
-        spinnerType.adapter = adapter
+        binding.spinnerType.adapter = adapter
 
         val selectedPosition = when (vocabulary?.type) {
             "Noun" -> 1
@@ -101,9 +100,9 @@ class AddVocabularyFragment : BaseFragment() {
             "Phrases" -> 8
             else -> 0
         }
-        spinnerType.setSelection(selectedPosition)
+        binding.spinnerType.setSelection(selectedPosition)
 
-        spinnerType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.spinnerType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>,
                 view: View,
@@ -119,9 +118,9 @@ class AddVocabularyFragment : BaseFragment() {
             }
         }
 
-        btnAddAdditional.setOnClickListener {
+        binding.btnAddAdditional.setOnClickListener {
             it.visibility = View.GONE
-            group.visibility = View.VISIBLE
+            binding.group.visibility = View.VISIBLE
         }
     }
 
@@ -161,7 +160,7 @@ class AddVocabularyFragment : BaseFragment() {
         }
 
         if (isUpdate) {
-            EasyAlert.showProgressDialog(requireActivity(),"Updating vocabulary...")
+//            EasyAlert.showProgressDialog(requireActivity(),"Updating vocabulary...") Todo need to fix
             vocabulary?.word = word
             vocabulary?.type = type
             vocabulary?.synonyms = synonyms
@@ -173,15 +172,16 @@ class AddVocabularyFragment : BaseFragment() {
                 updateViews(it)
             })
         } else {
-            EasyAlert.showProgressDialog(requireActivity(),"Adding new vocabulary...")
-            viewModel.addVocabulary(Vocabulary(
-                word, type,
-                Translation(meaning, description, example),
-                synonyms,
-                antonyms
-            )).observe(viewLifecycleOwner, Observer {
-                updateViews(it)
-            })
+            // TODO: Need to fix
+//            EasyAlert.showProgressDialog(requireActivity(),"Adding new vocabulary...")
+//            viewModel.addVocabulary(Vocabulary(
+//                word, type,
+//                Translation(meaning, description, example),
+//                synonyms,
+//                antonyms
+//            )).observe(viewLifecycleOwner, Observer {
+//                updateViews(it)
+//            })
         }
     }
 
@@ -195,11 +195,12 @@ class AddVocabularyFragment : BaseFragment() {
     }
 
     private fun updateViews(response:ResponseModel) {
-        EasyAlert.hideProgressDialog()
-        showToast(response.message)
-        if (response.status) {
-            val navController = view?.let { it -> Navigation.findNavController(it) }
-            navController?.navigateUp()
-        }
+        // TODO: need to fix
+//        EasyAlert.hideProgressDialog()
+//        showToast(response.message)
+//        if (response.status) {
+//            val navController = view?.let { it -> Navigation.findNavController(it) }
+//            navController?.navigateUp()
+//        }
     }
 }

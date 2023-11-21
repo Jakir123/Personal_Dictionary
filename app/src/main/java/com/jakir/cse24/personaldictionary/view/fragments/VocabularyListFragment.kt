@@ -2,43 +2,41 @@ package com.jakir.cse24.personaldictionary.view.fragments
 
 
 import android.os.Bundle
-import android.view.*
-import android.widget.TextView
-import androidx.core.content.ContextCompat
+import android.view.ContextMenu
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
-import com.jakir.cse24.easyalert.EasyAlert
-import com.jakir.cse24.easyalert.EasyLog
 import com.jakir.cse24.personaldictionary.R
 import com.jakir.cse24.personaldictionary.base.BaseFragment
+import com.jakir.cse24.personaldictionary.base.BaseFragment2
 import com.jakir.cse24.personaldictionary.data.model.Vocabulary
 import com.jakir.cse24.personaldictionary.data.repositories.FilterType
+import com.jakir.cse24.personaldictionary.databinding.FragmentVocabularyListBinding
 import com.jakir.cse24.personaldictionary.interfaces.ItemClickListener
 import com.jakir.cse24.personaldictionary.interfaces.ItemSwipeListener
 import com.jakir.cse24.personaldictionary.utils.SwipeToDeleteCallback
 import com.jakir.cse24.personaldictionary.view.activities.DashboardActivity
 import com.jakir.cse24.personaldictionary.view.adapter.VocabularyListAdapter
 import com.jakir.cse24.personaldictionary.view_model.VocabularyListViewModel
-import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.activity_vocabulary_list.recyclerView
-import kotlinx.android.synthetic.main.fragment_vocabulary_list.*
 
 
 /**
  * A simple [BaseFragment] subclass.
  * Created by Md. Jakir Hossain on 02/05/2019.
  */
-class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListener {
+class VocabularyListFragment : BaseFragment2<FragmentVocabularyListBinding>(), ItemClickListener, ItemSwipeListener {
 
     private  val viewModel: VocabularyListViewModel by activityViewModels()
 //    private val viewModel: VocabularyListViewModel by navGraphViewModels(R.id.nav_graph)
@@ -55,7 +53,6 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
-        EasyLog.logE("onViewCreated")
         viewModel.getVocabularies(FilterType.ALL)
         vocabularyList = ArrayList()
         adapter = VocabularyListAdapter(vocabularyList, this)
@@ -78,44 +75,46 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
 
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        EasyLog.logE("onCreateView")
-        return inflater.inflate(R.layout.fragment_vocabulary_list, container, false)
+    override fun getViewBinding(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ): FragmentVocabularyListBinding {
+        return DataBindingUtil.inflate(inflater,R.layout.fragment_vocabulary_list,container,false)
+    }
+
+    override fun onViewReady(savedInstanceState: Bundle?, view: View) {
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        EasyLog.logE("onViewCreated")
         mActivity = activity as DashboardActivity
-        mActivity.fabAdd.setOnClickListener {
-            view.findNavController().navigate(R.id.addVocabularyFragment)
-        }
-        mActivity.bottomBar.setNavigationOnClickListener {
-            mActivity.onNavigationPressed()
-        }
+        // TODO: need to solve the following commented lines
+//        mActivity.fabAdd.setOnClickListener {
+//            view.findNavController().navigate(R.id.addVocabularyFragment)
+//        }
+//        mActivity.bottomBar.setNavigationOnClickListener {
+//            mActivity.onNavigationPressed()
+//        }
 
         val layoutManager = LinearLayoutManager(requireContext())
 
-        recyclerView.layoutManager = layoutManager
-        recyclerView.hasFixedSize()
+        binding.recyclerView.layoutManager = layoutManager
+        binding.recyclerView.hasFixedSize()
 
-        recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
 
-        EasyAlert.showProgressDialog(requireActivity(),getString(R.string.vocabulary_loading))
+//        EasyAlert.showProgressDialog(requireActivity(),getString(R.string.vocabulary_loading)) todo need to fix
         viewModel.vocabularies.observe(viewLifecycleOwner, Observer {
             vocabularyList.clear()
             vocabularyList.addAll(it)
-            EasyAlert.hideProgressDialog()
+//            EasyAlert.hideProgressDialog() todo need to fix
             adapter.notifyDataSetChanged()
         })
         val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(requireContext(), this))
-        itemTouchHelper.attachToRecyclerView(recyclerView)
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
 
-        tvHeader.setOnClickListener {
+        binding.tvHeader.setOnClickListener {
             registerForContextMenu(it)
             requireActivity().openContextMenu(it)
             unregisterForContextMenu(it)
@@ -171,7 +170,7 @@ class VocabularyListFragment : BaseFragment(), ItemClickListener, ItemSwipeListe
     }
 
     private fun showUndoSnackbar(vocabulary: Vocabulary, position: Int) {
-        val snack = Snackbar.make(container, "${vocabulary.word} deleted...", Snackbar.LENGTH_LONG)
+        val snack = Snackbar.make(binding.container, "${vocabulary.word} deleted...", Snackbar.LENGTH_LONG)
         snack.setAction(R.string.undo, View.OnClickListener {
             adapter.restoreItem(vocabulary, position)
         }).addCallback(object : BaseTransientBottomBar.BaseCallback<Snackbar>() {
